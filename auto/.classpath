@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/sitemesh-2.4.2.jar"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat-7.0.50/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat-7.0.50/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat-7.0.50/lib/jasper-el.jar"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat-7.0.50/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="D:/apache-tomcat-7.0.50/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_45"/>
+	<classpathentry kind="lib" path="E:/Users/workspace/auto/WebContent/WEB-INF/lib/classes12.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
