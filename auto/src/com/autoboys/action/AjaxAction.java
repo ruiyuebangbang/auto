@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -51,7 +52,8 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	private VehicleEmissionDAO vehicleEmissionDAO = new VehicleEmissionDAOImpl();
 	private VehicleYearDAO vehicleYearDAO = new VehicleYearDAOImpl();
 	private VehicleDAO vehicleDAO = new VehicleDAOImpl();
-	
+	private ProviderRegionDAO prdao = new ProviderRegionDAO();
+	private ProviderProductDAO ppdao = new ProviderProductDAOImpl();	
 	
 	public void setServletResponse(HttpServletResponse arg0) {
 		this.response = arg0;
@@ -449,5 +451,49 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 		this.yearList = yearList;
 	}
 	
+	/**
+	 * 鏍规嵁鍖哄煙1寰楀埌鍖哄煙2鍒楄〃
+	 * add zhux 2014-03-28
+	 * @return
+	 * @throws Exception
+	 */
+	public String getRegionsByReg1() throws Exception {
+		StringBuilder sb = new StringBuilder(); 
+		String reg = request.getParameter("regId");
+
+		List<ProviderRegion> ls = prdao.getChildrenByParent(Long.valueOf(reg));
+		for(ProviderRegion p: ls ) {
+			sb.append("<option value=\"").append(p.getId()).append("\">").append(p.getName()).append("</option>");
+		}
+		printWriteHTML(sb.toString());
+		return null;
+	}	
 	
+	/**
+	 * ajax request
+	 * To save or update providerProduct.
+	 * @return String
+	 */
+	public String updatePrice()
+	{	
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String id = request.getParameter("id");
+		String product = request.getParameter("product_id");
+		String discountPrice = request.getParameter("discount_price");
+		String labourPrice =request.getParameter("labour_price");
+		//Member user = (Member) request.getSession().getAttribute("USER");
+		Member user = new Member(); user.setProvid(1L);
+		if(id !=null &&!"".equals(id)) {
+				ppdao.updatePrice(id,discountPrice,labourPrice);
+		} else {
+			ppdao.save(user.getProvid(),product,discountPrice,labourPrice);
+		}
+		if(discountPrice==null||"".equals(discountPrice)
+				||labourPrice==null||"".equals(labourPrice)) {
+			printWriteHTML("");
+		} else {
+			printWriteHTML(String.valueOf(Double.parseDouble(discountPrice)+Double.parseDouble(labourPrice)));
+		}
+		return null;
+	}	
 }

@@ -11,5 +11,7 @@ public interface MemberDAO {
 	public Member queryByNickName(String mobilePhone);
 	public Member queryByUserName(String userName);
 	public void deleteMember(Long memberId);
+	public List<Member> listMemberByPro(Long pid);
+	public int modifyPassword(Member member);
 
 }

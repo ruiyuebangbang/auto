@@ -13,25 +13,21 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.autoboys.dao.*;
 import com.autoboys.domain.*;
 
-public class UserAction extends ActionSupport implements ModelDriven<User> {
+public class UserAction extends ActionSupport {
 
 	private static final long serialVersionUID = -6659925652584240539L;
 
-	private User user = new User();
-	private List<User> userList = new ArrayList<User>();
-	private UserDAO userDAO = new UserDAOImpl();
-	
-	public User getModel() {
-		return user;
-	}
-	
+	private Member user ;
+	private List<Member> userList ;
+	private MemberDAO userDAO = new MemberDAOImpl();
+		
 	/**
 	 * To save or update user.
 	 * @return String
 	 */
 	public String saveOrUpdate()
 	{	
-		userDAO.saveOrUpdateUser(user);
+		userDAO.saveOrUpdateMember(user);
 		return SUCCESS;
 	}
 	
@@ -41,7 +37,30 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 	public String list()
 	{
-		userList = userDAO.listUser();
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		//request.getSession().getAttribute("xxx");
+		Member member = (Member) request.getSession().getAttribute("login_user");
+		long providerId = member.getProvid();
+		userList = userDAO.listMemberByPro(providerId);
+		user = new Member();
+		user.setProvid(providerId);
+		user.setClassid(2);
+		user.setIsAdmin(0);
+		user.setVerifiedemail(0);
+		return SUCCESS;
+	}
+	
+	public String editPassword()
+	{
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		if (!request.getMethod().equals("POST")) {
+			return "editForm";
+		}
+		
+		Member member = (Member) request.getSession().getAttribute("login_user");
+		long id = member.getId();
+		user.setId(id);
+		userDAO.modifyPassword(user);
 		return SUCCESS;
 	}
 	
@@ -52,7 +71,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public String delete()
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-		userDAO.deleteUser(Long.parseLong(request.getParameter("id")));
+		userDAO.deleteMember(Long.parseLong(request.getParameter("id")));
+		
 		return SUCCESS;
 	}
 	
@@ -63,24 +83,33 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public String edit()
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-		user = userDAO.listUserById(Long.parseLong(request.getParameter("id")));
+		user = userDAO.queryMemberById(Long.parseLong(request.getParameter("id")));
+		
+		//request.getSession().getAttribute("xxx");
+		Member member = (Member) request.getSession().getAttribute("login_user");
+		long providerId = member.getProvid();
+		userList = userDAO.listMemberByPro(providerId);
 		return SUCCESS;
 	}
+
 	
-	public User getUser() {
+	
+	public Member getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Member user) {
 		this.user = user;
 	}
 
-	public List<User> getUserList() {
+	public List<Member> getUserList() {
 		return userList;
 	}
 
-	public void setUserList(List<User> userList) {
+	public void setUserList(List<Member> userList) {
 		this.userList = userList;
 	}
+	
+
 
 }

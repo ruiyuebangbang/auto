@@ -1,20 +1,20 @@
 package com.autoboys.action;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.autoboys.dao.VehicleCategoryDAO;
 import com.autoboys.dao.VehicleCategoryDAOImpl;
-import com.autoboys.dao.VehicleSeriesDAO;
-import com.autoboys.dao.VehicleSeriesDAOImpl;
+import com.autoboys.domain.Member;
+import com.autoboys.domain.ProviderVehicleBrand;
 import com.autoboys.domain.User;
-import com.autoboys.domain.VehicleCategory;
-import com.autoboys.domain.VehicleSeries;
+import com.autoboys.domain.VehicleBrand;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -26,7 +26,15 @@ public class VehicleAction extends ActionSupport {
 	
 	//private HttpServletRequest request;
 	//private VehicleCategory vehicleCategory = new VehicleCategory();
-	private List<VehicleCategory> vehicleCategories = new ArrayList<VehicleCategory>();
+	private List<VehicleBrand> vehicleCategories ;
+	private List<String> selCodes;
+	
+	public List<String> getSelCodes() {
+		return selCodes;
+	}
+	public void setSelCodes(List<String> selCodes) {
+		this.selCodes = selCodes;
+	}
 	private VehicleCategoryDAO vehicleCategoryDAO = new VehicleCategoryDAOImpl();
 	
 	//public void setServletRequest(HttpServletRequest arg0) {
@@ -40,13 +48,18 @@ public class VehicleAction extends ActionSupport {
 		return SUCCESS;
 	}
 	/**
-	 * 供应商修改能提供维修的汽车品牌
+	 * 供应商修改能提供维修的汽车品�?
 	 * 
 	 * @return String
 	 * @throws Exception
 	 */
 	public String providerChangeBrands() throws Exception {
-		vehicleCategories = vehicleCategoryDAO.listVehicleByParentId("0");
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		Member member = (Member) request.getSession().getAttribute("login_user");
+		long providerId = member.getProvid();
+		selCodes = vehicleCategoryDAO.listVehicleCodeByProvider(providerId);
+		vehicleCategories = vehicleCategoryDAO.getVehicleBrands(); //vehicleCategoryDAO.listVehicleByProvider(pid);
+		
 		//request.setAttribute("vehicleCategories", vehicleCategories); 
 		//System.out.println("list.size:"+vehicleCategories.size());
 		return SUCCESS;
@@ -61,15 +74,13 @@ public class VehicleAction extends ActionSupport {
 		
 		return SUCCESS;
 	}
-	
-	public List<VehicleCategory> getVehicleCategories() {
+	public List<VehicleBrand> getVehicleCategories() {
 		return vehicleCategories;
 	}
-
-	public void setVehicleCategories(List<VehicleCategory> vehicleCategories) {
+	public void setVehicleCategories(List<VehicleBrand> vehicleCategories) {
 		this.vehicleCategories = vehicleCategories;
 	}
 	
-	
+
 	
 }

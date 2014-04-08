@@ -38,7 +38,7 @@
 		</action>
 
 		<action name="uploadImage" method="uploadImage" class="com.autoboys.action.provider.StoreManagerAction">
-			<!-- 动态设置savePath的属性�?-->            
+			<!-- 动态设置savePath的属性 -->            
 			<param name="savePath">/images</param>
 			<result name="success" type="redirect">editStoreInfo.action</result>
 			
@@ -48,7 +48,7 @@
 				<!-- 文件大小, 以字节为单位 -->                
 				<param name="maximumSize">1025956</param>            
 			</interceptor-ref>            
-			<!-- 默认拦截器必须放在fileUpload之后，否则无�?-->            
+			<!-- 默认拦截器必须放在fileUpload之后，否则无�?-->            
 			<interceptor-ref name="defaultStack" />
 		</action>
 				
