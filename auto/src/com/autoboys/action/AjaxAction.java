@@ -46,11 +46,8 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	private List<VehicleEmission> emissionList = new ArrayList<VehicleEmission>();
 	private List<VehicleYear> yearList = new ArrayList<VehicleYear>();
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
-	private VehicleCategoryDAO vehicleCategoryDAO = new VehicleCategoryDAOImpl();
 	private VehicleBrandDAO vehicleBrandDAO = new VehicleBrandDAOImpl();
 	private VehicleSeriesDAO vehicleSeriesDAO = new VehicleSeriesDAOImpl();
-	private VehicleEmissionDAO vehicleEmissionDAO = new VehicleEmissionDAOImpl();
-	private VehicleYearDAO vehicleYearDAO = new VehicleYearDAOImpl();
 	private VehicleDAO vehicleDAO = new VehicleDAOImpl();
 	private ProviderRegionDAO prdao = new ProviderRegionDAO();
 	private ProviderProductDAO ppdao = new ProviderProductDAOImpl();	
@@ -141,14 +138,14 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	 */
 	public String getVehicleSeries() throws Exception {
 		String pcode = request.getParameter("pcode");
-		System.out.println("pcode:"+pcode);
+		//System.out.println("get series ,brand_code:"+pcode);
 		//设置选定品牌cookie
 		//CookieUtil.setCookie(request, response, "AutoboysVB", pcode, 31536000);
-		seriesList = vehicleSeriesDAO.listByBrandCode(pcode);
-		request.setAttribute("seriesList", seriesList);
 		VehicleBrand brand = vehicleBrandDAO.getVehicleBrand(pcode);
 		session.put("curBrandCode", pcode);
-		session.put("curBrandName", brand.getCname());
+		if(brand != null) session.put("curBrandName", brand.getCname());
+		seriesList = vehicleSeriesDAO.listByBrandCode(pcode);
+		//request.setAttribute("seriesList", seriesList);
 		return SUCCESS;
 	}
 	/**
@@ -157,52 +154,55 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	 * @throws Exception
 	 */
 	public String getVehicleEmission() throws Exception {
+		System.out.println("getVehicleEmission====================");
 		String pcode = request.getParameter("pcode");
-		//System.out.println("series:"+pcode);
+		//System.out.println("get emission,series_code:"+pcode);
 		//设置选定车系
 		//CookieUtil.setCookie(request, response, "AutoboysVS", pcode, 31536000);
-		//emissionList = vehicleEmissionDAO.listBySeriesCode(pcode);
-		//modify by Kevin 2014.4.7 排量改为直接从vehicle表获取
-		vehicleList = vehicleDAO.getVehiclesBySeries(pcode);
-		VehicleSeries series = vehicleSeriesDAO.getVehicleSeries(pcode);
 		
+		VehicleSeries series = vehicleSeriesDAO.getVehicleSeries(pcode);
 		session.put("curSeriesCode", pcode);
 		session.put("curSeriesName",series.getCname());
+		//emissionList = vehicleEmissionDAO.listBySeriesCode(pcode);
+		//modify by Kevin 2014.4.7 排量改为直接从vehicle表获取
+		emissionList = vehicleDAO.getEmissionsBySeries(pcode);
 		return SUCCESS;
 	}
 	
 	/**
-	 * 获取车型信息
+	 * 根据车系和排量获取车型列表
 	 * @return
 	 * @throws Exception
 	 */
-	public String getVehicles() throws Exception {
-		
-		String code = request.getParameter("pcode");
-		vehicleList = vehicleDAO.getVehiclesByEmission(code);
-		VehicleEmission emission = vehicleEmissionDAO.getVehicleEmission(code);
-		session.put("curEmissionCode", code);
-		session.put("curEmissionName", emission.getCname());
-		
+	public String getVehicleModel() throws Exception {
+		String scode = request.getParameter("scode");
+		String ecode = request.getParameter("ecode");
+		System.out.println("getVehicleModel====================");
+		//VehicleEmission emission = vehicleEmissionDAO.getVehicleEmission(code);
+		session.put("curEmissionCode", ecode);
+		session.put("curEmissionName", ecode);
+		vehicleList = vehicleDAO.getVehiclesBySE(scode,ecode);		
 		return SUCCESS;
 	}
 	
 	/**
-	 * 根据首字母查询汽车品牌
+	 * 
 	 * 
 	 * @return String
 	 * @throws Exception
 	 */
+	
 	public String getVehicleYear() throws Exception {
-		
+		/*
 		String code = request.getParameter("pcode");
 		yearList = vehicleYearDAO.listByEmissionCode(code);
 		VehicleEmission emission = vehicleEmissionDAO.getVehicleEmission(code);
 		session.put("curEmissionCode", code);
 		session.put("curEmissionName", emission.getCname());
+		*/
 		return SUCCESS;
 	}
-		
+	
 	/**
 	 * 选择车型
 	 * @return
@@ -213,81 +213,12 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 		return SUCCESS;
 	}
 	
-	public String getEmissionFromWeb() throws Exception{
-		seriesList =  vehicleSeriesDAO.listVehicleSeries();
-		Iterator<VehicleSeries> iter = seriesList.iterator(); 
-		VehicleSeries vs = new VehicleSeries();
-		String url ="http://www.yangche51.com/handlers/choosecar/choosecarprovider.aspx?json={\"Alphabet\":\"A\",\"AutoBrandId\":2249,\"AutoModelId\":0,\"AutoModelSubId\":0,\"ChooseType\":3,\"MainAutoModelID\":{0},\"SubIds\":null,\"Year\":0}&_=1395903411367";
-		int count = 0;
-		FileWriter writer = new FileWriter("E:/VehicleEmission.txt", true);
-		while(iter.hasNext())  
-        {  
-            vs=(VehicleSeries)iter.next(); 
-            URL getUrl = new URL(url.replace("{0}", vs.getCode()));
-            HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection();
-            connection.connect();
-			// 取得输入流，并使用Reader读取
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					connection.getInputStream()));
-			String line;
-			
-			boolean beg = false;
-			StringBuffer sb = new StringBuffer();
-			while ((line = reader.readLine()) != null) {
-				if(line.indexOf("class=\"carNature\"")>=0){
-					beg = true;
-				}
-				if(line.indexOf("</ul>")>=0){
-					beg = false;
-				}
-				if(beg){
-					sb.append(line);
-				}				
-			}
-            //System.out.println(sb); 
-			//"ChooseType":4,"MainAutoModelID":1002,"SubIds":"54718","Year":0}' title=
-            String regx = (",\"SubIds\":\"(.*?)\",\"Year\":0}' title='(.*?)'>");
-			Pattern p= Pattern.compile(regx);
-			Matcher  macher =p.matcher(sb.toString());
-			String sql =null;
-			while(macher.find()){ 
-				//if(macher.group(1).indexOf(",")> 0){
-					String[] arr = macher.group(1).split(",");
-					for(int i = 0;i<arr.length;i++){
-						sql = "insert into vehicle_emission (series_code,code,cname) values ('"+vs.getCode()+"','"+arr[i]+"','"+macher.group(2)+"');";
-						count++;
-						/*
-						VehicleEmission emission = new VehicleEmission();
-						emission.setCode(arr[i]);
-						emission.setSeriesCode(vs.getCode());
-						emission.setCname(macher.group(2));
-						vehicleEmissionDAO.saveOrUpdateEmission(emission);
-						*/
-						
-			            writer.write(sql+"\r\n");
-			            
-						System.out.println(sql);
-					}
-					
-				/*
-					sql = "insert into vehicle_emission (series_code,code,cname) values ('"+vs.getCode()+"','"+macher.group(1)+"','"+macher.group(2)+"')";
-				}else{
-					sql = "insert into vehicle_emission (series_code,code,cname) values ('"+vs.getCode()+"','"+macher.group(1)+"','"+macher.group(2)+"')";
-				}*/
-					
-				
-			}
-            
-        }  
-		writer.close();
-		return null;
-	}
+	
 	
 	public String updateEmission() throws Exception{
 		List<Vehicle> list =  vehicleDAO.listVehicle();
 		Iterator<Vehicle> iter = list.iterator(); 
 		Vehicle vehicle = null;
-		int count = 0;
 		PrintWriter pw = new PrintWriter("E:\\Users\\workspace\\data\\Vehicle.txt"); 
 		while(iter.hasNext())  
         {  
@@ -329,73 +260,6 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 		return null;
 	}
 	
-	public String getYearFromWeb() throws Exception{
-		emissionList =  vehicleEmissionDAO.listVehicleEmission();
-		Iterator<VehicleEmission> iter = emissionList.iterator(); 
-		VehicleEmission vs = new VehicleEmission();
-		String url ="http://www.yangche51.com/handlers/choosecar/choosecarprovider.aspx?json={\"AutoBrandId\":2202,\"MainAutoModelID\":1341,\"AutoModelId\":0,\"AutoModelSubId\":0,\"Year\":0,\"ChooseType\":4,\"Alphabet\":\"Z\",\"SubIds\":\"{0}\"}&_=1395910340549";
-		int count = 0;
-		FileWriter writer = new FileWriter("E:/VehicleYear.txt", true);
-		while(iter.hasNext())  
-        {  
-            vs=(VehicleEmission)iter.next(); 
-            URL getUrl = new URL(url.replace("{0}", vs.getCode()));
-            HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection();
-            connection.connect();
-			// 取得输入流，并使用Reader读取
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					connection.getInputStream()));
-			String line;
-			
-			boolean beg = false;
-			StringBuffer sb = new StringBuffer();
-			while ((line = reader.readLine()) != null) {
-				if(line.indexOf("--natureTips--")>=0){
-					beg = true;
-				}
-				if(line.indexOf("</ul>")>=0){
-					beg = false;
-				}
-				if(beg){
-					sb.append(line);
-				}				
-			}
-            //System.out.println(sb); 
-            String regx = (",\"Year\":(.*?),\"ChooseType\":5,");
-			Pattern p= Pattern.compile(regx);
-			Matcher  macher =p.matcher(sb.toString());
-			String sql =null;
-			while(macher.find()){ 
-				//if(macher.group(1).indexOf(",")> 0){
-					
-						sql = "insert into vehicle_year (emission_code,code,cname) values ('"+vs.getCode()+"','"+vs.getCode()+macher.group(1)+"','"+macher.group(1)+"年');";
-						count++;
-						/*
-						VehicleEmission emission = new VehicleEmission();
-						emission.setCode(arr[i]);
-						emission.setSeriesCode(vs.getCode());
-						emission.setCname(macher.group(2));
-						vehicleEmissionDAO.saveOrUpdateEmission(emission);
-						*/
-						
-			            writer.write(sql+"\r\n");
-			            
-						System.out.println(sql);
-					
-					
-				/*
-					sql = "insert into vehicle_emission (series_code,code,cname) values ('"+vs.getCode()+"','"+macher.group(1)+"','"+macher.group(2)+"')";
-				}else{
-					sql = "insert into vehicle_emission (series_code,code,cname) values ('"+vs.getCode()+"','"+macher.group(1)+"','"+macher.group(2)+"')";
-				}*/
-					
-				
-			}
-            
-        }  
-		writer.close();
-		return null;
-	}
 	
 	private void printWriteHTML(String html){
 		

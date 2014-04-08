@@ -10,8 +10,8 @@ public interface VehicleDAO {
 	
 	public Vehicle getVehicleByPrimaryKey(Integer id);
 	
-	public List<Vehicle> getVehiclesByEmission(String emisionCode);
+	public List<Vehicle> getVehiclesBySE(String seriesCode,String emisionCode);
 	
-	public List<Vehicle> getVehiclesBySeries(String seriesCode);
+	public List<VehicleEmission> getEmissionsBySeries(String seriesCode);
 	
 }

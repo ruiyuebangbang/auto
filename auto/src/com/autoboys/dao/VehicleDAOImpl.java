@@ -1,5 +1,8 @@
 package com.autoboys.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -10,6 +13,7 @@ import org.hibernate.Transaction;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 import com.autoboys.domain.*;
+import com.autoboys.util.ProxoolConnection;
 
 public class VehicleDAOImpl implements VehicleDAO {
 	
@@ -42,14 +46,17 @@ public class VehicleDAOImpl implements VehicleDAO {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Vehicle> getVehiclesByEmission(String emisionCode) {
+	public List<Vehicle> getVehiclesBySE(String seriesCode,String emisionCode) {
 		List<Vehicle> list = null;
 		try {
-			SQLQuery query = session.createSQLQuery("select * from Vehicle where emission_code = ?");
-			query.setParameter(0,emisionCode);
+			SQLQuery query = session.createSQLQuery("select * from Vehicle where series_code = ? emission_code = ?");
+			query.setParameter(0,seriesCode);
+			query.setParameter(1,emisionCode);
 			query.addEntity(Vehicle.class);
 			list = query.list();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,9 +64,11 @@ public class VehicleDAOImpl implements VehicleDAO {
 	}
 
 	@Override
-	public List<Vehicle> getVehiclesBySeries(String seriesCode) {
-		List<Vehicle> list = null;
+	public List<VehicleEmission> getEmissionsBySeries(String seriesCode) {
+		List<VehicleEmission> list = new ArrayList<VehicleEmission>();
+		java.sql.Connection conn = null;
 		try {
+			/*
 			Query query = session.createQuery("select distinct series_code,emission_code from Vehicle where series_code = ?");
 			query.setParameter(0,seriesCode);
 			//query.addEntity(Vehicle.class);
@@ -69,6 +78,18 @@ public class VehicleDAOImpl implements VehicleDAO {
 				vehicle.setSeriesCode(ol[0].toString());
 				vehicle.setEmissionCode(ol[1].toString());
 				list.add(vehicle);
+			}
+			*/
+			conn = ProxoolConnection.getConnection();
+			PreparedStatement ps = conn.prepareStatement("select distinct series_code,emission_code from Vehicle where series_code = ?");
+			ps.setString(1,seriesCode );
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				VehicleEmission ve = new VehicleEmission();
+				ve.setSeriesCode(rs.getString("series_code"));
+				ve.setCode(rs.getString("emission_code"));
+				list.add(ve);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

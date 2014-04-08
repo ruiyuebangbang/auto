@@ -34,8 +34,8 @@
 		<action name="getVehicleYear" method="getVehicleYear" class="com.autoboys.action.AjaxAction">
 			<result name="success">/ajax/common/getYear.jsp</result>
 		</action>
-		<action name="getVehicles" method="getVehicles" class="com.autoboys.action.AjaxAction">
-			<result name="success">/ajax/common/getVehicles.jsp</result>
+		<action name="getVehicleModel" method="getVehicleModel" class="com.autoboys.action.AjaxAction">
+			<result name="success">/ajax/common/getVehicleModel.jsp</result>
 		</action>
 		<action name="confirmVechicle" method="confirmVechicle" class="com.autoboys.action.AjaxAction">
 			<result name="success">/ajax/common/getYear.jsp</result>
@@ -43,11 +43,11 @@
 		<action name="updateEmission" method="updateEmission" class="com.autoboys.action.AjaxAction">
 			<result name="success">/ajax/common/getEmission.jsp</result>
 		</action>
-		<action name="getEmissionFromWeb" method="getEmissionFromWeb" class="com.autoboys.action.AjaxAction">
-			<result name="success">/ajax/common/getEmission.jsp</result>
+		<action name="getRegionsByReg1" method="getRegionsByReg1" class="com.autoboys.action.AjaxAction">
+			<result name="success">/null.jsp</result>
 		</action>
-		<action name="getYearFromWeb" method="getYearFromWeb" class="com.autoboys.action.AjaxAction">
-			<result name="success">/ajax/common/getEmission.jsp</result>
+		<action name="updateProductPrice" method="updatePrice" class="com.autoboys.action.AjaxAction">
+			<result name="success">/null.jsp</result>
 		</action>
 		<action name="getRegionsByReg1" method="getRegionsByReg1" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
