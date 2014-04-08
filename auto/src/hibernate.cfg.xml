@@ -24,7 +24,7 @@
 		<property name="show_sql">true</property>
 		<!-- 将SQL脚本进行格式化后再输出 -->
 		<property name="hibernate.format_sql">false</property>
-		<property name="hbm2ddl.auto">none</property>
+		<property name="hbm2ddl.auto ">none</property>
 
 		<mapping class="com.autoboys.domain.User" />
 		<mapping class="com.autoboys.domain.Member" />
