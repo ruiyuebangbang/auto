@@ -5,8 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="shortcut icon" href="/auto/favicon.ico" type="image/x-icon">
-	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/member.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/slayout.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/autoboys.css" type="text/css">
@@ -41,7 +40,7 @@
 					</div>
 					<div class="menu_item_children" itemtype="order">
 					    <ul>
-					        <li class="menu_item_child selected" id="menu-1-0"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=1">待确认订单</a></li>
+					        <li class="menu_item_child" id="menu-1-0"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=1">待确认订单</a></li>
 					        <li class="menu_item_child" id="menu-1-6"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=2">待维修订单</a></li>
 					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=3">已取消订单</a></li>
 					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=4">所有订单</a></li>
@@ -70,10 +69,15 @@
 					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">店铺信息管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="account">
 					    <ul>
-					        <li class="menu_item_child" id="menu-4-1"><a href="${pageContext.request.contextPath}/provider/editBasicInfo.action">商家基本信息</a></li>
-					        <li class="menu_item_child" id="menu-4-2"><a href="${pageContext.request.contextPath}/provider/editStoreInfo.action">店铺基本信息</a></li>
-					        <li class="menu_item_child" id="menu-4-3"><a href="${pageContext.request.contextPath}/provider/editPassword.action">修改管理员密码</a></li>
-					        <li class="menu_item_child" id="menu-4-4"><a href="${pageContext.request.contextPath}/user/userList.action">员工账号管理</a></li>
+					    	  					        
+					        <li <% if ("menu-4-1".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-1">	
+					        <a href="${pageContext.request.contextPath}/provider/editBasicInfo.action?menu=menu-4-1">商家基本信息</a></li>
+					        <li <% if ("menu-4-2".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-2">	
+					        <a href="${pageContext.request.contextPath}/provider/editStoreInfo.action?menu=menu-4-2">店铺基本信息</a></li>
+					        <li <% if ("menu-4-3".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-3">	
+					        <a href="${pageContext.request.contextPath}/provider/editPassword.action?menu=menu-4-3">修改管理员密码</a></li>
+					        <li <% if ("menu-4-4".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-4">	
+					        <a href="${pageContext.request.contextPath}/user/userList.action?menu=menu-4-4">员工账号管理</a></li>
 					    </ul>
 					</div>
 				</div>
@@ -88,46 +92,11 @@
 		</div>
 		<!--  div super-container end -->
 	<div class="footer">
-			<div class="footer-wrap">
-				<div class="footer-menu-wrap ">
-					<div class="footer-menu first">
-						<h3 class="menu-header gy">关于</h3>
-						<ul class="menu-list">
-							<li><a href="/about">关于四轮子</a></li>
-							<li><a href="#">联系我们</a></li>
-
-						</ul>
-					</div>
-
-					<div class="footer-menu swhz">
-						<h3 class="menu-header">商务合作</h3>
-						<ul class="menu-list">
-							<li><a href="/faq">招商政策</a></li>
-							<li><a href="/advertise">商家入驻流程</a></li>
-							<li><a href="/guidelines">广告洽谈</a></li>
-
-						</ul>
-					</div>
-
-					<div class="footer-menu bzzx">
-						<h3 class="menu-header">帮助中心</h3>
-						<ul class="menu-list">
-							<li><a href="/careers?country=US">常见问题</a></li>
-							<li><a href="/yelpmobile">How it work</a></li>
-
-						</ul>
-					</div>
-
-					<div class="follow footer-menu">
-						<h3 class="menu-header">关注养车客</h3>
-						<img src="<%=request.getContextPath() %>/image/follow_me_weixin.png" width="100px"/>
-						
-					</div>
-				</div>
-				
-				<p class="copyright lesser-text"><span style="margin-right:20px;">服务热线：400-188-6666（免长话）</span>Copyright © 2014–2018 All Right Reserved yangcheke.com. 沪ICP备08109440</p>
-			</div>
-		</div>
+	    <div class="footer-wrap">
+	        
+			
+	    </div>
+	</div>	
 </div>
   
   

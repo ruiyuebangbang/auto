@@ -116,7 +116,7 @@ public class MemberDAOImpl implements MemberDAO {
 	 */
 	public Member queryByNickName(String nickName) {
 		try {
-			SQLQuery query = session.createSQLQuery("select * from member where nick_name = ?");
+			SQLQuery query = session.createSQLQuery("select * from member where nickname = ?");
 			query.setParameter(0,nickName);
 			query.addEntity(Member.class);
 			List<Member> members = query.list();
