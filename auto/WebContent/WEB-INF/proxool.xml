@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <proxool-config>  
      <proxool>  
-         <alias>test</alias>  
-         <driver-url>jdbc:mysql://localhost:3306/test</driver-url>  
-         <driver-class>com.mysql.jdbc.Driver</driver-class>  
+         <alias>yangcheke</alias>  
+         <driver-url>jdbc:oracle:thin:@localhost:1521:orcl</driver-url>  
+         <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>  
          <driver-properties>  
-             <property name="user" value="root" />  
-             <property name="password" value="admin" />  
+             <property name="user" value="yangcheke" />  
+             <property name="password" value="yangcheke" />  
          </driver-properties>  
          <house-keeping-sleep-time>90000</house-keeping-sleep-time>  
          <maximum-new-connections>20</maximum-new-connections>  
@@ -15,19 +15,6 @@
          <minimum-connection-count>10</minimum-connection-count>  
      </proxool>  
        
-     <proxool>  
-         <alias>test</alias>  
-         <driver-url>jdbc:mysql://localhost:3306/test</driver-url>  
-         <driver-class>com.mysql.jdbc.Driver</driver-class>  
-         <driver-properties>  
-             <property name="user" value="root" />  
-             <property name="password" value="root" />  
-         </driver-properties>  
-         <house-keeping-sleep-time>90000</house-keeping-sleep-time>  
-         <maximum-new-connections>20</maximum-new-connections>  
-         <prototype-count>5</prototype-count>  
-         <maximum-connection-count>1000</maximum-connection-count>  
-         <minimum-connection-count>10</minimum-connection-count>  
-     </proxool>  
+
  </proxool-config>  
 

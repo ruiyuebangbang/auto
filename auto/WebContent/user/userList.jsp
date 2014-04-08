@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page pageEncoding="UTF-8" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="/struts-tags" prefix="s"%>
 <html>
@@ -17,34 +17,42 @@
 		<h1>员工账号管理</h1>
 	</div>
 <div style="margin:20px 30px;">
-<s:debug></s:debug>
+
 <s:form action="saveOrUpdateUser">
-	<s:push value="user">
-		<s:hidden name="id" />
-		<s:textfield name="name" label="登录账号" />
-		<s:password name="password" label="登录密码" />
-		
+
+		<s:hidden name="user.id" />
+		<s:hidden name="user.verifiedemail" />
+		<s:hidden name="user.provid" />
+		<s:hidden name="user.classid" />
+		<s:hidden name="user.isAdmin" />
+		<s:textfield name="user.nickName" label="昵称" />
+		<tr>
+		<td class="tdLabel"><label for="saveOrUpdateUser_user_password" class="label">密码:</label></td>
+    	<td><input type="password" name="user.password" value='<s:property value="user.password" />' /></td>
+		</tr>
+		<s:textfield name="user.mobilePhone" label="手机" />
+		<s:textfield name="user.email" label="邮箱" />
 		<s:submit value="提交"/>
-	</s:push>
+
 </s:form>
 </div>
 <s:if test="userList.size() > 0">
 	<div class="content">
 	<table class="tblist">
 		<tr class="even">
-			<th width="30%">账号</th>
-			<th width="30%">密码</th>
-			<th width="20%">状态</th>
-			
+			<th width="20%">昵称</th>
+			<th width="20%">密码</th>
+			<th width="20%">手机</th>
+			<th width="20%">邮箱</th>
 			<th width="20%">操作</th>
 		</tr>
-		<s:iterator value="userList" status="userStatus">
+		<s:iterator value="userList" status="rows">
 			<tr
-				class="<s:if test="#userStatus.odd == true ">odd</s:if><s:else>even</s:else>">
-				<td align="left"><s:property value="name" /></td>
+				class="<s:if test="#rows.odd == true ">odd</s:if><s:else>even</s:else>">
+				<td align="left"><s:property value="nickName" /></td>
 				<td align="left">********</td>
-				<td align="center"><s:property value="status" /></td>
-				
+				<td align="left"><s:property value="mobilePhone" /></td>
+				<td align="left"><s:property value="email" /></td>
 				<td>
 					<span>
 						<s:url id="editURL" action="editUser">
