@@ -876,9 +876,10 @@ function getVehicleYear(){
 	var pcode = this.getAttribute("emission_id");
 	silunziUtil.sendLoad($('dialog_choose_car_model'), silunzi.util.basePath+'ajax/common/getVehicleYear.action',{'pcode':pcode},function(result){});
 }
-function getVehicles(){
-	var pcode = this.getAttribute("emission_id");
-	silunziUtil.sendLoad($('dialog_choose_car_model'), silunzi.util.basePath+'ajax/common/getVehicles.action',{'pcode':pcode},function(result){});
+function getVehicleModel(){
+	var scode = this.getAttribute("series_id");
+	var ecode = this.getAttribute("emission_id");
+	silunziUtil.sendLoad($('dialog_choose_car_model'), silunzi.util.basePath+'ajax/common/getVehicleModel.action',{'scode':scode,'ecode':ecode},function(result){});
 }
 function confirmVehicle(){
 	var modelId = this.getAttribute("vehicle_id");
