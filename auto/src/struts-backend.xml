@@ -6,6 +6,7 @@
 			<result name="success">/vehicle/providerChangeBrands.jsp</result>
 		</action>
 	</package>
+	
 	<!--/eorder.action 使用后台模板 order.action使用前台模板，两者使用相同action程序处理  -->
 	<package name="eorder" extends="struts-default" namespace="/eorder">
 		<action name="eorderQuery" method="orderQuery" class="com.autoboys.action.OrderAction">
@@ -19,25 +20,40 @@
 		</action>
 	</package>
 	
-	<package name="provider" extends="struts-default" namespace="/provider">
-		
+	<package name="provider" extends="hibernate-default" namespace="/provider">
 		<action name="index" class="com.autoboys.action.provider.ProviderAction">
 			<result name="success">orderQuery.jsp</result>
 		</action>
-		<action name="eService" method="providerProduct" class="com.autoboys.action.provider.ProviderProductAction">
+		<action name="eService" method="listProviderProduct" class="com.autoboys.action.provider.ProviderProductAction">
 			<result name="success">/product/providerProduct.jsp</result>
-		</action>
-		
+		</action>	
 		<action name="editBasicInfo" method="editBasicInfo" class="com.autoboys.action.provider.StoreManagerAction">
 			<result name="editForm">editBasicInfo.jsp</result>
 			<result name="success">success.jsp</result>
 		</action>
 		<action name="editStoreInfo" method="editStoreInfo" class="com.autoboys.action.provider.StoreManagerAction">
 			<result name="editForm">editStoreInfo.jsp</result>
+			<result name="tst">tst.jsp</result>
 			<result name="success">success.jsp</result>
 		</action>
-		<action name="editPassword" method="editPassword" class="com.autoboys.action.provider.StoreManagerAction">
-			<result name="editForm">editPassword.jsp</result>
+
+		<action name="uploadImage" method="uploadImage" class="com.autoboys.action.provider.StoreManagerAction">
+			<!-- 动态设置savePath的属性�?-->            
+			<param name="savePath">/images</param>
+			<result name="success" type="redirect">editStoreInfo.action</result>
+			
+			<interceptor-ref name="fileUpload">                
+				<!-- 文件过滤 -->                
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<!-- 文件大小, 以字节为单位 -->                
+				<param name="maximumSize">1025956</param>            
+			</interceptor-ref>            
+			<!-- 默认拦截器必须放在fileUpload之后，否则无�?-->            
+			<interceptor-ref name="defaultStack" />
+		</action>
+				
+		<action name="editPassword" method="editPassword" class="com.autoboys.action.UserAction">
+			<result name="editForm">/user/userPassword.jsp</result>
 			<result name="success">success.jsp</result>
 		</action>
 	</package>
