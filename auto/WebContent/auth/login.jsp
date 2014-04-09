@@ -28,7 +28,8 @@
 .container {
 	clear: both;
 	width: 990px;
-	margin: 0 auto;
+	margin: 0 auto 30px;
+	padding:60px 0 80px;
 	background-color: #fff;
 	border: 1px solid #ccccc8;
 }
@@ -42,7 +43,7 @@
 <body class="login" screen_capture_injected="true"  text="">
 <div class="G_nologin_main clear">
 		<div class="scroll_img">
-			<img src="<%=request.getContextPath()%>/image/loginbanner.png" alt="" width="560" height="400">
+			<img src="<%=request.getContextPath()%>/image/loginbanner.png" alt="" width="560" height="330">
 		</div>
 		<div class="loginbox">
 			<div class="W_login_form">
@@ -62,14 +63,15 @@
 						</label>
 					</div>
 					<s:property value="errors['member.password'][0]" escape="false"/>
+					<!-- 
 					<div class="info_list clear">
 						<input type="hidden" name="captchaId" id="myLoginCaptcha" value="rMLf77NMNKnGhATy21bf20ef">
 						<label class="verify">
 							<input type="text" class="G_input captcha" id="myLoginCaptchaInput" name="captcha" alt="输入验证码">
 						</label>
-						<img id="myLoginCaptchaImg" width="80" height="30" src="/captcha.xhtml?captchaId=rMLf77NMNKnGhATy21bf20ef&amp;r=1393125088319" onclick="silunziUtil.refreshCaptcha('myLoginCaptcha')" style="cursor: pointer; margin: 3px 0px 0px 30px; background-image: url(images/loading2.gif); background-position: 50% 50%; background-repeat: no-repeat no-repeat;" title="看不清楚，请点击换一张图片">
+						<img id="myLoginCaptchaImg" width="80" height="30" src="" onclick="" style="cursor: pointer; margin: 3px 0px 0px 30px; background-image: url(images/loading2.gif); background-position: 50% 50%; background-repeat: no-repeat no-repeat;" title="看不清楚，请点击换一张图片">
 					</div>
-					
+					 -->
 					<div class="info_list no_reg clear">
 						<span class="no_reg_tip"><a href="/forgetPassword.xhtml" title="忘记密码" class="mr5">忘记密码？</a>|<a href="<%=request.getContextPath()%>/auth/register.action" title="免费注册" class="ml10">免费注册</a></span>
 						<a href="javascript:void(0)"  class="tostep2 on" style="width:160px;float:left;" id="sbmit">登录</a>
@@ -79,15 +81,15 @@
 							<dt><span class="left">其它账号登录</span></dt>
 							<dd class="mt10">
 							
-								<a href="http://member.chemayi.com/oauth.php?act=index&amp;mod=qq&amp;type=login" class="login_btn_qq">QQ账号登录</a>
-								<a href="http://member.chemayi.com/oauth.php?act=index&amp;mod=sina&amp;type=login" class="login_btn_weib">微博账号登录</a>
+								<a href="" class="login_btn_qq">QQ账号登录</a>
+								<a href="" class="login_btn_weib">微博账号登录</a>
 							
 							</dd>
 						</dl>
 					</div>
 					
 				</s:form>
-				<s:debug />
+				
 			</div>		
 		</div>
 	</div>

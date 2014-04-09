@@ -84,7 +84,7 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 			if(autoBoysVM != null){
 				vehicle = vehicleDAO.getVehicleByPrimaryKey(new Integer(autoBoysVM.getValue()));
 				if(vehicle != null){
-					currentModel = vehicle.getFullName();
+					currentModel = vehicle.getShortName();
 					session.put("currentModel", currentModel);
 				}
 			}
@@ -99,7 +99,7 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	 */
 	public String confirmVechicle() throws Exception {
 		String vehicleId = request.getParameter("vehicle_id");
-		String currentModel = vehicleDAO.getVehicleByPrimaryKey(new Integer(vehicleId)).getFullName();
+		String currentModel = vehicleDAO.getVehicleByPrimaryKey(new Integer(vehicleId)).getShortName();
 				
 		//设置选定车系
 		CookieUtil.setCookie(request, response, "AutoboysVM", vehicleId, 31536000);
@@ -154,7 +154,6 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	 * @throws Exception
 	 */
 	public String getVehicleEmission() throws Exception {
-		System.out.println("getVehicleEmission====================");
 		String pcode = request.getParameter("pcode");
 		//System.out.println("get emission,series_code:"+pcode);
 		//设置选定车系
@@ -177,7 +176,6 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	public String getVehicleModel() throws Exception {
 		String scode = request.getParameter("scode");
 		String ecode = request.getParameter("ecode");
-		System.out.println("getVehicleModel====================");
 		//VehicleEmission emission = vehicleEmissionDAO.getVehicleEmission(code);
 		session.put("curEmissionCode", ecode);
 		session.put("curEmissionName", ecode);
