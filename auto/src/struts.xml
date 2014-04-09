@@ -6,6 +6,14 @@
 	<constant name="struts.i18n.encoding" value="utf-8"></constant>
 	
 	<include file="struts-backend.xml"></include>
+	<package name="captcha" extends="struts-default" namespace="/ajax">
+		<action name="captcha" method="captcha" class="com.autoboys.action.CaptchaAction">
+			<result name="success">/ajax/captcha.jsp</result>
+		</action>
+		<action name="getCaptcha" method="getCaptcha" class="com.autoboys.action.CaptchaAction">
+			<result name="success">/ajax/captcha.jsp</result>
+		</action>
+	</package>
 	<package name="member" extends="struts-default" namespace="/member">
 		<action name="member" class="com.autoboys.action.MemberAction">
 			<result name="success">member.jsp</result>

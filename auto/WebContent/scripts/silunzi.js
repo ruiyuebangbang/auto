@@ -65,28 +65,11 @@ var _debug = function() {
 };
 silunzi.util.refreshCaptcha = function(c, b) {
     if ($(c + "Img")) {
-        $(c + "Img").setStyle("background", "url(" + silunzi.util.cdnPath + "css/images/loading2.gif) center center no-repeat")
+        $(c + "Img").setStyle("background", "url(" + silunzi.util.cdnPath + "image/loading2.gif) center center no-repeat")
     }
-    if ($(c).value == "") {
-        silunzi.util.sendRequest(silunzi.util.basePath + "getCaptchaId.xhtml", {r: silunzi.util.rtime()}, function(d) {
-            if (d.success) {
-                $(c).value = d.retval;
-                var e = silunzi.util.basePath + "captcha.xhtml?captchaId=" + d.retval + "&r=" + silunzi.util.rtime();
-                if (b) {
-                    e = e + "&zt=" + b
-                }
-                $(c + "Img").src = e
-            } else {
-                alter("获取验证码出错，请重新获取！")
-            }
-        }, "get")
-    } else {
-        var a = silunzi.util.basePath + "captcha.xhtml?captchaId=" + $(c).value + "&r=" + silunzi.util.rtime();
-        if (b) {
-            a = a + "&zt=" + b
-        }
-        $(c + "Img").src = a
-    }
+    var a = silunzi.util.basePath + "ajax/captcha.action?captchaId=" + $(c).value + "&r=" + silunzi.util.rtime();
+    $(c + "Img").src = a
+    
     $(c + "Input").value = "";
     if ($(c + "Input").retrieve("label")) {
         $(c + "Input").retrieve("label").text.innerHTML = "输入验证码"
@@ -1001,11 +984,11 @@ lunzi.util.issure = function(d, g, h, b, c, j, e, k, a) {
 lunzi.util.confirm = function(e, f, d, c, b) {
     var a = e.length * 16 < 320 ? 320 : e.length * 16 + 60;
     a = a > 360 ? 360 : a;
-    return lunzi.util.core({bgel: $chk(d) ? $(d) : document.body,content: e,title: "格瓦拉生活网提示",width: c || a,issure: true,callback: f,zIndex: 600,isConfirm: true,opacity: 0.4,def: "confirm",sureBt: b || "确定"})
+    return lunzi.util.core({bgel: $chk(d) ? $(d) : document.body,content: e,title: "养车客提示",width: c || a,issure: true,callback: f,zIndex: 600,isConfirm: true,opacity: 0.4,def: "confirm",sureBt: b || "确定"})
 };
 lunzi.util.alert = function(d, f, c, b, e) {
     var a = d ? d.length * 16 < 320 ? d.length * 16 > 360 ? 360 : 320 : d.length * 16 + 60 : 320;
-    return lunzi.util.core({bgel: $chk(c) ? $(c) : document.body,content: d,title: e || "格瓦拉生活网提示",width: b || a,issure: true,callback: f || $empty,zIndex: 601,isAlert: true,opacity: 0.4,def: "alert"})
+    return lunzi.util.core({bgel: $chk(c) ? $(c) : document.body,content: d,title: e || "养车客提示",width: b || a,issure: true,callback: f || $empty,zIndex: 601,isAlert: true,opacity: 0.4,def: "alert"})
 };
 lunzi.util.tips = function() {
     var a = arguments[1] ? arguments[1].length * 12 > 360 ? 360 : arguments[1].length * 12 + 40 : 60;
@@ -1116,7 +1099,7 @@ lunzi.util.core = function(i) {
         }
     }
     if (d.options.title) {
-        new Element("h2", {text: d.options.title ? d.options.title : "格瓦拉生活网提示",styles: {height: "42px","line-height": "42px","text-indent": "10px","font-size": "16px","font-weight": "bold",background: "#f0f0f0",width: "100%",display: "block",color: "#333"}}).inject(d.options.isFlag ? d.coreTD : d.coreDialog);
+        new Element("h2", {text: d.options.title ? d.options.title : "养车客生活网提示",styles: {height: "42px","line-height": "42px","text-indent": "10px","font-size": "16px","font-weight": "bold",background: "#f0f0f0",width: "100%",display: "block",color: "#333"}}).inject(d.options.isFlag ? d.coreTD : d.coreDialog);
         if (!d.options.isConfirm && !d.options.isAlert) {
             new Element("span", {styles: {position: "absolute",top: "14px",right: "16px",cursor: "pointer",display: "block",height: "23px",width: "23px",background: "url(" + silunzi.util.icon + ") 0 -142px no-repeat"}}).addEvents({click: function() {
                     d.options.cancelCallback.call();
@@ -2538,7 +2521,7 @@ lunzi.util.replay = new Class({Implements: [Options, Events],options: {},initial
                 if (b) {
                     this.checked = b
                 }
-            }).inject(new Element("label", {html: "转发到我的哇啦","class": "left ui_wala_rzf","for": h}).inject(f), "top");
+            }).inject(new Element("label", {html: "转发到我的养车客","class": "left ui_wala_rzf","for": h}).inject(f), "top");
             new Element("input", {type: "hidden",name: "type",value: b ? "f" : "r"}).inject(g);
             var d = new Element("b", {html: 140,styles: {"float": "right","font-family": "Constantia,Georgia","font-size": "14px",color: "#CC3300","margin-right": "70px"}}).inject(f);
             i.textarea = new Element("textarea", {name: "body",id: "body",root: "text",alt: "请输入" + c + "内容...",styles: {color: "#666"}}).inject(g, "top");
@@ -4800,12 +4783,12 @@ activity.even = new Class({Implements: [Options, Events],options: {container: ""
                 } else {
                     var g = f.msg;
                     if (g == "1") {
-                        lunziUtil.alert("您的发表体验机会已用完，完善账户信息就可以使用哇啦、站内信、活动、知道、论坛的所有功能啦！", function() {
+                        lunziUtil.alert("您的发表体验机会已用完，完善账户信息就可以使用养车客、站内信、活动、知道、论坛的所有功能啦！", function() {
                             gotoURL("http://www.silunzi.com/home/acct/safetyCenter.xhtml")
                         })
                     } else {
                         if (g == "7") {
-                            lunziUtil.alert("您的发表体验机会已用完，确认您的邮件地址就可以使用哇啦、站内信、活动、知道、论坛的所有功能啦！", function() {
+                            lunziUtil.alert("您的发表体验机会已用完，确认您的邮件地址就可以使用养车客、站内信、活动、知道、论坛的所有功能啦！", function() {
                                 gotoURL("http://www.silunzi.com/home/acct/safetyCenter.xhtml")
                             })
                         } else {

@@ -346,77 +346,46 @@ else
 		</div>
 		<!--  div super-container end -->
 	<div class="footer">
-	    <div class="footer-wrap">
-	        <div class="footer-menu-wrap ">
-	            <div class="footer-menu first">
-	                <h3 class="menu-header">关于</h3>
-	                <ul class="menu-list">
-	                    <li>
-	                        <a href="/about">关于四轮子</a>
-	                    </li>
-	                    <li>
-	                        <a href="http://officialblog.yelp.com">联系我们</a>
-	                    </li>
-	                    
-	                </ul>
-	            </div>
-	
-	            <div class="footer-menu ">
-	                <h3 class="menu-header">商务合作</h3>
-	                <ul class="menu-list">
-	                    <li>
-	                        <a href="/faq">招商政策</a>
-	                    </li>
-	                    <li>
-	                        <a href="/advertise">商家入驻流程</a>
-	                    </li>
-	                    <li>
-	                        <a href="/guidelines">广告洽谈</a>
-	                    </li>
-	                    
-	                </ul>
-	            </div>
-	
-	            <div class="footer-menu ">
-	                <h3 class="menu-header">帮助中心</h3>
-	                <ul class="menu-list">
-	                    <li>
-	                        <a href="/careers?country=US">常见问题</a>
-	                    </li>
-	                    <li>
-	                            <a href="/yelpmobile">How it work</a>
-	                    </li>
-	                       
-	                </ul>
-	            </div>
-	
-	            <div class="languages-menu footer-menu ">
-	                <h3 class="menu-header">关注四轮子</h3>
-	                <div class="footer-subsection">
-	                	<div id="language-selector-wrap" class="drop-menu-origin i18n-selector-wrap ieSucks" data-component-bound="true">
-	        				<a href="/language" id="language-selector-anchor" class="drop-menu-link embossed-text-white" data-component-bound="true">
-	            				<span class="i-wrap ig-wrap-common i-dropdown-arrow-common-wrap ig-wrap-common-r dropdown-arrow"><i class="i ig-common i-dropdown-arrow-common"></i> English</span>
-	        				</a>
-	        				<div id="language-selector-menu" class="drop-menu" data-component-bound="true">   		</div>
-	    				</div>
+			<div class="footer-wrap">
+				<div class="footer-menu-wrap ">
+					<div class="footer-menu first">
+						<h3 class="menu-header gy">关于</h3>
+						<ul class="menu-list">
+							<li><a href="/about">关于四轮子</a></li>
+							<li><a href="#">联系我们</a></li>
+
+						</ul>
 					</div>
-	                <h3 class="menu-header">Countries</h3>
-	                <div class="footer-subsection">
-	                	<div id="country-selector-wrap" class="drop-menu-origin i18n-selector-wrap ieSucks" data-component-bound="true">
-	        				<a href="#" id="country-selector-anchor" class="drop-menu-link embossed-text-white" data-component-bound="true">
-	            				<span class="i-wrap ig-wrap-common i-dropdown-arrow-common-wrap ig-wrap-common-r dropdown-arrow"><i class="i ig-common i-dropdown-arrow-common"></i> United States</span>
-	        				</a>
-		        			<div id="country-selector-menu" class="drop-menu" data-component-bound="true"></div>
-		    			</div>
+
+					<div class="footer-menu swhz">
+						<h3 class="menu-header">商务合作</h3>
+						<ul class="menu-list">
+							<li><a href="/faq">招商政策</a></li>
+							<li><a href="/advertise">商家入驻流程</a></li>
+							<li><a href="/guidelines">广告洽谈</a></li>
+
+						</ul>
 					</div>
-	            </div>
-	        </div>
-			<div class="city-landscape-img"></div>
-	        <p class="copyright lesser-text">
-	                    Copyright © 2004–2014  All Right Reserved 上海睿宝商贸有限公司.  沪ICP备08109440
-	        </p>
-	    </div>
-	</div>	
+
+					<div class="footer-menu bzzx">
+						<h3 class="menu-header">帮助中心</h3>
+						<ul class="menu-list">
+							<li><a href="/careers?country=US">常见问题</a></li>
+							<li><a href="/yelpmobile">How it work</a></li>
+
+						</ul>
+					</div>
+
+					<div class="follow footer-menu">
+						<h3 class="menu-header">关注养车客</h3>
+						<img src="<%=request.getContextPath() %>/image/follow_me_weixin.png" width="100px"/>
+						
+					</div>
+				</div>
+				
+				<p class="copyright lesser-text"><span style="margin-right:20px;">服务热线：400-188-6666（免长话）</span>Copyright © 2014–2018 All Right Reserved yangcheke.com. 沪ICP备08109440</p>
+			</div>
+		</div>
 </div>
   
   
