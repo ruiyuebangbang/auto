@@ -51,7 +51,7 @@ public class VehicleDAOImpl implements VehicleDAO {
 	public List<Vehicle> getVehiclesBySE(String seriesCode,String emisionCode) {
 		List<Vehicle> list = null;
 		try {
-			SQLQuery query = session.createSQLQuery("select * from Vehicle where series_code = ? emission_code = ?");
+			SQLQuery query = session.createSQLQuery("select * from Vehicle where series_code = ? and emission_code = ?");
 			query.setParameter(0,seriesCode);
 			query.setParameter(1,emisionCode);
 			query.addEntity(Vehicle.class);

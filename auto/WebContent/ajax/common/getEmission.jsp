@@ -21,7 +21,7 @@
 		<div class='car_info_series_list'>
 			<ul class='series_list'>
 				<s:iterator value="emissionList">
-					<li series_id='<s:property value="series_code" />' emission_id='<s:property value="code" />' class=''><s:property value="code" /></li>
+					<li series_id='<s:property value="seriesCode" />' emission_id='<s:property value="code" />' class=''><s:property value="code" /></li>
 				</s:iterator>
 			
 			</ul>
