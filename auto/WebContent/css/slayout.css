@@ -17,9 +17,8 @@ font: 12px/20px "微软雅黑","Arial Narrow";
 h1, h2, h3, h4 {
 font-weight: bold;
 color: #c41200;
-margin: 0 0 6px;
-//font-family:'΢���ź�','����';
-//font-size:15px;
+margin: 0 0 ;
+
 }
 table {
 border-collapse: collapse;

@@ -11,6 +11,10 @@
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/autoboys.css" type="text/css">
   	<decorator:head/> 
   	<title><decorator:title default="养车客，让车生活更加简单惬意" /></title>
+  	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/mootools.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/silunzi.js"></script>
 </head>
 
 <body class="logged-out ytype" screen_capture_injected="true">
