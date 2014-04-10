@@ -133,6 +133,7 @@ width: 750px;
 #navUtility li {
 	float: left;
 	padding: 0 2px 0 2px;
+	line-height:21px;
 }
 
 #navUtility li span.line {

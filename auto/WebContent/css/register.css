@@ -68,6 +68,7 @@ input {
 
 .W_login_form .overTxtLabel {
 	font-size: 13px;
+	text-align:left;
 }
 
 .G_nologin_main {
