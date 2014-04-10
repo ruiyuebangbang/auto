@@ -211,6 +211,7 @@ input {
 
 .W_login_form .no_reg {
 	padding-bottom: 20px;
+	width:240px;
 }
 
 .W_login_form .no_reg .W_btn_g {

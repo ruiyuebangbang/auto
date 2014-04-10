@@ -238,5 +238,16 @@ width: 100%;
 .cr {
 	color:red;
 }
+.footer {
+	background:#c10208;
+	height: 40px;
+	padding-top: 10px;
+}
+.footer .footer-wrap{
+margin: 0 auto;
+width:990px;
+color: #DDD3D3;
+height: 40px;
+}
 
 

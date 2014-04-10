@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="main" extends="hibernate-default" namespace="/admin">
+		<action name="main"  class="com.autoboys.action.admin.DashboardAction">
+			<result name="success">/admin/dashboard.jsp</result>
+		</action>
+		<action name="queryProvider"  method="queryProvider" class="com.autoboys.action.admin.ProviderAdminAction">
+			<result name="success">/admin/queryProvider.jsp</result>
+		</action>
+		<action name="auditProvider"  method="auditProvider" class="com.autoboys.action.admin.ProviderAdminAction">
+			<result name="success">/admin/auditProvider.jsp</result>
+		</action>
+	</package>	
+</struts>    

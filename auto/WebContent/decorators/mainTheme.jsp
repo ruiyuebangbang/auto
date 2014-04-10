@@ -344,14 +344,17 @@ else
 
 						</ul>
 					</div>
-
+					<div class="footer-menu provider-entry">
+						<h3 class="menu-header">商家入驻</h3>
+						<a href="" class="btn btn-large btn-block btn-primary">服务商入口</a>
+						
+					</div>
 					<div class="follow footer-menu">
 						<h3 class="menu-header">关注养车客</h3>
 						<img src="<%=request.getContextPath() %>/image/follow_me_weixin.png" width="100px"/>
 						
 					</div>
 				</div>
-				
 				<p class="copyright lesser-text"><span style="margin-right:20px;">服务热线：400-188-6666（免长话）</span>Copyright © 2014–2018 All Right Reserved yangcheke.com. 沪ICP备08109440</p>
 			</div>
 		</div>

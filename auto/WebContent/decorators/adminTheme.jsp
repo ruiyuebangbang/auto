@@ -5,12 +5,12 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="<%=request.getContextPath() %>/favicon.ico" type="image/x-icon">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/member.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/slayout.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/autoboys.css" type="text/css">
   	<decorator:head/> 
-  	<title><decorator:title>养车客商家后台：互联网养车，开启养车新模式</decorator:title></title>
+  	<title><decorator:title default="养车客，让车生活更加简单惬意" /></title>
 </head>
 
 <body class="logged-out ytype" screen_capture_injected="true">
@@ -40,9 +40,10 @@
 					</div>
 					<div class="menu_item_children" itemtype="order">
 					    <ul>
-					        <li class="menu_item_child" id="menu-1-0"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=1">待确认订单</a></li>
-					        <li class="menu_item_child" id="menu-1-6"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=2">待维修订单</a></li>
-					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=3">已取消订单</a></li>
+					        <li class="menu_item_child" id="menu-1-0"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=1">待商家报价订单</a></li>
+					        <li class="menu_item_child" id="menu-1-6"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=2">待商家确认订单</a></li>
+					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=3">待车主确认订单</a></li>
+					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=4">待点评订单</a></li>
 					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=4">所有订单</a></li>
 					        
 					    </ul>
@@ -54,30 +55,25 @@
 					</div>
 					<div class="menu_item_children" itemtype="blance">
 					    <ul>
-					        <li class="menu_item_child" id="menu-2-6"><a href="${pageContext.request.contextPath}/ereview/ereviewQuery.action?status=1">待回复评论</a></li>
 					        <li class="menu_item_child" id="menu-2-4"><a href="${pageContext.request.contextPath}/ereview/ereviewQuery.action?status=0">所有评论</a></li>
 					    </ul>
 					</div>
-					<div class="menu_item" itemtype="car"><span class="item_icon icon_car"></span><span class="item_name">产品服务管理</span><span class="item_more item_to_down"></span></div>
+					<div class="menu_item" itemtype="car"><span class="item_icon icon_car"></span><span class="item_name">产品管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="car">
 					    <ul>
-					        <li class="menu_item_child" id="menu-3-4"><a href="<%=request.getContextPath()%>/provider/brands.action">维修品牌设置</a></li>
-					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/provider/eService.action">汽车配件管理</a></li>
+					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/provider/eService.action">维修产品管理</a></li>
 					        
 					    </ul>
 					</div>
-					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">店铺信息管理</span><span class="item_more item_to_down"></span></div>
+					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">商家管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="account">
 					    <ul>
 					    	  					        
-					        <li <% if ("menu-4-1".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-1">	
-					        <a href="${pageContext.request.contextPath}/provider/editBasicInfo.action?menu=menu-4-1">商家基本信息</a></li>
-					        <li <% if ("menu-4-2".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-2">	
-					        <a href="${pageContext.request.contextPath}/provider/editStoreInfo.action?menu=menu-4-2">店铺基本信息</a></li>
-					        <li <% if ("menu-4-3".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-3">	
-					        <a href="${pageContext.request.contextPath}/provider/editPassword.action?menu=menu-4-3">修改管理员密码</a></li>
-					        <li <% if ("menu-4-4".equals(request.getParameter("menu"))) {%>class="menu_item_child selected"<% } else { %> class="menu_item_child" <% }%> id="menu-4-4">	
-					        <a href="${pageContext.request.contextPath}/user/userList.action?menu=menu-4-4">员工账号管理</a></li>
+					        <li id="menu-4-1" class="menu_item_child selected">	
+					        <a href="${pageContext.request.contextPath}/admin/auditProvider.action">商家审核</a></li>
+					        <li id="menu-4-2" class="menu_item_child">	
+					        <a href="${pageContext.request.contextPath}/admin/queryProvider.action">查询商家</a></li>
+					        
 					    </ul>
 					</div>
 				</div>

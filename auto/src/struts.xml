@@ -6,6 +6,7 @@
 	<constant name="struts.i18n.encoding" value="utf-8"></constant>
 	
 	<include file="struts-backend.xml"></include>
+	<include file="struts-admin.xml"></include>
 	<package name="captcha" extends="struts-default" namespace="/ajax">
 		<action name="captcha" method="captcha" class="com.autoboys.action.CaptchaAction">
 			<result name="success">/ajax/captcha.jsp</result>

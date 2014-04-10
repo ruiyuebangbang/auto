@@ -94,7 +94,7 @@ body {
 							</dl>
 							<dl>
 								<dd>
-									<button type="submit" class="btn btn-danger">看看需要做哪些保养</button>
+									<button type="submit" class="btn btn-large btn-block btn-primary">看看需要做哪些保养</button>
 								</dd>
 							</dl>
 						</form>
