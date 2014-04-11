@@ -23,6 +23,7 @@ public class Member {
 	private Long  provid;
 	private Integer classid;
 	private Integer isAdmin;
+	private Integer isDisabled;
 	
 	@Id
 	
@@ -103,6 +104,13 @@ public class Member {
 	}
 	public void setIsAdmin(Integer isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+	@Column(name="IS_disabled")
+	public Integer getIsDisabled() {
+		return isDisabled;
+	}
+	public void setIsDisabled(Integer isDisabled) {
+		this.isDisabled = isDisabled;
 	}
 	
 

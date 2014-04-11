@@ -375,7 +375,11 @@ else
 
 						</ul>
 					</div>
-
+					<div class="footer-menu provider-entry">
+						<h3 class="menu-header">商家入驻</h3>
+						<a href="<%=request.getContextPath() %>/provider/logon.action" class="btn btn-large btn-block btn-primary">服务商入口</a>
+						
+					</div>
 					<div class="follow footer-menu">
 						<h3 class="menu-header">关注养车客</h3>
 						<img src="<%=request.getContextPath() %>/image/follow_me_weixin.png" width="100px"/>
