@@ -22,13 +22,23 @@ if(request.getSession().getAttribute("login_user") != null){
 	if(member != null){
 	%>
 	<li id="lpChatButton2" style="visibility: visible;"><%=member.getNickName() %>，您好！</li>
-	<li><a href="/auto/auth/register.action">退出</a></li>
+	<li><a href="<%=request.getContextPath()%>/auth/register.action">退出</a></li>
 	<%}else {%>
-	<li id="lpChatButton2" style="visibility: visible;"><a href="/auto/auth/login.action" id="lpDynamicButtonHref-572" title="">登录</a></li>
+	<li id="lpChatButton2" style="visibility: visible;"><a href="<%=request.getContextPath()%>/auth/login.action" id="lpDynamicButtonHref-572" title="">登录</a></li>
 	<li><span class="line">&nbsp;</span></li>
-	<li><a href="/auto/auth/register.action">注册</a></li>
+	<li><a href="<%=request.getContextPath()%>/auth/register.action">注册</a></li>
 	<%} %>
 	<li><span class="line">&nbsp;</span></li>
-	<li><a href="/auto/member/member.action">个人中心</a></li>
-		
+	<li><a href="<%=request.getContextPath()%>/member/member.action">个人中心</a></li>
+	<%
+	if(member != null && member.getClassid().intValue() == 2){
+	%>
+		<li><span class="line">&nbsp;</span></li>
+		<li><a href="<%=request.getContextPath()%>/provider/main.action">商家后台</a></li>
+	<%}
+	if(member != null && member.getClassid().intValue() == 3){
+	%>
+		<li><span class="line">&nbsp;</span></li>
+		<li><a href="<%=request.getContextPath()%>/admin/main.action">管理后台</a></li>
+	<%} %>
 </ul>

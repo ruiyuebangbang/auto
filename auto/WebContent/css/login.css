@@ -16,7 +16,7 @@ input{vertical-align: -2px;_vertical-align: 0px;}
 .W_login_form .info_list .notice{position:absolute;top:-21px;left:0;}
 .W_login_form .username, .W_login_form .password, .W_login_form .verify{border:1px solid #ccc; border-radius:2px;box-shadow:1px 1px 1px 0 #eaeaea inset;color:#ccc;height:30px;padding:9px 3px 3px 54px;display:block;}
 .W_login_form .focus_username{box-shadow:0 0 5px #ff9a66;border-color:#ff9a66;}
-.W_login_form .username input, .W_login_form .password input,.W_login_form .verify input{border:0 none;width:250px;height:24px;color:#808080;font:22px/24px verdana,lucida,arial,helvetica,"����",sans-serif;vertical-align: -3px;outline: none;background:#fff;}
+.W_login_form .username input, .W_login_form .password input,.W_login_form .verify input{border:0 none;width:250px;height:26px;color:#808080;font:22px/24px verdana,lucida,arial,helvetica,"����",sans-serif;vertical-align: -3px;outline: none;background:#fff;}
 .W_login_form .focus_error{border-color:#dd4b39}
 .W_login_form .verify{padding:9px 5px 3px;float:left;}
 .W_login_form .verify input{width:155px;outline: none;}
