@@ -58,12 +58,6 @@
 		<action name="updateProductPrice" method="updatePrice" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
 		</action>
-		<action name="getRegionsByReg1" method="getRegionsByReg1" class="com.autoboys.action.AjaxAction">
-			<result name="success">/null.jsp</result>
-		</action>
-		<action name="updateProductPrice" method="updatePrice" class="com.autoboys.action.AjaxAction">
-			<result name="success">/null.jsp</result>
-		</action>
 	</package>
 	<package name="store" extends="struts-default" namespace="/store">
 		<action name="store" class="com.autoboys.action.StoreAction">
@@ -101,6 +95,7 @@
 		<action name="doRegister" method="doRegister" class="com.autoboys.action.MemberAction">
 			<result name="success"></result>
 		</action>
+
 	</package>
 	
 	<package name="service" extends="struts-default" namespace="/service">

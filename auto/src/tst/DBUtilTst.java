@@ -13,8 +13,9 @@ import com.autoboys.util.ProxoolConnection;
 
 public class DBUtilTst {
     public static void main(String[] args) throws SQLException {  
-        insert_test();  
-        del_test();  
+        //insert_test();  
+        //del_test(); 
+    	select_test();
     }  
       
     static void insert_test() throws SQLException{  
@@ -24,7 +25,8 @@ public class DBUtilTst {
         QueryRunner qRunner = new QueryRunner();   
           
         //执行SQL插入   
-        int n = qRunner.update(conn, "insert into user(name,age) values('xxx',22)");   
+        int n = qRunner.update(conn, "insert into user(name,age) values('xxx',22)"); 
+        
         System.out.println("成功插入" + n + "条数据！");   
           
         //关闭数据库连接   
@@ -38,7 +40,7 @@ public class DBUtilTst {
         QueryRunner qRunner = new QueryRunner();   
           
         @SuppressWarnings("unchecked")  
-        List<Provider> list = (List<Provider>) qRunner.query(conn, "select id,name,age from provider", new BeanListHandler(Provider.class));   
+        List<Provider> list = (List<Provider>) qRunner.query(conn, "select id,short_name,address from provider", new BeanListHandler(Provider.class));   
         //输出查询结果   
         for (Provider user : list) {   
                 System.out.println(user.getADDRESS());   
