@@ -20,7 +20,7 @@
   </filter-mapping>
 
   <!-- 登陆及权限检  -->
-  <filter>
+  <!-- filter>
     <filter-name>AuthFilter</filter-name>
     <filter-class>com.autoboys.util.AuthFilter</filter-class>
     <init-param>
@@ -31,7 +31,7 @@
   <filter-mapping>
     <filter-name>AuthFilter</filter-name>
     <url-pattern>*.action</url-pattern>
-  </filter-mapping>
+  </filter-mapping-->
 
   <!-- sitemesh配置 --> 
   <filter> 

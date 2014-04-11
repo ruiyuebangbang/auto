@@ -3,7 +3,7 @@
 	<excludes>
 		<pattern>*.html</pattern>
 		<pattern>/ajax/*</pattern>
-		<pattern>/provider/logon.action</pattern>
+		<pattern>/provider/provider_login.action</pattern>
 	</excludes>
 	<decorator name="simpleHeaderTheme" page="simpleHeaderTheme.jsp">
     	<pattern>/auth/*</pattern>
