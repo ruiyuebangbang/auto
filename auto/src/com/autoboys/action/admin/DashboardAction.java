@@ -34,6 +34,7 @@ public class DashboardAction  extends ActionSupport implements ServletRequestAwa
 	
 	@Override
 	public String execute() throws Exception {
+		System.out.println("");
 		return SUCCESS;
 	}
 }

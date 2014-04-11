@@ -22,6 +22,17 @@
 	</package>
 	
 	<package name="provider" extends="hibernate-default" namespace="/provider">
+		<action name="provider_register" class="com.autoboys.action.provider.RegisterAction">
+            <result name="create">provider_register.jsp</result>
+			<result name="success">success.jsp</result>
+		</action>
+		<action name="provider_login" class="com.autoboys.action.provider.LoginAction">
+			<result name="login">login.jsp</result>
+            <result name="success">success.jsp</result>
+		</action>
+		<action name="index" class="com.autoboys.action.provider.ProviderAction">
+			<result name="success">orderQuery.jsp</result>
+		</action>
 		<action name="main" method="provider" class="com.autoboys.action.provider.ProviderAction">
 			<result name="success">index.jsp</result>
 			<result name="input">index.jsp</result>
@@ -30,6 +41,7 @@
 		<action name="orderQuery" class="com.autoboys.action.provider.ProviderAction">
 			<result name="success">/order/orderQuery.jsp</result>
 		</action>
+		
 		<action name="eService" method="listProviderProduct" class="com.autoboys.action.provider.ProviderProductAction">
 			<result name="success">/product/providerProduct.jsp</result>
 		</action>	
@@ -62,9 +74,11 @@
 			<result name="editForm">/user/userPassword.jsp</result>
 			<result name="success">success.jsp</result>
 		</action>
+
 		<action name="logon" class="com.autoboys.action.provider.LoginAction">
 			<result name="success">/provider/login.jsp</result>
 		</action>
+
 	</package>
 	
 	
