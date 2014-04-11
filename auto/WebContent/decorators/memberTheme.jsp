@@ -37,7 +37,7 @@ else
 <div class="app-header">
 		<div id="mastHead" class="header-container clearfix">
 			<div class="logo">
-				<a href="/">养车客</a>
+				<a href="<%=request.getContextPath()%>/">养车客</a>
 			</div>
 
 			<div class="hr">
