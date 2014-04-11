@@ -346,7 +346,7 @@ else
 					</div>
 					<div class="footer-menu provider-entry">
 						<h3 class="menu-header">商家入驻</h3>
-						<a href="<%=request.getContextPath() %>/provider/logon.action" class="btn btn-large btn-block btn-primary">服务商入口</a>
+						<a href="<%=request.getContextPath() %>/provider/provider_login.action" class="btn btn-large btn-block btn-primary">服务商入口</a>
 						
 					</div>
 					<div class="follow footer-menu">
