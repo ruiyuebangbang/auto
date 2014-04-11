@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	
 	<package name="vehicle" extends="hibernate-default" namespace="/provider">
 		<action name="brands" method="providerChangeBrands" class="com.autoboys.action.VehicleAction">
 			<result name="success">/vehicle/providerChangeBrands.jsp</result>
@@ -21,8 +22,13 @@
 	</package>
 	
 	<package name="provider" extends="hibernate-default" namespace="/provider">
-		<action name="index" class="com.autoboys.action.provider.ProviderAction">
-			<result name="success">orderQuery.jsp</result>
+		<action name="main" method="provider" class="com.autoboys.action.provider.ProviderAction">
+			<result name="success">index.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		
+		<action name="orderQuery" class="com.autoboys.action.provider.ProviderAction">
+			<result name="success">/order/orderQuery.jsp</result>
 		</action>
 		<action name="eService" method="listProviderProduct" class="com.autoboys.action.provider.ProviderProductAction">
 			<result name="success">/product/providerProduct.jsp</result>
@@ -56,6 +62,10 @@
 			<result name="editForm">/user/userPassword.jsp</result>
 			<result name="success">success.jsp</result>
 		</action>
+		<action name="logon" class="com.autoboys.action.provider.LoginAction">
+			<result name="success">/provider/login.jsp</result>
+		</action>
 	</package>
+	
 	
 </struts>    

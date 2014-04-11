@@ -3,9 +3,11 @@
 	<excludes>
 		<pattern>*.html</pattern>
 		<pattern>/ajax/*</pattern>
+		<pattern>/provider/logon.action</pattern>
 	</excludes>
 	<decorator name="simpleHeaderTheme" page="simpleHeaderTheme.jsp">
     	<pattern>/auth/*</pattern>
+    	
     </decorator>
     <decorator name="memberTheme" page="memberTheme.jsp">
     	<pattern>/member/*</pattern>
