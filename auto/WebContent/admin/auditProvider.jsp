@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 
 <head>
@@ -8,10 +8,23 @@
 <meta name="keywords" content="">
 <title>养车客商家后台：互联网养车，开启养车新模式</title>
 <link rel="StyleSheet" href="css/main.css" type="text/css">
+<script src="../scripts/jquery-1.11.0.js"></script>
+<script language="javascript">
+function f_gotoPage(sel){
+    //alert(sel);
+    $('#auditProvider_pager_pageCurr').val(sel);
 
+    document.forms[0].submit();
+}
+</script>
 </head>
 
 <body class="logged-out ytype" screen_capture_injected="true">
+<s:form  method="post">
+			<s:hidden  name="pager.pageTotal"/>
+			<s:hidden  name="pager.pageSize"/>
+			<s:hidden  name="pager.pageCurr"/>
+</s:form>	
 	<div class="orderlist">
 		<div class="pcontent-title">
 			<h1>商家审核</h1>
@@ -28,14 +41,13 @@
 				</tr>
 			</thead>
 			<tbody>
-
+				<s:iterator value="providerList" status="rowstat">
 				<tr>
-					<td><a href="">标致4S店</a></td>
-					<td>Bobo</td>
-					<td>12345678901</td>
-					<td>上海 徐汇区 漕河泾</td>
-					<td>2014-02-12<br>13:11
-					</td>
+					<td><a href=""><s:property value="SHORT_NAME"/></a></td>
+					<td><s:property value="AGENT"/></td>
+					<td><s:property value="TELEPHONE"/></td>
+					<td><s:property value="regionName"/></td>
+					<td><s:property value="apply_date"/></td>
 					<td class="op">
 							<a href="cancel.aspx?orderid=201402121539">修改</a> | 
 							<a href="javascript:audit()">通过</a> | 
@@ -43,25 +55,23 @@
 							<a href="cancel.aspx?orderid=201402121539">店铺管理</a> 
 					</td>
 				</tr>
-				<tr>
-					<td><a href="">标致4S店</a></td>
-					<td>Bobo</td>
-					<td>12345678901</td>
-					<td>上海 徐汇区 漕河泾</td>
-					<td>2014-02-12<br>13:11
-					</td>
-					<td class="op">
-							<a href="cancel.aspx?orderid=201402121539">修改</a> | 
-							<a href="javascript:audit()">通过</a> | 
-							<a href="javascript:audit()">不通过</a> | 
-							<a href="cancel.aspx?orderid=201402121539">店铺管理</a> 
-					</td>
-				</tr>
+				</s:iterator>
 
 			</tbody>
 		</table>
-		<div class="ab-pagenavi" style="padding: 20px;"><a class="numbers first" href="accessories/11-0-1-0-4">上一页</a><a class="numbers" href="accessories/11-0-1-0-1">1</a><a class="numbers" href="accessories/11-0-1-0-2">2</a><a class="numbers" href="accessories/11-0-1-0-3">3</a><a class="numbers" href="accessories/11-0-1-0-4">4</a><span class="numbers current">5</span><a class="numbers" href="accessories/11-0-1-0-6">6</a><a class="numbers last" href="accessories/11-0-1-0-6">下一页</a></div>
-	</div>
+				<div class="ab-pagenavi" style="padding: 20px;">
+	        <a class="numbers first" href="javascript:f_gotoPage(<s:property value="pager.pagePre"/>);">上一页</a>
+	        <s:iterator value="pager.pageList" id="page">
+	        <s:if test="#page = 3">
+	            <a class="numbers" href="javascript:f_gotoPage(<s:property/>);"><s:property/></a>
+	        </s:if>
+	        <s:else>
+	            <a class="numbers" href="javascript:f_gotoPage(<s:property/>);"><s:property/></a>
+	        </s:else>
+	        </s:iterator>
+	        <a class="numbers last" href="javascript:f_gotoPage( <s:property value="pager.pageNext"/>);">下一页</a>
+	    </div>
+</div>
 <script type="text/javascript">
 function audit(){
 	lunziUtil.confirm("商家信息无误，确认开通?", function() {

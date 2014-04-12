@@ -13,5 +13,6 @@ public interface ProviderDAO {
 	public int updateLogo(Provider prov);
 	//public int updateLogo(Long id, String logo);
 	public int updateImage(Long providerId,String imagePath,int index);	
-	
+	public List<Provider> qryProviderList(int pageNo ,int pageSize);
+	public int qryCount();
 }

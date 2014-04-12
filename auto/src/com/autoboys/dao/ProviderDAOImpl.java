@@ -2,8 +2,13 @@ package com.autoboys.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -169,4 +174,41 @@ public class ProviderDAOImpl implements ProviderDAO {
 		return ret;
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<Provider> qryProviderList(int pageNo ,int pageSize) {
+		List<Provider> list = new ArrayList<Provider>();
+		try {
+			java.sql.Connection conn = null;
+			try {
+				String sql = "select b.*,f_getRegionName(b.REGION_ID) regionName from (select a.*,rownum rn from (select * from provider order by status,apply_date) a where rownum<=?) b where rn >?";
+				conn = ProxoolConnection.getConnection();
+		        QueryRunner qRunner = new QueryRunner();   
+		        list = (List<Provider>) qRunner.query(conn, sql, new BeanListHandler(Provider.class),pageNo*pageSize,(pageNo-1)*pageSize);
+		        
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {conn.close();}catch(Exception e){}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}	
+	
+	
+	public int qryCount() {
+		int ret = 0;
+		try {
+			StringBuilder sb =  new StringBuilder("select count(1) from provider");
+			Query q = session.createSQLQuery(sb.toString());
+			ret = ((java.math.BigDecimal)q.uniqueResult()).intValue();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}	
 }
