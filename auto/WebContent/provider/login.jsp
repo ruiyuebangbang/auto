@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -106,7 +107,7 @@ color:#fff;
 				<div class="loginbox">
 					<div class="W_login_form">
 						<form id="loginForm"
-							action="<%=request.getContextPath()%>/auth/login.action"
+							action="<%=request.getContextPath()%>/provider/provider_login.action"
 							method="post">
 							<table class="wwFormTable">
 								<div class="info_list" style="background-color: #fff;">
@@ -116,13 +117,13 @@ color:#fff;
 
 									</label>
 								</div>
-
+								<s:property value="errors['member.username'][0]" escape="false" />
 								<div class="info_list" style="background-color: #fff;">
 									<label class="password"> <input class="G_input"
 										type="password" name="password" id="password" alt="输入登录密码">
 									</label>
 								</div>
-
+								<s:property value="errors['member.password'][0]" escape="false" />
 								<div class="info_list clear">
 									<input type="hidden" name="captchaId" id="myLoginCaptcha"
 										value=""> <label class="verify"
@@ -136,10 +137,10 @@ color:#fff;
 										title="看不清楚，请点击换一张图片">
 
 								</div>
-
+								<s:property value="errors['member.captcha'][0]" escape="false" />
 								<div class="info_list no_reg clear">
 									
-										<span class="no_reg_tip">还没入驻，<a href="/auto/auth/register.action" title="申请入驻" class="ml10">申请入驻</a></span>
+										<span class="no_reg_tip">还没入驻，<a href="/auto/provider/provider_register.action" title="申请入驻" class="ml10">申请入驻</a></span>
 										<a href="javascript:void(0)" class="btn btn-large btn-block btn-primary" style="width: 160px; float: left;" id="sbmit">登录</a>
 										<input type="hidden" value="<%=request.getContextPath()%>/provider/main.action"	name="returnURL"> 
 								</div>
