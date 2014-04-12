@@ -41,7 +41,7 @@ public class AuthFilter implements Filter {
         HttpServletResponse httpRes=(HttpServletResponse)response;  
         String retUrl = httpReq.getRequestURI();
         //retUrl = retUrl.substring(retUrl.indexOf('/',1));
-        if (retUrl.endsWith("login.action")||retUrl.endsWith("register.action")||retUrl.endsWith("main.action")) {
+        if (retUrl.indexOf("login.action")>0||retUrl.indexOf("register.action")>0) {
         	 chain.doFilter(request, response);  
         } else {
 	        HttpSession session=httpReq.getSession();
