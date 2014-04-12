@@ -159,7 +159,7 @@ else
 											</dd>
 											<div class="psearchBut">
 												<form action="/auto/service/proposal.action?act=zn" method="post">
-													<button type="submit" class="btn btn-danger">看看需要做哪些保养</button>
+													<button type="submit" class="btn btn-small btn-primary">看看需要做哪些保养</button>
 												</form>
 											</div>
 										</dl>
