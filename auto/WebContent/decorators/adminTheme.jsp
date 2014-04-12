@@ -76,13 +76,25 @@
 					        
 					    </ul>
 					</div>
+					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">用户管理</span><span class="item_more item_to_down"></span></div>
+					<div class="menu_item_children" itemtype="account">
+					    <ul>
+					    	  					        
+					        <li id="menu-4-1" class="menu_item_child">	
+					        <a href="${pageContext.request.contextPath}/admin/userList.action?typeId=1">会员管理</a></li>
+					        <li id="menu-4-1" class="menu_item_child ">	
+					        <a href="${pageContext.request.contextPath}/admin/userList.action?typeId=2">商家用户管理</a></li>
+					        <li id="menu-4-1" class="menu_item_child selected">	
+					        <a href="${pageContext.request.contextPath}/admin/userList.action?typeId=3">系统用户管理</a></li>
+					    </ul>
+					</div>
 					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">商家管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="account">
 					    <ul>
 					    	  					        
-					        <li id="menu-4-1" class="menu_item_child selected">	
+					        <li id="menu-5-1" class="menu_item_child selected">	
 					        <a href="${pageContext.request.contextPath}/admin/auditProvider.action">商家审核</a></li>
-					        <li id="menu-4-2" class="menu_item_child">	
+					        <li id="menu-5-2" class="menu_item_child">	
 					        <a href="${pageContext.request.contextPath}/admin/queryProvider.action">查询商家</a></li>
 					        
 					    </ul>

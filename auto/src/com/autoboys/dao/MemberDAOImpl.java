@@ -61,6 +61,19 @@ public class MemberDAOImpl implements MemberDAO {
 		return courses;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Member> listMember(Integer typeId) {
+		List<Member> courses = null;
+		try {
+			Query q = session.createSQLQuery("select * from Member where classification=?").addEntity(Member.class);
+			q.setInteger(0, typeId);
+			courses = q.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
+	
 	/**
 	 * Used to list all the members.
 	 */

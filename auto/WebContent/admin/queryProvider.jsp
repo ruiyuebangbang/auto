@@ -16,6 +16,33 @@
 		<div class="pcontent-title">
 			<h1>查询商家</h1>
 		</div>
+		<div class="pcontent-filter">
+			<table>
+				<tr>
+					<td>区域：</td>
+					<td>
+						<select class="service" id="service_1" name="servie_1" onchange="changeService('');">
+							<option value="">全部</option>
+							<option value="">上海市</option>
+							<option value="">杭州市</option>
+						</select>
+						<select class="service" id="service_2" name="servie_2" onchange="changeService('');">
+							<option value="">全部</option>
+							<option value="">徐汇区</option>
+							<option value="">长宁区</option>
+							<option value="">闵行区</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>店铺名称：</td>
+					<td>
+						<input name="name" type="text" style="width:160px;margin-left:20px;"> 
+						<input type="submit" class="btn btn-primary btn-small" value=" 查询 " style="margin-left:20px">
+					</td>
+				</tr>
+			</table>
+		</div>
 		<table class="tblist">
 			<thead>
 				<tr>
