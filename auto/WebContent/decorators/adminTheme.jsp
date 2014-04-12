@@ -72,7 +72,7 @@
 					<div class="menu_item" itemtype="car"><span class="item_icon icon_car"></span><span class="item_name">产品管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="car">
 					    <ul>
-					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/provider/eService.action">维修产品管理</a></li>
+					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/admin/productList.action">产品管理</a></li>
 					        
 					    </ul>
 					</div>

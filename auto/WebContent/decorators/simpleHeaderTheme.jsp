@@ -14,7 +14,7 @@
 		<div class="simple-header clear">
 			<div class="reg-logo">
 				<a href="${pageContext.request.contextPath}" class="logo">
-					<img src="${pageContext.request.contextPath}/image/blank.gif" alt="养车客" width="102" height="40">
+					<img src="${pageContext.request.contextPath}/image/blank.gif" alt="养车客" width="202" height="70">
 				</a>
 			</div>
 			
