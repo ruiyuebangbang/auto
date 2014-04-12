@@ -19,6 +19,7 @@
 	background-color: #4e6d8d;
 	text-decoration: none;
 	color: white;
+	cursor: pointer;
 	-webkit-transition: 0.25s;
 	-moz-transition: 0.25s;
 	-o-transition: 0.25s;

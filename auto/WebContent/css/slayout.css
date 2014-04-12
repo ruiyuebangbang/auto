@@ -248,7 +248,6 @@ float:left;
 }
 .pcontent .pcontent-btn,.pcontent-filter .filter-btn {
 	text-align: right;
-margin-top: 10px;
 margin-right:10px;
 float: left;
 width: 720px;
@@ -273,7 +272,6 @@ padding:2px 0;
 .pcontent dl {
 	float:left;
 	width:730px;
-	border:1px solid #f5f5f5;
 }
 .pcontent dt {
 	/*border-bottom: 1px solid #e6e9ed;*/
