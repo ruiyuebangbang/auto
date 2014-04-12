@@ -13,5 +13,7 @@ public interface MemberDAO {
 	public void deleteMember(Long memberId);
 	public List<Member> listMemberByPro(Long pid);
 	public int modifyPassword(Member member);
+	public int insertProvider(Member member);
+	
 
 }
