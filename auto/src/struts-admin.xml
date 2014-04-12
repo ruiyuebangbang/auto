@@ -11,5 +11,14 @@
 		<action name="auditProvider"  method="auditProvider" class="com.autoboys.action.admin.ProviderAdminAction">
 			<result name="success">/admin/auditProvider.jsp</result>
 		</action>
+		<action name="productList"  method="productList" class="com.autoboys.action.ProductAction">
+			<result name="success">/product/productList.jsp</result>
+		</action>
+		<action name="productEdit"  method="edit" class="com.autoboys.action.ProductAction">
+			<result name="input">/product/productEdit.jsp</result>
+		</action>
+		<action name="mappingVehicle"  method="mappingVehicle" class="com.autoboys.action.ProductAction">
+			<result name="input">/product/mappingVehicle.jsp</result>
+		</action>
 	</package>	
 </struts>    
