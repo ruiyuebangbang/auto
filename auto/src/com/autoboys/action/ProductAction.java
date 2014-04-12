@@ -36,7 +36,7 @@ public class ProductAction extends ActionSupport {
 	 * To list all Products.
 	 * @return String
 	 */
-	public String productList()
+	public String list()
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		

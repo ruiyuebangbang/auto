@@ -54,11 +54,12 @@ input[type=text] {
 	outline: 0;
 	border: 1px solid #C7C7C7;
 	color: #555555; 
-	height:26px;
+	height:24px;
 }
 select {
 	border: 1px solid #C7C7C7;
 	color: #555555; 
+	outline:none
 }
 .app-header{
 position:relative;
@@ -282,7 +283,7 @@ padding: 2px 0 6px;
 
 .pcontent-filter .service {
 	width:160px;
-	padding: 4px 2px;
+	padding: 3px 2px;
 	margin-left: 20px;
 }
 .pform {
