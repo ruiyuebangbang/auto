@@ -12,16 +12,16 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class RegisterAction extends ActionSupport implements ServletRequestAware{
 	
-	private Provider provider;
+	//private Provider provider;
 	
-	private	List<ProviderRegion> regions1;
-	Long region1;
-	private	List<ProviderRegion> regions2;
-	Long region2;
-	private	List<ProviderRegion> regions3;
+	//private	List<ProviderRegion> regions1;
+	//Long region1;
+	//private	List<ProviderRegion> regions2;
+	//Long region2;
+	//private	List<ProviderRegion> regions3;
 		
 	
-	public Provider getProvider() {
+	/*public Provider getProvider() {
 		return provider;
 	}
 
@@ -67,7 +67,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 
 	public void setRegions3(List<ProviderRegion> regions3) {
 		this.regions3 = regions3;
-	}
+	}*/
 
 	
 	

@@ -23,7 +23,7 @@
 	
 	<package name="provider" extends="hibernate-default" namespace="/provider">
 		<action name="provider_register" class="com.autoboys.action.provider.RegisterAction">
-            <result name="create">provider_register.jsp</result>
+            <result name="create">register.jsp</result>
 			<result name="success">success.jsp</result>
 		</action>
 		<action name="provider_login" class="com.autoboys.action.provider.LoginAction">

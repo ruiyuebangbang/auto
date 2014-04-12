@@ -60,7 +60,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
 			Member member = memberDAO.queryByUserName(userName);
 			
 			if(member == null) {
-				this.addFieldError("member.username", "<div class='field-error'>抱歉，该账号不存在！<a href='register.action' >立即注册</a></div>");
+				this.addFieldError("member.username", "<div class='field-error'>抱歉，该账号不存在！<a href='/provider/provider_register.action' >立即注册</a></div>");
 				return "login";
 			}else if (!member.getPassword().equals(password)){
 				this.addFieldError("member.password", "<div class='field-error'>密码不正确，再试试看！</div>");

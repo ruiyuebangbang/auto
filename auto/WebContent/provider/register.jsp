@@ -96,7 +96,7 @@
 		</form>
 		<div class="scroll_img">
 			<h2>已经有养车客账号？</h2>
-			<a href="/auto/provider/login.action" class="btn btn-small btn-primary"
+			<a href="/auto/provider/provider_login.action" class="btn btn-small btn-primary"
 				style="margin-left: 3px;"><span>立即登录</span></a>
 			<div class="cooperation clear" style="margin-top: 50px;">
 				<dl>
