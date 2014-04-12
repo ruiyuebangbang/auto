@@ -62,6 +62,7 @@
 		<table class="tblist">
 			<thead>
 				<tr>
+					<th><input type="checkbox"></th>
 					<th style="width: 90px">名称</th>
 					<th>品牌</th>
 					<th>规格</th>
@@ -72,6 +73,7 @@
 			<tbody>
 
 				<tr>
+					<td><input type="checkbox"></td>
 					<td>黄壳机油</td>
 					<td>黄壳</td>
 					<td>SN/CF 10W-40 4L 矿物油</td>
@@ -82,6 +84,7 @@
 					</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox"></td>
 					<td>黄壳机油</td>
 					<td>黄壳</td>
 					<td>SN/CF 10W-40 4L 矿物油</td>
@@ -92,6 +95,7 @@
 					</td>
 				</tr>
 				<tr>
+					<td><input type="checkbox"></td>
 					<td>黄壳机油</td>
 					<td>黄壳</td>
 					<td>SN/CF 10W-40 4L 矿物油</td>
@@ -105,6 +109,7 @@
 			</tbody>
 		</table>
 		<div class="ab-pagenavi" style="padding: 20px;"><a class="numbers first" href="accessories/11-0-1-0-4">上一页</a><a class="numbers" href="accessories/11-0-1-0-1">1</a><a class="numbers" href="accessories/11-0-1-0-2">2</a><a class="numbers" href="accessories/11-0-1-0-3">3</a><a class="numbers" href="accessories/11-0-1-0-4">4</a><span class="numbers current">5</span><a class="numbers" href="accessories/11-0-1-0-6">6</a><a class="numbers last" href="accessories/11-0-1-0-6">下一页</a></div>
+		<div style="text-align:center"><span style="margin:0 10px;"><a class="btn btn-primary btn-small">设置服务项</a></span><span style="margin:0 10px;"><a class="btn btn-primary btn-small">设置适合车型</a></span></div>
 	</div>
 </body>
 </html>
