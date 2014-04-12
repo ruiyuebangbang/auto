@@ -54,6 +54,7 @@ input[type=text] {
 	outline: 0;
 	border: 1px solid #C7C7C7;
 	color: #555555; 
+	height:26px;
 }
 select {
 	border: 1px solid #C7C7C7;
@@ -160,11 +161,12 @@ padding:0px;
 }
 
 .my-content table.tblist {
-width: 720px;
+width: 730px;
 text-align: center;
-margin: 15px auto 0 auto;
+margin: 15px;
 border-top: solid 1px #e6e9ed;
 border-left: solid 1px #e6e9ed;
+float: left;
 }
 .my-content table.tblist td {
 border-right: solid 1px #e6e9ed;
