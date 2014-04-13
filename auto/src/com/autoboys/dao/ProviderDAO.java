@@ -13,6 +13,9 @@ public interface ProviderDAO {
 	public int updateLogo(Provider prov);
 	//public int updateLogo(Long id, String logo);
 	public int updateImage(Long providerId,String imagePath,int index);	
-	public List<Provider> qryProviderList(int pageNo ,int pageSize);
-	public int qryCount();
+	public List<Provider> qryAuditProviderList(int pageNo ,int pageSize);
+	public int qryAuditProviderCnt();
+	public int auditProvider(Long providerId,int stat);
+	public List<Provider> qryProviderList(Provider cnd,int pageNo ,int pageSize);
+	public int qryProviderCnt(Provider cnd);
 }

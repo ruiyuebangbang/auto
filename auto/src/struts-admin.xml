@@ -8,9 +8,12 @@
 		<action name="queryProvider"  method="queryProvider" class="com.autoboys.action.admin.ProviderAdminAction">
 			<result name="success">/admin/queryProvider.jsp</result>
 		</action>
-		<action name="auditProvider"  method="auditProvider" class="com.autoboys.action.admin.ProviderAdminAction">
+		<action name="auditProviderQry"  method="auditProviderQry" class="com.autoboys.action.admin.ProviderAdminAction">
 			<result name="success">/admin/auditProvider.jsp</result>
 		</action>
+		<action name="auditProvider"  method="auditProvider" class="com.autoboys.action.admin.ProviderAdminAction">
+			<result name="success" type="redirect">auditProviderQry.action</result>
+		</action>		
 		<action name="productList"  method="list" class="com.autoboys.action.ProductAction">
 			<result name="success">/product/productList.jsp</result>
 		</action>

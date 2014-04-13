@@ -24,6 +24,8 @@ function f_gotoPage(sel){
 			<s:hidden  name="pager.pageTotal"/>
 			<s:hidden  name="pager.pageSize"/>
 			<s:hidden  name="pager.pageCurr"/>
+	<input type="hidden" name="pid"/>		
+	<input type="hidden" name="stat"/>		
 </s:form>	
 	<div class="orderlist">
 		<div class="pcontent-title">
@@ -50,8 +52,8 @@ function f_gotoPage(sel){
 					<td><s:property value="apply_date"/></td>
 					<td class="op">
 							<a href="cancel.aspx?orderid=201402121539">修改</a> | 
-							<a href="javascript:audit()">通过</a> | 
-							<a href="javascript:audit()">不通过</a> | 
+							<a href="javascript:audit(<s:property value="ID"/>,1);">通过</a> | 
+							<a href="javascript:audit(<s:property value="ID"/>,2);">不通过</a> | 
 							<a href="cancel.aspx?orderid=201402121539">店铺管理</a> 
 					</td>
 				</tr>
@@ -73,11 +75,13 @@ function f_gotoPage(sel){
 	    </div>
 </div>
 <script type="text/javascript">
-function audit(){
-	lunziUtil.confirm("商家信息无误，确认开通?", function() {
-        //提交审核
-        alert("确认后提交审核");
-    });
+function audit(pid,stat){
+	document.forms[0].pid.value=pid;
+	document.forms[0].stat.value=stat;
+	document.forms[0].action="<%=request.getContextPath()%>/admin/auditProvider.action";
+	//alert(document.forms[0].action);
+	document.forms[0].submit();
+	
 }
 </script>
 </body>
