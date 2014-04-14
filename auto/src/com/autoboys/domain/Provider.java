@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Provider {
 
 	  private long ID;               
-	  private long REGION_ID;        
+	  private Long REGION_ID;        
 	  private String SHORT_NAME;       
 	  private String FULL_NAME;       
 	  private String BUSINESS_LICENSE ;
@@ -77,7 +77,7 @@ public class Provider {
 		return ID;
 	}
 	@Column(name="REGION_ID")
-	public long getREGION_ID() {
+	public Long getREGION_ID() {
 		return REGION_ID;
 	}
 	@Column(name="SHORT_NAME")
@@ -175,7 +175,7 @@ public class Provider {
 	public void setID(long iD) {
 		ID = iD;
 	}
-	public void setREGION_ID(long rEGION_ID) {
+	public void setREGION_ID(Long rEGION_ID) {
 		REGION_ID = rEGION_ID;
 	}
 	public void setSHORT_NAME(String sHORT_NAME) {

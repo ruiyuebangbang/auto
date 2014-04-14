@@ -8,7 +8,15 @@
 <meta name="keywords" content="">
 <title>养车客商家后台：互联网养车，开启养车新模式</title>
 <link rel="StyleSheet" href="css/main.css" type="text/css">
+<script src="../scripts/jquery-1.11.0.js"></script>
+<script language="javascript">
+function f_gotoPage(sel){
+    //alert(sel);
+    $('#userList_pager_pageCurr').val(sel);
 
+    document.forms[0].submit();
+}
+</script>
 </head>
 
 <body class="logged-out ytype" screen_capture_injected="true">
@@ -17,15 +25,20 @@
 			<h1>会员管理</h1>
 		</div>
 		<div class="pcontent-filter">
+			<s:form method="post">
+			<s:hidden  name="pager.pageTotal"/>
+			<s:hidden  name="pager.pageSize"/>
+			<s:hidden  name="pager.pageCurr"/>
+			<s:hidden  name="typeId"/>
 			<table>
 				<tr>
 					<td>关键字：</td>
-					<td><input name="name" type="text"
-						style="width: 160px; margin-left: 20px;"> <input
+					<td><s:textfield name="keyword" theme="simple" cssStyle="width: 160px; margin-left: 20px;"/> <input
 						type="submit" class="btn btn-primary btn-small" value=" 查询 "
 						style="margin-left: 20px"></td>
 				</tr>
 			</table>
+		</s:form>
 		</div>
 		<s:if test="memberList.size() > 0">
 			<div class="content">
@@ -55,15 +68,17 @@
 				</table>
 			</div>
 			<div class="ab-pagenavi" style="padding: 20px;">
-			<a class="numbers first" href="accessories/11-0-1-0-4">上一页</a><a
-				class="numbers" href="accessories/11-0-1-0-1">1</a><a
-				class="numbers" href="accessories/11-0-1-0-2">2</a><a
-				class="numbers" href="accessories/11-0-1-0-3">3</a><a
-				class="numbers" href="accessories/11-0-1-0-4">4</a><span
-				class="numbers current">5</span><a class="numbers"
-				href="accessories/11-0-1-0-6">6</a><a class="numbers last"
-				href="accessories/11-0-1-0-6">下一页</a>
-		</div>
+	        <a class="numbers first" href="javascript:f_gotoPage(<s:property value="pager.pagePre"/>);">上一页</a>
+	        <s:iterator value="pager.pageList" id="page">
+	        <s:if test="#page = 3">
+	            <a class="numbers" href="javascript:f_gotoPage(<s:property/>);"><s:property/></a>
+	        </s:if>
+	        <s:else>
+	            <a class="numbers" href="javascript:f_gotoPage(<s:property/>);"><s:property/></a>
+	        </s:else>
+	        </s:iterator>
+	        <a class="numbers last" href="javascript:f_gotoPage( <s:property value="pager.pageNext"/>);">下一页</a>
+	    </div>
 		</s:if>
 		
 	</div>
