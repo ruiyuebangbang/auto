@@ -1,5 +1,6 @@
 package com.autoboys.action.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.autoboys.dao.ProviderDAO;
 import com.autoboys.dao.ProviderDAOImpl;
+import com.autoboys.dao.ProviderRegionDAO;
 import com.autoboys.domain.Pager;
 import com.autoboys.domain.Provider;
 import com.autoboys.domain.ProviderProduct;
@@ -26,6 +28,8 @@ public class ProviderAdminAction  extends ActionSupport implements ServletReques
 	 */
 	private static final long serialVersionUID = 5848973847833251891L;
 	private ProviderDAO dao = new ProviderDAOImpl();
+	private ProviderRegionDAO rdao = new ProviderRegionDAO();
+	
 	
 	private Pager pager ;//保存分页信息
 	private List<Provider> providerList;
@@ -119,14 +123,21 @@ public class ProviderAdminAction  extends ActionSupport implements ServletReques
 	}
 	
 	public String queryProvider() throws Exception {
-		
-		
+
 		if(pager == null) {
 			pager = new Pager();
 		}
-		pager.setTotal(dao.qryProviderCnt(provider));
-		providerList = dao.qryProviderList(provider, pager.getPageCurr(), pager.getPageSize());
+		pager.setTotal(dao.qryProviderCnt(provider.getSHORT_NAME(),region1,region2));
+		providerList = dao.qryProviderList(provider.getSHORT_NAME(),region1,region2, pager.getPageCurr(), pager.getPageSize());
 	
+		
+		regions1 =  rdao.getChildrenByParent(0L);
+		if(region1 !=null) {
+			regions2 = rdao.getChildrenByParent(region1);
+		} else {
+			regions2 = new ArrayList<ProviderRegion>();
+		}
+		
 		return SUCCESS;
 	}
 	

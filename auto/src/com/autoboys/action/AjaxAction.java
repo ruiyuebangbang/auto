@@ -322,12 +322,13 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	public String getRegionsByReg1() throws Exception {
 		StringBuilder sb = new StringBuilder(); 
 		String reg = request.getParameter("regId");
-
-		List<ProviderRegion> ls = prdao.getChildrenByParent(Long.valueOf(reg));
-		for(ProviderRegion p: ls ) {
-			sb.append("<option value=\"").append(p.getId()).append("\">").append(p.getName()).append("</option>");
-		}
-		printWriteHTML(sb.toString());
+		if( reg!=null && !"".equals(reg)) {
+			List<ProviderRegion> ls = prdao.getChildrenByParent(Long.valueOf(reg));
+			for(ProviderRegion p: ls ) {
+				sb.append("<option value=\"").append(p.getId()).append("\">").append(p.getName()).append("</option>");
+			}
+			printWriteHTML(sb.toString());
+		} 
 		return null;
 	}	
 	

@@ -16,16 +16,27 @@ function f_gotoPage(sel){
 
     document.forms[0].submit();
 }
+
+function changeReg1(reg1){	
+	$.get( "../ajax/common/getRegionsByReg1.action", { regId: reg1},
+	  function( data ) {  
+		  //alert(data);
+		  //$("#region2").empty();
+		  $("#region2").html(data).prepend('<option value="">全部</option>');
+		 }
+	);
+}
 </script>
 </head>
 
 <body class="logged-out ytype" screen_capture_injected="true">
+
+
+	<div class="orderlist">
 <s:form  method="post">
 			<s:hidden  name="pager.pageTotal"/>
 			<s:hidden  name="pager.pageSize"/>
-			<s:hidden  name="pager.pageCurr"/>
-</s:form>
-	<div class="orderlist">
+			<s:hidden  name="pager.pageCurr"/>		
 		<div class="pcontent-title">
 			<h1>查询商家</h1>
 		</div>
@@ -34,28 +45,21 @@ function f_gotoPage(sel){
 				<tr>
 					<td>区域：</td>
 					<td>
-						<select class="service" id="service_1" name="servie_1" onchange="changeService('');">
-							<option value="">全部</option>
-							<option value="">上海市</option>
-							<option value="">杭州市</option>
-						</select>
-						<select class="service" id="service_2" name="servie_2" onchange="changeService('');">
-							<option value="">全部</option>
-							<option value="">徐汇区</option>
-							<option value="">长宁区</option>
-							<option value="">闵行区</option>
-						</select>
+						<s:select id="region1" name="region1" headerKey="" headerValue="全部" list="regions1"  theme="simple" cssClass="not_null" listKey="id" listValue="name" onchange="changeReg1(this.value);"/>
+						<s:select id="region2" name="region2" headerKey="" headerValue="全部" list="regions2"  theme="simple" cssClass="not_null" listKey="id" listValue="name" />
+						
 					</td>
 				</tr>
 				<tr>
 					<td>店铺名称：</td>
 					<td>
-						<input name="name" type="text" style="width:160px;margin-left:20px;"> 
+						<s:textfield name="provider.SHORT_NAME" theme="simple" cssStype="width:160px;margin-left:20px;"/>
 						<input type="submit" class="btn btn-primary btn-small" value=" 查询 " style="margin-left:20px">
 					</td>
 				</tr>
 			</table>
 		</div>
+</s:form>		
 		<table class="tblist">
 			<thead>
 				<tr>

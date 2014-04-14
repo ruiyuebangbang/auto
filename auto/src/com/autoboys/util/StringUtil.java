@@ -17,5 +17,9 @@ public class StringUtil {
 		  Matcher m = p.matcher(str);  
 		  return m.matches(); 
 	    }
+	  
+	  public static String fiterSQLParam(String str) {
+		  return str.replace("'", "''");
+	  }
 
 }

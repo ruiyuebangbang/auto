@@ -16,6 +16,6 @@ public interface ProviderDAO {
 	public List<Provider> qryAuditProviderList(int pageNo ,int pageSize);
 	public int qryAuditProviderCnt();
 	public int auditProvider(Long providerId,int stat);
-	public List<Provider> qryProviderList(Provider cnd,int pageNo ,int pageSize);
-	public int qryProviderCnt(Provider cnd);
+	public List<Provider> qryProviderList(String name,Long reg1,Long reg2,int pageNo ,int pageSize);
+	public int qryProviderCnt(String name,Long reg1,Long reg2);
 }

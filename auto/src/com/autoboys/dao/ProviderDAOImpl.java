@@ -255,15 +255,24 @@ public class ProviderDAOImpl implements ProviderDAO {
 		return ret;
 	}
 	
-	public List<Provider> qryProviderList(Provider cnd,int pageNo ,int pageSize) {
+	public List<Provider> qryProviderList(String name,Long reg1,Long reg2,int pageNo ,int pageSize) {
 		List<Provider> list = new ArrayList<Provider>();
 		try {
 			java.sql.Connection conn = null;
 			try {
-				String sql = "select b.*,f_getRegionName(b.REGION_ID) regionName from (select a.*,rownum rn from (select * from provider where status is null order by status,apply_date) a where rownum<=?) b where rn >?";
+				StringBuilder sb = new StringBuilder("select b.*,f_getRegionName(b.REGION_ID) regionName from (select a.*,rownum rn from (select * from provider where 1=1 "); 
+				if(name!=null&&!"".equals(name)) {
+					sb.append(" and short_name like '%").append(StringUtil.fiterSQLParam(name)).append("%' ");
+				}
+				if(reg2!=null) {
+					sb.append(" and region_id in (select id from region where parent_id=").append(reg2).append(")");
+				} else if (reg1!=null) {
+					sb.append(" and region_id in (select id from region where parent_id in (select id from region where parent_id=").append(reg1).append("))");
+				}
+				sb.append("order by status,apply_date) a where rownum<=?) b where rn >?");
 				conn = ProxoolConnection.getConnection();
 		        QueryRunner qRunner = new QueryRunner();   
-		        list = (List<Provider>) qRunner.query(conn, sql, new BeanListHandler(Provider.class),pageNo*pageSize,(pageNo-1)*pageSize);
+		        list = (List<Provider>) qRunner.query(conn, sb.toString(), new BeanListHandler(Provider.class),pageNo*pageSize,(pageNo-1)*pageSize);
 		        
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -278,10 +287,18 @@ public class ProviderDAOImpl implements ProviderDAO {
 	}	
 	
 	
-	public int qryProviderCnt(Provider cnd) {
+	public int qryProviderCnt(String name,Long reg1,Long reg2) {
 		int ret = 0;
 		try {
-			StringBuilder sb =  new StringBuilder("select count(1) from provider where status is null ");
+			StringBuilder sb =  new StringBuilder("select count(1) from provider where 1=1 ");
+			if(name!=null&&!"".equals(name)) {
+				sb.append(" and short_name like '%").append(StringUtil.fiterSQLParam(name)).append("%' ");
+			}
+			if(reg2!=null) {
+				sb.append(" and region_id in (select id from region where parent_id=").append(reg2).append(")");
+			} else if (reg1!=null) {
+				sb.append(" and region_id in (select id from region where parent_id in (select id from region where parent_id=").append(reg1).append("))");
+			}
 			Query q = session.createSQLQuery(sb.toString());
 			ret = ((java.math.BigDecimal)q.uniqueResult()).intValue();
 			
