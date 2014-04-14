@@ -1,5 +1,6 @@
 package com.autoboys.action.provider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -173,15 +174,26 @@ public class StoreManagerAction extends ActionSupport implements ServletRequestA
 		Member member = (Member) request.getSession().getAttribute("login_user");
 		long providerId = member.getProvid();
 		provider = dao.listProviderById(new Long(providerId));
-		ProviderRegion tmp = rdao.getObjectById(provider.getREGION_ID());
-		regions3 = rdao.getChildrenByParent(tmp.getParent());
-		tmp = rdao.getObjectById(tmp.getParent());
-		region2 = tmp.getId();
-		regions2 = rdao.getChildrenByParent(tmp.getParent());
-		tmp = rdao.getObjectById(tmp.getParent());
-		region1 = tmp.getId();
-		regions1 = rdao.getChildrenByParent(tmp.getParent());
-		
+		if(provider.getREGION_ID()!=0) {
+			ProviderRegion tmp = rdao.getObjectById(provider.getREGION_ID());
+			if(tmp !=null ) {
+				regions3 = rdao.getChildrenByParent(tmp.getParent());
+				tmp = rdao.getObjectById(tmp.getParent());
+			}
+			if(tmp !=null ) {
+				region2 = tmp.getId();
+				regions2 = rdao.getChildrenByParent(tmp.getParent());
+				tmp = rdao.getObjectById(tmp.getParent());
+			}
+			if(tmp !=null ) {
+				region1 = tmp.getId();
+				regions1 = rdao.getChildrenByParent(tmp.getParent());
+			}
+		} else {
+			regions1 =  rdao.getChildrenByParent(0L);
+			regions2 = new ArrayList<ProviderRegion>();
+			regions3 = new ArrayList<ProviderRegion>();
+		}
 		return "editForm";
 
 	}

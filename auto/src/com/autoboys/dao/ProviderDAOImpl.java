@@ -72,10 +72,22 @@ public class ProviderDAOImpl implements ProviderDAO {
 	
 	public Provider listProviderById(Long providerId) {
 		Provider provider = null;
-		try {
+		/*try {
 			provider = (Provider) session.get(Provider.class, providerId);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}*/
+		java.sql.Connection conn = null;
+		try {
+			String sql = "select * from provider where id=?";
+			conn = ProxoolConnection.getConnection();
+	        QueryRunner qRunner = new QueryRunner();   
+	        List<Provider>list = (List<Provider>) qRunner.query(conn, sql, new BeanListHandler(Provider.class),providerId);
+	        provider = list.get(0);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();}catch(Exception e){}
 		}
 		return provider;
 	}

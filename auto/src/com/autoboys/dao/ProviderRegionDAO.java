@@ -43,10 +43,14 @@ public class ProviderRegionDAO {
 	public List<ProviderRegion> getChildrenByParent(Long parent) {
 		List<ProviderRegion> rs = null;
 		try {
-			Query q = session.createSQLQuery("select * from region where parent_id=?").addEntity(ProviderRegion.class);
-			q.setInteger(0, parent.intValue());
-			rs = q.list();
-			
+			if( parent == null) {
+				Query q = session.createSQLQuery("select * from region where parent_id is null").addEntity(ProviderRegion.class);
+				rs = q.list();
+			} else {
+				Query q = session.createSQLQuery("select * from region where parent_id=?").addEntity(ProviderRegion.class);
+				q.setInteger(0, parent.intValue());
+				rs = q.list();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
