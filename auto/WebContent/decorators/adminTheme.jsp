@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="com.autoboys.domain.Member" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -27,7 +28,13 @@
 	            </ul>
 	            <ul id="navUtility">
 	            	<li><img class="ui_dHead" width="26" height="26" alt="" style="display:block;margin-top: -3px;" src="<%=request.getContextPath()%>/image/default_head.png"></li>
-		    		<li>IT浪子，您好！[ <a href="<%=request.getContextPath()%>/member/member.action" title="">退出</a> ]</li>
+		    		<%
+		    		Member member = null;
+		    		if(request.getSession().getAttribute("login_user") != null){
+		    			member = (Member) request.getSession().getAttribute("login_user");
+		    		%>
+		    		<li><%=member.getNickName() %>，您好！[ <a href="javascript:logout();" title="">退出</a> ]</li>
+		    		<%} %>
 			    </ul>
 	        </div>
 	    </div>
@@ -65,17 +72,29 @@
 					<div class="menu_item" itemtype="car"><span class="item_icon icon_car"></span><span class="item_name">产品管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="car">
 					    <ul>
-					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/provider/eService.action">维修产品管理</a></li>
+					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/admin/productList.action">产品管理</a></li>
 					        
+					    </ul>
+					</div>
+					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">用户管理</span><span class="item_more item_to_down"></span></div>
+					<div class="menu_item_children" itemtype="account">
+					    <ul>
+					    	  					        
+					        <li id="menu-4-1" class="menu_item_child">	
+					        <a href="${pageContext.request.contextPath}/admin/userList.action?typeId=1">会员管理</a></li>
+					        <li id="menu-4-1" class="menu_item_child ">	
+					        <a href="${pageContext.request.contextPath}/admin/userList.action?typeId=2">商家用户管理</a></li>
+					        <li id="menu-4-1" class="menu_item_child selected">	
+					        <a href="${pageContext.request.contextPath}/admin/userList.action?typeId=3">系统用户管理</a></li>
 					    </ul>
 					</div>
 					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">商家管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="account">
 					    <ul>
 					    	  					        
-					        <li id="menu-4-1" class="menu_item_child selected">	
-					        <a href="${pageContext.request.contextPath}/admin/auditProvider.action">商家审核</a></li>
-					        <li id="menu-4-2" class="menu_item_child">	
+					        <li id="menu-5-1" class="menu_item_child selected">	
+					        <a href="${pageContext.request.contextPath}/admin/auditProviderQry.action">商家审核</a></li>
+					        <li id="menu-5-2" class="menu_item_child">	
 					        <a href="${pageContext.request.contextPath}/admin/queryProvider.action">查询商家</a></li>
 					        
 					    </ul>

@@ -1,5 +1,7 @@
 package com.autoboys.dao;
 
+import java.sql.CallableStatement;
+import java.sql.Types;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -8,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.SQLQuery;
 import com.autoboys.domain.Member;
 import com.autoboys.domain.ProviderRegion;
+import com.autoboys.util.ProxoolConnection;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 
@@ -52,6 +55,19 @@ public class MemberDAOImpl implements MemberDAO {
 		List<Member> courses = null;
 		try {
 			courses = session.createQuery("from Member").list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Member> listMember(Integer typeId) {
+		List<Member> courses = null;
+		try {
+			Query q = session.createSQLQuery("select * from Member where classification=?").addEntity(Member.class);
+			q.setInteger(0, typeId);
+			courses = q.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -162,6 +178,28 @@ public class MemberDAOImpl implements MemberDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();		
+		}
+		return ret;
+	}
+	
+	public int insertProvider(Member mb) {
+		int ret =0;
+		java.sql.Connection conn = null;
+		try {
+			conn = ProxoolConnection.getConnection();
+			CallableStatement cs = conn.prepareCall("{? = call f_insertProvider(?, ? ,? ,?)}");  
+			cs.registerOutParameter(1, Types.INTEGER); 	
+			cs.setString(2,mb.getEmail());
+			cs.setString(3, mb.getNickName());  
+			cs.setString(4, mb.getMobilePhone());
+			cs.setString(5, mb.getPassword());
+			cs.executeUpdate();  
+			ret = cs.getInt(1);
+			cs.close();	
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();}catch(Exception e) {}
 		}
 		return ret;
 	}

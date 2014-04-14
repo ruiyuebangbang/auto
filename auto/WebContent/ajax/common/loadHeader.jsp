@@ -22,7 +22,7 @@ if(request.getSession().getAttribute("login_user") != null){
 	if(member != null){
 	%>
 	<li id="lpChatButton2" style="visibility: visible;"><%=member.getNickName() %>，您好！</li>
-	<li><a href="<%=request.getContextPath()%>/auth/register.action">退出</a></li>
+	<li><a href="javascript:logout();">退出</a></li>
 	<%}else {%>
 	<li id="lpChatButton2" style="visibility: visible;"><a href="<%=request.getContextPath()%>/auth/login.action" id="lpDynamicButtonHref-572" title="">登录</a></li>
 	<li><span class="line">&nbsp;</span></li>

@@ -2591,7 +2591,7 @@ lunzi.util.replay = new Class({Implements: [Options, Events],options: {},initial
         }
     }});
 function logout() {
-    var a = silunziUtil.basePath + "cas/logout.xhtml?ptn=smp";
+    var a = silunziUtil.basePath + "auth/logout.action?ptn=smp";
     new Request({url: a,method: "get",onComplete: function() {
             lunziUtil.alert("成功退出！", refreshPage)
         }}).send()

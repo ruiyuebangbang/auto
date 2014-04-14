@@ -82,6 +82,9 @@
 			<result name="success">register.jsp</result>
 			<result name="create" >/service/service.action</result>
 		</action>
+		<action name="logout" class="com.autoboys.action.LogoutAction">
+			<result name="success">register.jsp</result>
+		</action>
 		<action name="login" class="com.autoboys.action.LoginAction">
 			<result name="login">login.jsp</result>
 			<result name="home" type="redirectAction">

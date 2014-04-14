@@ -10,9 +10,6 @@
 <link rel="shortcut icon" href="<%=request.getContextPath() %>/favicon.ico" type="image/x-icon">
 <meta name="keywords" content="">
 <meta name="description" content="养车客，中国领先的养车生活服务平台，免费为车主提供汽车保养、维修、美容、改装等车生活解决方案，免费为车主甄别优质的汽车服务商家，提供公开、透明的产品价格，解决车主的养车烦恼，让车生活变得更加简单惬意！">
-<link rel="StyleSheet"
-	href="${pageContext.request.contextPath}/css/member.css"
-	type="text/css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/font-awesome.min.css" />
 <script type="text/javascript"
@@ -162,7 +159,7 @@ else
 											</dd>
 											<div class="psearchBut">
 												<form action="/auto/service/proposal.action?act=zn" method="post">
-													<button type="submit" class="btn btn-danger">看看需要做哪些保养</button>
+													<button type="submit" class="btn btn-small btn-primary">看看需要做哪些保养</button>
 												</form>
 											</div>
 										</dl>

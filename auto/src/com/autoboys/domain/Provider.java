@@ -38,7 +38,38 @@ public class Provider {
 	  private String IMG9   ;          
 	  private String IMG10  ;
 
+	  private String apply_date;
+	  private String apply_type;
+	  private Integer status;
+	  private String regionName;
 	  
+	  
+	public String getApply_date() {
+		return apply_date;
+	}
+	public void setApply_date(String app_date) {
+		this.apply_date = app_date;
+	}
+	public String getApply_type() {
+		return apply_type;
+	}
+	public void setApply_type(String app_type) {
+		this.apply_type = app_type;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getRegionName() {
+		return regionName;
+	}
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
+	}
+	
+	
 	@Id
 	@GeneratedValue
 	@Column(name="ID")

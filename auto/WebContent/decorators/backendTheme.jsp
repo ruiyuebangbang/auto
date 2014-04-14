@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="com.autoboys.domain.Member" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@taglib uri="/struts-tags" prefix="s"%>
@@ -23,7 +24,13 @@
 	            </ul>
 	            <ul id="navUtility">
 	            	<li><img class="ui_dHead" width="26" height="26" alt="" style="display:block;margin-top: -3px;" src="<%=request.getContextPath()%>/image/default_head.png"></li>
-		    		<li>IT浪子，您好！[ <a href="<%=request.getContextPath()%>/member/member.action" title="">退出</a> ]</li>
+		    		<%
+		    		Member member = null;
+		    		if(request.getSession().getAttribute("login_user") != null){
+		    			member = (Member) request.getSession().getAttribute("login_user");
+		    		%>
+		    		<li><%=member.getNickName() %>，您好！[ <a href="javascript:logout();" title="">退出</a> ]</li>
+		    		<%} %>
 			    </ul>
 	        </div>
 	    </div>

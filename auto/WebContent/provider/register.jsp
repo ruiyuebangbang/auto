@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 
 <head>
@@ -44,40 +44,39 @@
 
 <body class="rigister" screen_capture_injected="true" text="">
 	<div class="G_nologin_main clear">
-		<form name="frm_register" action="post" method="post">
+		<s:form action="provider_register" method="post">
 			<div class="loginbox">
 				<div class="W_login_form" id="phoneLogin_content">
 					<h2>
 						商家注册，在您注册成功后，我们的工作人员将会在一个工作日内联系您！
 					</h2>
 					<div class="info_list">
-						<label class="username"> <input class="G_input"
-							maxlength="11" type="text" id="mobilePhone" name="mobilePhone" alt="公司名称"
-							style="width: 246px;">
+						<label class="inpt"> <input  class="G_input" maxlength="11" type="text" id="email" name="mb.email" alt="公司名称" value='<s:property value="mb.email"/>'>
 						</label>
-
 					</div>
+					<s:property value="errors['mb.email'][0]" escape="false" />
 					<div class="info_list">
 						<label class="inpt"> <input class="G_input" type="text"
-							id="nickName" name="nickName" alt="联系人">
+							id="nickName" name="mb.nickName" alt="联系人" value='<s:property value="mb.nickName"/>'>
 
-						</label>
+					</label>
+					<s:property value="errors['mb.nickName'][0]" escape="false" />
 					</div>
                     <div class="info_list">
-						<label class="inpt"> <input class="G_input" type="text"
-							id="nickName" name="nickName" alt="联系电话">
+						<label class="username"> <input class="G_input" type="text"
+							id="mobilePhone" name="mb.mobilePhone" alt="联系电话" style="width: 246px;" value='<s:property value="mb.mobilePhone"/>'>
+						</label>
+						<s:property value="errors['mb.mobile'][0]" escape="false" />
+					</div>
+					<div class="info_list">
+						<label class="inpt"> <input class="G_input"
+							type="password" id="password" name="mb.password" alt="登录密码">
 
 						</label>
 					</div>
 					<div class="info_list">
 						<label class="inpt"> <input class="G_input"
-							type="password" id="password" name="password" alt="登录密码">
-
-						</label>
-					</div>
-					<div class="info_list">
-						<label class="inpt"> <input class="G_input"
-							type="password" name="repassword" id="repassword" alt="确认登录密码">
+							type="password" name="mb.repassword" id="repassword" alt="确认登录密码">
 
 						</label>
 					</div>
@@ -88,15 +87,15 @@
 							style="margin-left: 5px; color: #333" target="_blank">商家入住协议</a>
 					</div>
 					<div class="info_list no_reg clear">
-						<a href="javascript:void(0)" id="sbmit" onclick="savePhoneReg();"
+						<a href="javascript:void(0);" id="sbmit" onclick="savePhoneReg();"
 							class="tostep2 on">申请入住</a>
 					</div>
 				</div>
 			</div>
-		</form>
+		</s:form>
 		<div class="scroll_img">
 			<h2>已经有养车客账号？</h2>
-			<a href="/auto/provider/login.action" class="btn btn-small btn-primary"
+			<a href="/auto/provider/provider_login.action" class="btn btn-small btn-primary"
 				style="margin-left: 3px;"><span>立即登录</span></a>
 			<div class="cooperation clear" style="margin-top: 50px;">
 				<dl>
@@ -215,15 +214,18 @@
 		}
 
 		function savePhoneReg() {
+			
 			var values = silunziUtil.getValues("phoneLogin_content");
-			if (!validateForm(values))
-				return;
+			
+			//if (!validateForm(values))
+			//	return;
 			var svr2 = $("service2");
 			if (svr2.checked == false) {
 				lunziUtil.alert("您必须同意服务协议");
 				return false;
 			}
-			var url = '<%=request.getContextPath()%>/auth/doRegister.action';
+			
+			/*var url = '<%=request.getContextPath()%>/provider/provider_register.action';
 			silunziUtil.mask("sbmit");
 			silunziUtil.sendRequest(url, values,
 					function(result) {
@@ -238,7 +240,9 @@
 										result.errorMap);
 							}
 						}
-					});
+					});*/
+					document.forms[0].submit();
+					
 		}
 
 		var second = 60;

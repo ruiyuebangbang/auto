@@ -6,22 +6,25 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.autoboys.dao.MemberDAO;
+import com.autoboys.dao.MemberDAOImpl;
+import com.autoboys.domain.Member;
 import com.autoboys.domain.Provider;
 import com.autoboys.domain.ProviderRegion;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class RegisterAction extends ActionSupport implements ServletRequestAware{
 	
-	private Provider provider;
+	//private Provider provider;
 	
-	private	List<ProviderRegion> regions1;
-	Long region1;
-	private	List<ProviderRegion> regions2;
-	Long region2;
-	private	List<ProviderRegion> regions3;
+	//private	List<ProviderRegion> regions1;
+	//Long region1;
+	//private	List<ProviderRegion> regions2;
+	//Long region2;
+	//private	List<ProviderRegion> regions3;
 		
 	
-	public Provider getProvider() {
+	/*public Provider getProvider() {
 		return provider;
 	}
 
@@ -67,8 +70,19 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 
 	public void setRegions3(List<ProviderRegion> regions3) {
 		this.regions3 = regions3;
+	}*/
+
+	Member mb;
+	
+	public Member getMb() {
+		return mb;
 	}
 
+	public void setMb(Member mb) {
+		this.mb = mb;
+	}
+	
+	private MemberDAO memberDAO = new MemberDAOImpl();
 	
 	
 	private HttpServletRequest request;
@@ -81,6 +95,19 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 	public String execute() throws Exception {
 		String method = request.getMethod();
 		if(method.equals("POST"))	{
+			int ret = memberDAO.insertProvider(mb);
+			switch(ret) {
+				case -1001:
+					this.addFieldError("mb.mobile", "<div class='field-error'>手机号已经存在</div>");
+					return "create";
+				case -1002:
+					this.addFieldError("mb.email", "<div class='field-error'>公司名已经存在</div>");
+					return "create";
+				case -1003:
+					this.addFieldError("mb.nickName", "<div class='field-error'>昵称已经存在</div>");
+					return "create";
+			}
+			
 			return SUCCESS;
 		}else{
 			
