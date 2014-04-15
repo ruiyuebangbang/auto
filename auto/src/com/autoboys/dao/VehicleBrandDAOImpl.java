@@ -22,7 +22,7 @@ public class VehicleBrandDAOImpl implements VehicleBrandDAO {
 	public List<VehicleBrand> listVehicleBrand() {
 		List<VehicleBrand> courses = null;
 		try {
-			courses = session.createQuery("from Vehicle_Brand").list();
+			courses = session.createQuery("from VehicleBrand").list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

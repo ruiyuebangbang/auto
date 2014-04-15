@@ -17,7 +17,14 @@ public class Product {
 	String    name;
 	String	  specification;
 	Double	  standard_price;
-
+	String 	  brandName;
+	
+	public String getBrandName() {
+		return brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
 	@Id
 	@Column(name="ID")
 	public Long getId() {

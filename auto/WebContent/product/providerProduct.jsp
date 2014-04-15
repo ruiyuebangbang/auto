@@ -63,7 +63,6 @@ function f_gotoPage(sel){
 	<s:hidden  name="providerProduct.service_id"/>
 	<s:hidden  id="selCategory" name="selCategory" />
 	
-	<s:hidden  name="pager.pageTotal"/>
 	<s:hidden  name="pager.pageSize"/>
 	<s:hidden  name="pager.pageCurr"/>
 	

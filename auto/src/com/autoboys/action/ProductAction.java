@@ -19,6 +19,8 @@ public class ProductAction extends ActionSupport {
 	private ServiceCatDAO serviceCatDAO = new ServiceCatDAOImpl();
 	private ServiceDAO serviceDAO = new ServiceDAOImpl();
 	private ProductDAO pdao = new ProductDAOImpl();
+	private VehicleSeriesDAO vehicleSeriesDAO = new VehicleSeriesDAOImpl();
+	private VehicleBrandDAO   vehicleBrandDAO = new VehicleBrandDAOImpl();
 	
 	private Product product ;
 	
@@ -31,7 +33,26 @@ public class ProductAction extends ActionSupport {
 	private Pager pager ;//保存分页信息
 	
 	private String selCategory;
+	private String selVehicleBrand;
+	private String selVehicleSeries;
 	
+	
+	public String getSelVehicleBrand() {
+		return selVehicleBrand;
+	}
+
+	public void setSelVehicleBrand(String selVehicleBrand) {
+		this.selVehicleBrand = selVehicleBrand;
+	}
+
+	public String getSelVehicleSeries() {
+		return selVehicleSeries;
+	}
+
+	public void setSelVehicleSeries(String selVehicleSeries) {
+		this.selVehicleSeries = selVehicleSeries;
+	}
+
 	public String getSelCategory() {
 		return selCategory;
 	}
@@ -118,12 +139,22 @@ public class ProductAction extends ActionSupport {
 		} else {
 			sevs = serviceDAO.listService();
 		}
-		
+		brands = vehicleBrandDAO.listVehicleBrand();
+		if(selVehicleBrand !=null && !selVehicleBrand.equals("")) {
+			series = vehicleSeriesDAO.listByBrandCode(selVehicleBrand);
+		} else {
+			series = new ArrayList<VehicleSeries>();
+		}
 		
 		if(pager == null) {
 			pager = new Pager();
 		}
-
+		if(product==null) {
+			product = new Product();
+		}
+		pager.setTotal(pdao.qryProductsCount(product,selCategory,selVehicleBrand,selVehicleSeries));
+		productList = pdao.qryProductsList(product,selCategory,selVehicleBrand,selVehicleSeries, pager.getPageCurr(), pager.getPageSize());
+		
 		
 		return SUCCESS;
 	}

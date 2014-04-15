@@ -51,6 +51,7 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	private VehicleDAO vehicleDAO = new VehicleDAOImpl();
 	private ProviderRegionDAO prdao = new ProviderRegionDAO();
 	private ProviderProductDAO ppdao = new ProviderProductDAOImpl();	
+	private ServiceDAO serviceDAO = new ServiceDAOImpl();
 	
 	public void setServletResponse(HttpServletResponse arg0) {
 		this.response = arg0;
@@ -332,8 +333,8 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 		return null;
 	}	
 	
-	/**
-	 * ajax request
+	/** 处理服务商价格录入
+	 * ajax request zhux
 	 * To save or update providerProduct.
 	 * @return String
 	 */
@@ -357,6 +358,48 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 		} else {
 			printWriteHTML(String.valueOf(Double.parseDouble(discountPrice)+Double.parseDouble(labourPrice)));
 		}
+		return null;
+	}	
+	
+	/**
+	 * 得到某分类下对应的服务
+	 * add zhux 2014-04-15
+	 * @return
+	 * @throws Exception
+	 */
+	public String getServiceByCat() throws Exception {
+		StringBuilder sb = new StringBuilder(); 
+		List<Service> ls = new ArrayList<Service>();
+		String selCategory = request.getParameter("selCategory");
+		if( selCategory!=null && !"".equals(selCategory)) {
+
+			ls = serviceDAO.listServiceByCatId(selCategory);
+
+			for(Service p: ls ) {
+				sb.append("<option value=\"").append(p.getCODE()).append("\">").append(p.getNAME()).append("</option>");
+			}
+			printWriteHTML(sb.toString());
+		} 
+		return null;
+	}	
+	
+	/**
+	 * 得到某品牌下 对应的系列
+	 * add zhux 2014-04-15
+	 * @return
+	 * @throws Exception
+	 */
+	public String getVehicleSeries1() throws Exception {
+		StringBuilder sb = new StringBuilder(); 
+		List<VehicleSeries> ls = new ArrayList<VehicleSeries>();
+		String selBrand = request.getParameter("selVehicleBrand");
+		if( selBrand!=null && !"".equals(selBrand)) {
+			ls =  vehicleSeriesDAO.listByBrandCode(selBrand);
+			for(VehicleSeries p: ls ) {
+				sb.append("<option value=\"").append(p.getCode()).append("\">").append(p.getCname()).append("</option>");
+			}
+			printWriteHTML(sb.toString());
+		} 
 		return null;
 	}	
 }
