@@ -16,6 +16,13 @@ function f_gotoPage(sel){
 
     document.forms[0].submit();
 }
+
+function f_disableUser(pid,stat) {
+	document.forms[0].pid.value=pid;
+	document.forms[0].stat.value=stat;
+	document.forms[0].action="<%=request.getContextPath()%>/admin/disableUser.action";
+    document.forms[0].submit();
+}
 </script>
 </head>
 
@@ -26,10 +33,11 @@ function f_gotoPage(sel){
 		</div>
 		<div class="pcontent-filter">
 			<s:form method="post">
-			<s:hidden  name="pager.pageTotal"/>
 			<s:hidden  name="pager.pageSize"/>
 			<s:hidden  name="pager.pageCurr"/>
 			<s:hidden  name="typeId"/>
+	<input type="hidden" name="pid"/>		
+	<input type="hidden" name="stat"/>	
 			<table>
 				<tr>
 					<td>关键字：</td>
@@ -58,10 +66,13 @@ function f_gotoPage(sel){
 							<td align="left"><s:property value="mobilePhone" /></td>
 							<td align="left"><s:property value="email" /></td>
 							<td align="left"></td>
-							<td align="left"></td>
-							<td><span> <s:url id="deleteURL" action="deleteUser">
-										<s:param name="id" value="%{id}"></s:param>
-									</s:url> <s:a href="%{deleteURL}">禁用</s:a>
+							<td align="left">
+                            <s:if test="isDisabled == 0">无效
+                            </s:if><s:else>有效</s:else>
+        
+                            </td>
+							<td><span> <a href="javascript:f_disableUser(<s:property value="id"/>,0);">禁用</a>
+                                       <a href="javascript:f_disableUser(<s:property value="id"/>,1);">启用</a> 
 							</span></td>
 						</tr>
 					</s:iterator>

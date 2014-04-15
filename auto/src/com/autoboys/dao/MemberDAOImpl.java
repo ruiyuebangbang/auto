@@ -253,4 +253,22 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return courses;
 	}
+	
+	public int disableUser(long id ,int status) {
+		int ret = 0;
+		try {
+			session.beginTransaction();  
+			Query query = session.createSQLQuery("update Member t set IS_DISABLED =? where id = ?");
+			query.setInteger(0, status);
+			query.setLong(1,id);
+			ret = query.executeUpdate();  
+			session.getTransaction().commit();  
+
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return ret;
+	}
 }
+
+

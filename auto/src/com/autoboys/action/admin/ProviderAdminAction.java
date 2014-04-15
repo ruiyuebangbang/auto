@@ -13,6 +13,8 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.autoboys.dao.MemberDAO;
+import com.autoboys.dao.MemberDAOImpl;
 import com.autoboys.dao.ProviderDAO;
 import com.autoboys.dao.ProviderDAOImpl;
 import com.autoboys.dao.ProviderRegionDAO;
@@ -27,9 +29,8 @@ public class ProviderAdminAction  extends ActionSupport implements ServletReques
 	 * 
 	 */
 	private static final long serialVersionUID = 5848973847833251891L;
-	private ProviderDAO dao = new ProviderDAOImpl();
+	private ProviderDAO pdao = new ProviderDAOImpl();
 	private ProviderRegionDAO rdao = new ProviderRegionDAO();
-	
 	
 	private Pager pager ;//保存分页信息
 	private List<Provider> providerList;
@@ -127,8 +128,11 @@ public class ProviderAdminAction  extends ActionSupport implements ServletReques
 		if(pager == null) {
 			pager = new Pager();
 		}
-		pager.setTotal(dao.qryProviderCnt(provider.getSHORT_NAME(),region1,region2));
-		providerList = dao.qryProviderList(provider.getSHORT_NAME(),region1,region2, pager.getPageCurr(), pager.getPageSize());
+		if(provider == null) {
+			provider = new Provider();
+		}
+		pager.setTotal(pdao.qryProviderCnt(provider.getSHORT_NAME(),region1,region2));
+		providerList = pdao.qryProviderList(provider.getSHORT_NAME(),region1,region2, pager.getPageCurr(), pager.getPageSize());
 	
 		
 		regions1 =  rdao.getChildrenByParent(0L);
@@ -146,15 +150,16 @@ public class ProviderAdminAction  extends ActionSupport implements ServletReques
 		if(pager == null) {
 			pager = new Pager();
 		}
-		pager.setTotal(dao.qryAuditProviderCnt());
-		providerList = dao.qryAuditProviderList( pager.getPageCurr(), pager.getPageSize());		
+		pager.setTotal(pdao.qryAuditProviderCnt());
+		providerList = pdao.qryAuditProviderList( pager.getPageCurr(), pager.getPageSize());		
 		return SUCCESS;
 	}
 	
 	public String auditProvider() throws Exception {
 		String 	pid = request.getParameter("pid");
 		String  stat = request.getParameter("stat");
-		dao.auditProvider(Long.parseLong(pid), Integer.parseInt(stat));
+		pdao.auditProvider(Long.parseLong(pid), Integer.parseInt(stat));
 		return SUCCESS;
 	}
+
 }

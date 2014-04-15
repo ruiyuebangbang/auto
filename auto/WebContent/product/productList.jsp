@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 
 <head>
@@ -8,7 +8,15 @@
 <meta name="keywords" content="">
 <title>养车客商家后台：互联网养车，开启养车新模式</title>
 <link rel="StyleSheet" href="css/main.css" type="text/css">
+<script src="../scripts/jquery-1.11.0.js"></script>
+<script language="javascript">
+function f_gotoPage(sel){
+    //alert(sel);
+    $('#auditProvider_pager_pageCurr').val(sel);
 
+    document.forms[0].submit();
+}
+</script>
 </head>
 
 <body class="logged-out ytype" screen_capture_injected="true">
@@ -17,6 +25,11 @@
 			<h1>产品查询</h1>
 		</div>
 		<div class="pcontent-filter">
+            <s:form>
+			<s:hidden  name="pager.pageSize"/>
+			<s:hidden  name="pager.pageCurr"/>
+
+
 			<table>
 				<tr>
 					<td>产品分类：</td>
@@ -58,6 +71,7 @@
 					</td>
 				</tr>
 			</table>
+        </s:form>
 		</div>
 		<table class="tblist">
 			<thead>

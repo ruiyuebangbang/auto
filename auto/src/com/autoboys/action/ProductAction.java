@@ -16,12 +16,84 @@ import com.autoboys.domain.*;
 public class ProductAction extends ActionSupport {
 
 	private static final long serialVersionUID = -6659925652584240539L;
-
+	private ServiceCatDAO serviceCatDAO = new ServiceCatDAOImpl();
+	private ServiceDAO serviceDAO = new ServiceDAOImpl();
+	private ProductDAO pdao = new ProductDAOImpl();
+	
 	private Product product ;
 	
 	private List<Product> productList;
 	
-		
+	private List<ServiceCat> cats;//服务类别
+	private List<Service> sevs;   //服务
+	private List<VehicleBrand> brands;//汽车品牌
+	private List<VehicleSeries> series;//汽车系列
+	private Pager pager ;//保存分页信息
+	
+	private String selCategory;
+	
+	public String getSelCategory() {
+		return selCategory;
+	}
+
+	public void setSelCategory(String selCategory) {
+		this.selCategory = selCategory;
+	}
+	
+	public Pager getPager() {
+		return pager;
+	}
+	public void setPager(Pager pager) {
+		this.pager = pager;
+	}
+	
+	public List<ServiceCat> getCats() {
+		return cats;
+	}
+
+	public List<Service> getSevs() {
+		return sevs;
+	}
+
+	public List<VehicleBrand> getBrands() {
+		return brands;
+	}
+
+	public List<VehicleSeries> getSeries() {
+		return series;
+	}
+
+	public void setCats(List<ServiceCat> cats) {
+		this.cats = cats;
+	}
+
+	public void setSevs(List<Service> sevs) {
+		this.sevs = sevs;
+	}
+
+	public void setBrands(List<VehicleBrand> brands) {
+		this.brands = brands;
+	}
+
+	public void setSeries(List<VehicleSeries> series) {
+		this.series = series;
+	}
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public List<Product> getProductList() {
+		return productList;
+	}
+
+	public void setProductList(List<Product> pls) {
+		this.productList = pls;
+	}
+	
 	/**
 	 * To save or update Product.
 	 * @return String
@@ -39,6 +111,19 @@ public class ProductAction extends ActionSupport {
 	public String list()
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		
+		cats = serviceCatDAO.listServiceCat();
+		if(selCategory != null && !selCategory.equals("")) {
+			sevs = serviceDAO.listServiceByCatId(selCategory);
+		} else {
+			sevs = serviceDAO.listService();
+		}
+		
+		
+		if(pager == null) {
+			pager = new Pager();
+		}
+
 		
 		return SUCCESS;
 	}
@@ -78,24 +163,6 @@ public class ProductAction extends ActionSupport {
 		}
 	}
 
-	
-	
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public List<Product> getProductList() {
-		return productList;
-	}
-
-	public void setProductList(List<Product> ProductList) {
-		this.productList = productList;
-	}
-	
 
 
 }

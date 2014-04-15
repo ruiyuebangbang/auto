@@ -21,7 +21,6 @@ function f_gotoPage(sel){
 
 <body class="logged-out ytype" screen_capture_injected="true">
 <s:form  method="post">
-			<s:hidden  name="pager.pageTotal"/>
 			<s:hidden  name="pager.pageSize"/>
 			<s:hidden  name="pager.pageCurr"/>
 	<input type="hidden" name="pid"/>		

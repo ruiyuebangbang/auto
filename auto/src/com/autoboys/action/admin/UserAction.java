@@ -140,5 +140,14 @@ public class UserAction extends ActionSupport {
 	}
 	
 
-
+	public String disableUser() throws Exception {
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		
+		String 	id = request.getParameter("pid");
+		String  stat = request.getParameter("stat");
+		
+		memberDAO.disableUser(Long.parseLong(id), Integer.parseInt(stat));
+		
+		return SUCCESS;
+	}
 }

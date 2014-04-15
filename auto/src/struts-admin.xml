@@ -26,5 +26,10 @@
 		<action name="userList"  method="list" class="com.autoboys.action.admin.UserAction">
 			<result name="success">/admin/userList.jsp</result>
 		</action>
+		<action name="disableUser"  method="disableUser" class="com.autoboys.action.admin.UserAction">
+			<result name="success" type="chain">
+				 userList
+			</result>
+		</action>
 	</package>	
 </struts>    

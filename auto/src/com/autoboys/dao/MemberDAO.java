@@ -18,4 +18,5 @@ public interface MemberDAO {
 	
 	public int qryMemberByKeywordCnt(int typeId, String keyword);
 	public List<Member> qryMemberByKeywordList(int typeId, String keyword,int pageNo ,int pageSize);
+	public int disableUser(long id ,int status);
 }

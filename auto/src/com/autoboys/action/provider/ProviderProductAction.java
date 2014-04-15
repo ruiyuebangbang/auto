@@ -28,12 +28,12 @@ public class ProviderProductAction extends ActionSupport implements ModelDriven<
 		this.pager = pager;
 	}
 
-	private List<Product> products;
+	private List<Product> products;//产品列表
 	
-	private List<ServiceCat> cats;
-	private List<Service> sevs;
-	private List<ProductBrand> brands;
-	private List<String> distinctprds;
+	private List<ServiceCat> cats;//服务类别
+	private List<Service> sevs;   //服务
+	private List<ProductBrand> brands;//品牌
+	private List<String> distinctprds;//产品名
 	
 	private String selCategory;
 	
