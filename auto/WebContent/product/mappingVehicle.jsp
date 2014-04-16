@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 
 <head>
@@ -8,7 +8,7 @@
 <meta name="keywords" content="">
 <title>养车客商家后台：互联网养车，开启养车新模式</title>
 <link rel="StyleSheet" href="css/main.css" type="text/css">
-
+<script src="../scripts/jquery-1.11.0.js"></script>
 </head>
 
 <body class="logged-out" screen_capture_injected="true">
@@ -18,76 +18,24 @@
 		</div>
 		<div class="pcontent-filter">
 			<ul>
-				<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">沃克斯豪尔
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">奔驰
-         		</li>	
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">福克斯
-         		</li>
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">沃克斯豪尔
-         		</li>	
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">福克斯
-         		</li>
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">沃克斯豪尔
-         		</li>									
+				<s:checkboxlist list="brands" listKey="code" listValue="cname" name="selbrands"/>		
 			</ul>
 			<div class="filter-btn"><input type="button" class="btn btn-primary btn-small" value=" 查询 "></div>
 		</div>
 		<div class="pcontent">
+			<s:iterator value="brands" var="bd">
 			<dl>
-				<dt>宝马 <input type="radio" name="" value="">全选<input type="radio" checked="checked" value="" >取消</dt>
+				<dt><s:property value="cname"/> <input type="radio" name="" value="">全选<input type="radio" checked="checked" value="" >取消</dt>
 				<dd>
 					<ul>
-						<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X1
-		         		</li>
-		         		<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X5
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X6
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 730Li
-		         		</li>
-					
+						 
+							<s:checkboxlist list="%{series}" listKey="code" listValue="cname" name="#selseries"/>	
+		         
+		         	
 					</ul>
 				</dd>
 			</dl>
-			<dl>
-				<dt>奥迪 <input type="radio" name="" value="">全选<input type="radio" checked="checked" value="" >取消</dt>
-				<dd>
-					<ul>
-						<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>
-		         		<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>
-					
-					</ul>
-				</dd>
-			</dl>
+		</s:iterator>
 			<div class="pcontent-btn"><input type="button" class="btn btn-primary btn-small" value=" 确定 "></div>
 		</div>
 		

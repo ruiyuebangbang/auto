@@ -39,6 +39,16 @@ public class ProductAction extends ActionSupport {
 	
 	private List<ProductBrand> pbrands;//产品品牌
 	
+	private List<String> selbrands;//mapping选中品牌
+	private List<String> selseries;//mapping选中系列
+
+	public List<String> getSelbrands() {
+		return selbrands;
+	}
+
+	public void setSelbrands(List<String> selbrands) {
+		this.selbrands = selbrands;
+	}
 
 	public List<ProductBrand> getPbrands() {
 		return pbrands;
@@ -208,7 +218,9 @@ public class ProductAction extends ActionSupport {
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		if(request.getMethod().equals("GET")){
 			String id = request.getParameter("product.id");
-			brands = vehicleBrandDAO.listMappingBrand(Long.parseLong(id));
+			brands = vehicleBrandDAO.listVehicleBrand();
+			selbrands = pdao.listMappingBrand(Long.parseLong(id));
+			selseries = pdao.listMappingSeries(Long.parseLong(id));
 			for(VehicleBrand b:brands) {
 				b.setSeries(vehicleSeriesDAO.listMappingSeries(Long.parseLong(id),b.getCode()));
 			}

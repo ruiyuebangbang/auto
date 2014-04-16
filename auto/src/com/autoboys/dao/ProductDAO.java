@@ -12,5 +12,6 @@ public interface ProductDAO {
 	
 	public int qryProductsCount(Product cnds,String selCat,String brand,String series);
 	public List<Product> qryProductsList(Product cnds,String selCat,String brand,String series, int pageNo ,int pageSize); 	
-
+	public List<String> listMappingBrand(long productId);
+	public List<String> listMappingSeries(long productId);
 }

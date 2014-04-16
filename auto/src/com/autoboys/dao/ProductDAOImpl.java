@@ -1,10 +1,14 @@
 package com.autoboys.dao;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ColumnListHandler;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -148,6 +152,44 @@ public class ProductDAOImpl implements ProductDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List<String> listMappingBrand(long productId) {
+		List<String> list = null;
+		Connection conn = null;
+		try {
+			//创建SQL执行工具   
+			conn = ProxoolConnection.getConnection();
+	        QueryRunner qRunner = new QueryRunner();   
+	        String sql = " select distinct t1.brand_code from vehicle t1 join product_vehicle t2 on t1.id=t2.VEHICLE_ID and t2.product_id=? ";
+	        list = (List<String>) qRunner.query(conn, sql, new ColumnListHandler("brand_code"),productId); 
+	        
+	        //输出查询结果   
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DbUtils.closeQuietly(conn);
+		}
+		return list;
+	}
+	
+	public List<String> listMappingSeries(long productId) {
+		List<String> list = null;
+		Connection conn = null;
+		try {
+			//创建SQL执行工具   
+			conn = ProxoolConnection.getConnection();
+	        QueryRunner qRunner = new QueryRunner();   
+	        String sql = " select distinct t1.SERIES_CODE from vehicle t1 join product_vehicle t2 on t1.id=t2.VEHICLE_ID and t2.product_id=? ";
+	        list = (List<String>) qRunner.query(conn, sql, new ColumnListHandler("series_code"),productId); 
+	        
+	        //输出查询结果   
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DbUtils.closeQuietly(conn);
 		}
 		return list;
 	}
