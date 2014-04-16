@@ -21,6 +21,7 @@ public class ProductAction extends ActionSupport {
 	private ProductDAO pdao = new ProductDAOImpl();
 	private VehicleSeriesDAO vehicleSeriesDAO = new VehicleSeriesDAOImpl();
 	private VehicleBrandDAO   vehicleBrandDAO = new VehicleBrandDAOImpl();
+	private ProductBrandDAOImpl productBrandDAO = new ProductBrandDAOImpl();
 	
 	private Product product ;
 	
@@ -36,7 +37,17 @@ public class ProductAction extends ActionSupport {
 	private String selVehicleBrand;
 	private String selVehicleSeries;
 	
+	private List<ProductBrand> pbrands;//产品品牌
 	
+
+	public List<ProductBrand> getPbrands() {
+		return pbrands;
+	}
+
+	public void setPbrands(List<ProductBrand> pbrands) {
+		this.pbrands = pbrands;
+	}
+
 	public String getSelVehicleBrand() {
 		return selVehicleBrand;
 	}
@@ -178,8 +189,16 @@ public class ProductAction extends ActionSupport {
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		if(request.getMethod().equals("GET")){
+			
+			String id = request.getParameter("product.id");
+			product = pdao.listProductById(Long.parseLong(id));
+			//pbrands = productBrandDAO.listBrandsByservice(product.getService_id());
+			pbrands = productBrandDAO.listBrands();
+			
 			return INPUT;
 		}else{
+			pdao.saveOrUpdateProduct(product);
+			
 			return SUCCESS;
 		}
 	}
@@ -188,6 +207,14 @@ public class ProductAction extends ActionSupport {
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		if(request.getMethod().equals("GET")){
+			String id = request.getParameter("product.id");
+			brands = vehicleBrandDAO.listMappingBrand(Long.parseLong(id));
+			for(VehicleBrand b:brands) {
+				b.setSeries(vehicleSeriesDAO.listMappingSeries(Long.parseLong(id),b.getCode()));
+			}
+			product = new Product();
+			product.setId(Long.parseLong(id));
+			
 			return INPUT;
 		}else{
 			return SUCCESS;

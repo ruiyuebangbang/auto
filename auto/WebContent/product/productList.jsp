@@ -97,7 +97,7 @@ function changeBrand(sel){
 							<td align="left"><s:property value="specification" /></td>
 							<td align="right"><s:property value="standard_price" /></td>
 							
-							<td><span> <a href="productEdit.action">修改</a> | 
+							<td><span> <a href="productEdit.action?product.id=<s:property value='id'/>">修改</a> | 
 							<a href="mappingVehicle.action">车型</a> 
 							</span></td>
 						</tr>

@@ -93,7 +93,7 @@ public class ProductDAOImpl implements ProductDAO {
 					.append(series).append("' ) ");
 			} else {
 				if(brand!=null&&!"".equals(brand)) {
-					sb.append(" and exists (select 1 from PRODUCT_VEHICLE a join VEHICLE b on a.PRODUCT_ID=t1.id and a.VEHICLE_ID=b.id and b.BRAND_CODE ='")
+					sb.append(" and exists (select 1 from PRODUCT_VEHICLE a join VEHICLE b on a.VEHICLE_ID=b.id where a.PRODUCT_ID=t1.id and b.BRAND_CODE ='")
 					.append(brand).append("' ) ");
 				}
 			}
@@ -128,7 +128,7 @@ public class ProductDAOImpl implements ProductDAO {
 						.append(series).append("' ) ");
 				} else {
 					if(brand!=null&&!"".equals(brand)) {
-						sb.append(" and exists (select 1 from PRODUCT_VEHICLE a join VEHICLE b on a.PRODUCT_ID=t1.id and a.VEHICLE_ID=b.id and b.BRAND_CODE ='")
+						sb.append(" and exists (select 1 from PRODUCT_VEHICLE a join VEHICLE b on a.VEHICLE_ID=b.id where a.PRODUCT_ID=t1.id and b.BRAND_CODE ='")
 						.append(brand).append("' ) ");
 					}
 				}

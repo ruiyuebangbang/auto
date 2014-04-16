@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 
 <head>
@@ -16,32 +16,35 @@
 		<div class="pcontent-title">
 			<h1>修改产品信息</h1>
 		</div>
-		<form class="pform">
+		<s:form cssClass="pform">
+        <s:hidden name="product.id"/>
 		<table>
 			<tbody>
 
 				<tr>
 					<td>产品名称:</td>
-					<td><input type="text" value="美孚机油"></td>					
+					<td><s:textfield name="product.name" theme="simple" /></td>					
 				</tr>
 				<tr>
 					<td>产品品牌:</td>
-					<td><input type="text" value="美孚"></td>					
+					<td><s:select name="product.brand_id" list="pbrands"  theme="simple" cssClass="service" listKey="id" listValue="name"/>
+					</td>					
 				</tr>
 				<tr>
 					<td>产品规格:</td>
-					<td><input type="text" value="SN/CF 10W-40 4L 矿物油"></td>					
+					<td><s:textfield name="product.specification" theme="simple" /></td>					
 				</tr>
 				<tr>
 					<td>市场价(元):</td>
-					<td><input type="text" value="160"></td>					
+					<td><s:textfield name="product.standard_price" theme="simple" /></td>					
 				</tr>
 				<tr>
-					<td colspan="2"><input class="btn btn-small btn-primary" type="button" value=" 确定 "></td>
+                    <s:hidden name="product.service_id"/>
+					<td colspan="2"><input class="btn btn-small btn-primary" type="submit" value=" 确定 "></td>
 				</tr>
 			</tbody>
 		</table>
-		</form>
+		</s:form>
 		
 		
 	</div>

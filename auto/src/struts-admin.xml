@@ -19,6 +19,7 @@
 		</action>
 		<action name="productEdit"  method="edit" class="com.autoboys.action.ProductAction">
 			<result name="input">/product/productEdit.jsp</result>
+			<result name="success" type="redirect">productList.action</result>
 		</action>
 		<action name="mappingVehicle"  method="mappingVehicle" class="com.autoboys.action.ProductAction">
 			<result name="input">/product/mappingVehicle.jsp</result>
