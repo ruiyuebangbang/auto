@@ -10,6 +10,6 @@ public interface VehicleBrandDAO {
 	public List<VehicleBrand> listHotVehicleBrand();
 	public List<VehicleBrand> listVehicleBrand();
 	public List<VehicleBrand> listVehicleBrandByFC(String fc);
-	public List<VehicleBrand> listMappingBrand(long productId);
-	
+	//public List<VehicleBrand> listMappingBrand(long productId);
+	public List<VehicleBrand> listBrandByProduct(long productId);
 }

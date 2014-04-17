@@ -15,13 +15,43 @@ import com.autoboys.domain.*;
 
 public class StoreAction extends ActionSupport implements ModelDriven<Provider> {
 
+	private ProviderDAO pdao = new ProviderDAOImpl();
+	private VehicleBrandDAO vbdao = new VehicleBrandDAOImpl();
+	
+	private Provider provider; //服务商信息
+	private List<VehicleBrand> brands; //对应品牌
+	
+	
+	
+	public List<VehicleBrand> getBrands() {
+		return brands;
+	}
+
+	public void setBrands(List<VehicleBrand> brands) {
+		this.brands = brands;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2427437062687643199L;
 	
 	@Override
-	public String execute() throws Exception {		
+	public String execute() throws Exception {
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		
+		String providerId = request.getParameter("providerId");
+		provider = pdao.listProviderById(Long.parseLong(providerId));
+		brands = vbdao.listBrandByProduct(Long.parseLong(providerId));
+		
 		return SUCCESS;
 	}
 

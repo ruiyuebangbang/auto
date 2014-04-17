@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -82,8 +83,8 @@ public class ProviderDAOImpl implements ProviderDAO {
 			String sql = "select * from provider where id=?";
 			conn = ProxoolConnection.getConnection();
 	        QueryRunner qRunner = new QueryRunner();   
-	        List<Provider>list = (List<Provider>) qRunner.query(conn, sql, new BeanListHandler(Provider.class),providerId);
-	        provider = list.get(0);
+	        provider = (Provider) qRunner.query(conn, sql, new BeanHandler(Provider.class),providerId);
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -104,7 +105,7 @@ public class ProviderDAOImpl implements ProviderDAO {
 			session.beginTransaction();
 			Query q = session.createQuery(sql);
 			
-			q.setLong(0, provider.getREGION_ID());
+			q.setLong(0, provider.getREGION_ID()==null? 0:provider.getREGION_ID());
 			q.setString(1, provider.getSHORT_NAME());
 			q.setString(2, provider.getFULL_NAME());
 			q.setString(3, provider.getAGENT());
