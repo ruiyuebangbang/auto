@@ -26,6 +26,7 @@ function changeReg1(reg1){
 		 }
 	);
 }
+
 </script>
 </head>
 
@@ -80,8 +81,8 @@ function changeReg1(reg1){
 					<td><s:property value="regionName"/></td>
 					<td><s:property value="apply_date"/></td>
 					<td class="op">
-							<a href="cancel.aspx?orderid=201402121539">修改</a> | 
-							<a href="cancel.aspx?orderid=201402121539">店铺管理</a> 
+							<a href="editBasicInfo.action?provid=<s:property value='ID'/>">修改</a> | 
+							<a href="editStoreInfo.action?provider.ID=<s:property value='ID'/>">店铺管理</a> 
 					</td>
 				</tr>
 				</s:iterator>

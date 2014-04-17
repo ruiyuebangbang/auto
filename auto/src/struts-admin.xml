@@ -8,6 +8,33 @@
 		<action name="queryProvider"  method="queryProvider" class="com.autoboys.action.admin.ProviderAdminAction">
 			<result name="success">/admin/queryProvider.jsp</result>
 		</action>
+		
+		<action name="editBasicInfo"  method="editBasicInfo" class="com.autoboys.action.admin.ProviderAdminAction">
+			<result name="editForm">editBasicInfo.jsp</result>
+			<result name="success">success.jsp</result>
+		</action>
+		<action name="editStoreInfo" method="editStoreInfo" class="com.autoboys.action.admin.ProviderAdminAction">
+			<result name="editForm">editStoreInfo.jsp</result>
+			<result name="success">success.jsp</result>
+		</action>
+		<action name="uploadImage" method="uploadImage" class="com.autoboys.action.admin.ProviderAdminAction">
+			<!-- 动态设置savePath的属性 -->            
+			<param name="savePath">/images</param>
+			<result name="success" type="redirectAction">
+			    <param name="actionName">editStoreInfo</param> 
+                <param name="picType">${picType}</param>
+                <param name="provider.ID">${provider.ID}</param>
+            </result>
+			<interceptor-ref name="fileUpload">                
+				<!-- 文件过滤 -->                
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<!-- 文件大小, 以字节为单位 -->                
+				<param name="maximumSize">1025956</param>            
+			</interceptor-ref>            
+			<!-- 默认拦截器必须放在fileUpload之后，否则无�?-->            
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
 		<action name="auditProviderQry"  method="auditProviderQry" class="com.autoboys.action.admin.ProviderAdminAction">
 			<result name="success">/admin/auditProvider.jsp</result>
 		</action>
