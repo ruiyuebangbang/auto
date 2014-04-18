@@ -33,21 +33,39 @@ public class ProductAction extends ActionSupport {
 	private List<VehicleSeries> series;//汽车系列
 	private Pager pager ;//保存分页信息
 	
-	private String selCategory;
-	private String selVehicleBrand;
-	private String selVehicleSeries;
+	private String selCategory;  //查询条件选中分类
+	private String selVehicleBrand; //查询条件选中品牌
+	private String selVehicleSeries; //查询条件选中车系
 	
 	private List<ProductBrand> pbrands;//产品品牌
 	
-	private List<String> selbrands;//mapping选中品牌
-	private List<String> selseries;//mapping选中系列
+	private List<VehicleBrand> selBrands;//查询条件选中品牌
+	private List<String> selbrandsCode;//mapping选中品牌
+	private List<String> selseriesCode;//mapping选中系列
 
-	public List<String> getSelbrands() {
-		return selbrands;
+	
+	public List<VehicleBrand> getSelBrands() {
+		return selBrands;
 	}
 
-	public void setSelbrands(List<String> selbrands) {
-		this.selbrands = selbrands;
+	public void setSelBrands(List<VehicleBrand> selBrands) {
+		this.selBrands = selBrands;
+	}
+
+	public List<String> getSelseriesCode() {
+		return selseriesCode;
+	}
+
+	public void setSelseriesCode(List<String> selseriesCode) {
+		this.selseriesCode = selseriesCode;
+	}
+
+	public List<String> getSelbrandsCode() {
+		return selbrandsCode;
+	}
+
+	public void setSelbrandsCode(List<String> selbrands) {
+		this.selbrandsCode = selbrands;
 	}
 
 	public List<ProductBrand> getPbrands() {
@@ -213,24 +231,45 @@ public class ProductAction extends ActionSupport {
 		}
 	}
 	
+	/**
+	 * 产品对应车型显示
+	 * @return
+	 */
 	public String mappingVehicle()
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		if(request.getMethod().equals("GET")){
-			String id = request.getParameter("product.id");
-			brands = vehicleBrandDAO.listVehicleBrand();
-			selbrands = pdao.listMappingBrand(Long.parseLong(id));
-			selseries = pdao.listMappingSeries(Long.parseLong(id));
-			for(VehicleBrand b:brands) {
-				b.setSeries(vehicleSeriesDAO.listMappingSeries(Long.parseLong(id),b.getCode()));
-			}
-			product = new Product();
-			product.setId(Long.parseLong(id));
-			
-			return INPUT;
+			//String id = request.getParameter("product.id");
+			selbrandsCode = pdao.listMappingBrand(product.getId());
+
 		}else{
-			return SUCCESS;
+			
+			selBrands = new ArrayList<VehicleBrand>();
+			for(String s:selbrandsCode) {
+				selBrands.add(vehicleBrandDAO.getVehicleBrand(s));
+			}
+			selseriesCode = pdao.listMappingSeries(product.getId());
+			for(VehicleBrand b:selBrands) {
+				b.setSeries(vehicleSeriesDAO.listMappingSeries(product.getId(),b.getCode()));
+			}
 		}
+		
+		brands = vehicleBrandDAO.listVehicleBrand();
+		return INPUT;
+	}
+	
+	/**
+	 * 保存产品对应车型
+	 * @return
+	 */
+	public String mappingVehicleSave() 
+	{
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		
+		pdao.saveProductVehicleMapping(product.getId(), selseriesCode);
+		
+		return SUCCESS;
+		
 	}
 
 

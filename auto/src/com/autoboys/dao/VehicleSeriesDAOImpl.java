@@ -71,7 +71,7 @@ public class VehicleSeriesDAOImpl implements VehicleSeriesDAO {
 			//创建SQL执行工具   
 			conn = ProxoolConnection.getConnection();
 	        QueryRunner qRunner = new QueryRunner();   
-	        String sql = " select distinct t3.*,nvl2(t2.product_id,'checked','') mapped from vehicle_series t3 left join vehicle t1 on t1.series_code =t3.code left join product_vehicle t2 on t1.id=t2.VEHICLE_ID and t2.product_id=?  where t3.brand_code=?";
+	        String sql = " select distinct t3.* from vehicle_series t3 left join vehicle t1 on t1.series_code =t3.code left join product_vehicle t2 on t1.id=t2.VEHICLE_ID and t2.product_id=?  where t3.brand_code=?";
 	        list = (List<VehicleSeries>) qRunner.query(conn, sql, new BeanListHandler(VehicleSeries.class),productId,brandCode); 
 	        
 	        //输出查询结果   

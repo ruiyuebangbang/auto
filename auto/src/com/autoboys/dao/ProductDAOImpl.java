@@ -193,4 +193,24 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return list;
 	}
+	
+	public int saveProductVehicleMapping(long productId,List<String> series) {
+		int ret = 0;
+		Connection conn = null;
+		try {
+			//创建SQL执行工具   
+			conn = ProxoolConnection.getConnection();
+			conn.setAutoCommit(false);
+	        QueryRunner qRunner = new QueryRunner();   
+	        qRunner.update(conn, "DELETE from PRODUCT_VEHICLE WHERE PRODUCT_ID=?",productId);
+	        for(String s:series) {
+	        	qRunner.update(conn,"insert into PRODUCT_VEHICLE(ID,PRODUCT_ID,VEHICLE_ID) select S_PRODUCT_VEHICLE.nextval,?,id from VEHICLE where SERIES_CODE=?",productId,s);
+	        }
+	        DbUtils.commitAndCloseQuietly(conn);
+		} catch (Exception e) {
+			DbUtils.rollbackAndCloseQuietly(conn);
+			e.printStackTrace();
+		} 
+		return ret;
+	}
 }

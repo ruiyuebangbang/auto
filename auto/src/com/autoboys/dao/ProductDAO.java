@@ -14,4 +14,5 @@ public interface ProductDAO {
 	public List<Product> qryProductsList(Product cnds,String selCat,String brand,String series, int pageNo ,int pageSize); 	
 	public List<String> listMappingBrand(long productId);
 	public List<String> listMappingSeries(long productId);
+	public int saveProductVehicleMapping(long productId,List<String> series);
 }
