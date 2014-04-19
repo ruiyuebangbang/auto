@@ -52,7 +52,7 @@
 			<result name="input">/product/mappingVehicle.jsp</result>
 		</action>
 		<action name="mappingVehicleSave"  method="mappingVehicleSave" class="com.autoboys.action.ProductAction">
-			<result name="success">/product/mappingVehicle.jsp</result>
+			<result name="success">success.jsp</result>
 		</action>
 		<action name="userList"  method="list" class="com.autoboys.action.admin.UserAction">
 			<result name="success">/admin/userList.jsp</result>

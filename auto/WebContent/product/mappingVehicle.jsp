@@ -16,6 +16,18 @@ function f_save() {
 	document.forms[0].action="mappingVehicleSave.action";
 	document.forms[0].submit();
 }
+
+function f_select(obj,val) {
+	//alert(0);
+	if (val == 1) {
+		//alert(1);		
+		obj.find("input").prop("checked",true);
+
+	} else {
+		//alert(2);
+		obj.find("input").prop("checked",false);
+	}
+}
 </script>
 </head>
 
@@ -36,9 +48,9 @@ function f_save() {
 		<div class="pcontent">
 			<s:iterator value="selBrands" var="bd">
 			<dl>
-				<dt><s:property value="cname"/> <input type="radio" name="<s:property value='code'/>" value="1" onclick="">全选<input type="radio" name="<s:property value='code'/>" checked="checked" value="2" onclick="">取消</dt>
+				<dt><s:property value="cname"/> <input type="radio" name="<s:property value='code'/>" value="1" onclick="javascript:f_select($('#<s:property value='code'/>'),1);">全选<input type="radio" name="<s:property value='code'/>" checked="checked" value="2" onclick="javascript:f_select($('#<s:property value='code'/>'),0);">取消</dt>
 				<dd>
-					<ul>						 
+					<ul id="<s:property value='code'/>">						 
 							<s:checkboxlist theme="simple" list="%{series}" listKey="code" listValue="cname" name="selseriesCode"/>	
 					</ul>
 				</dd>
