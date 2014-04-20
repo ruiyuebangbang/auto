@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 
 <head>
@@ -8,89 +8,59 @@
 <meta name="keywords" content="">
 <title>养车客商家后台：互联网养车，开启养车新模式</title>
 <link rel="StyleSheet" href="css/main.css" type="text/css">
+<script src="../scripts/jquery-1.11.0.js"></script>
 
+<script language=javascript>
+function f_save() {
+	//alert(1);
+	document.forms[0].action="mappingVehicleSave.action";
+	document.forms[0].submit();
+}
+
+function f_select(obj,val) {
+	//alert(0);
+	if (val == 1) {
+		//alert(1);		
+		obj.find("input").prop("checked",true);
+
+	} else {
+		//alert(2);
+		obj.find("input").prop("checked",false);
+	}
+}
+</script>
 </head>
 
 <body class="logged-out" screen_capture_injected="true">
-	<div class="">
-		<div class="pcontent-title">
-			<h1>设置产品适用车型</h1>
-		</div>
+	<s:form>
+	<s:hidden name="product.id"/>
+
+		<div class="pcontent-title"><h1>设置产品适用车型</h1></div>
 		<div class="pcontent-filter">
 			<ul>
-				<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">沃克斯豪尔
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">宝马
-         		</li>	<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">奔驰
-         		</li>	
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">福克斯
-         		</li>
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">沃克斯豪尔
-         		</li>	
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">福克斯
-         		</li>
-         		<li>
-					<input type="checkbox" checked="checked" value="" id="checkbox2">沃克斯豪尔
-         		</li>									
+				<s:checkboxlist theme="simple" list="brands" listKey="code" listValue="cname" name="selbrandsCode"/>		
 			</ul>
-			<div class="filter-btn"><input type="button" class="btn btn-primary btn-small" value=" 查询 "></div>
+		</div><div>
+			<input type="submit" class="btn btn-primary btn-small" value=" 查询 " >
 		</div>
+
+		<s:if test="selBrands.size() > 0">
 		<div class="pcontent">
+			<s:iterator value="selBrands" var="bd">
 			<dl>
-				<dt>宝马 <input type="radio" name="" value="">全选<input type="radio" checked="checked" value="" >取消</dt>
+				<dt><s:property value="cname"/> <input type="radio" name="<s:property value='code'/>" value="1" onclick="javascript:f_select($('#<s:property value='code'/>'),1);">全选<input type="radio" name="<s:property value='code'/>" checked="checked" value="2" onclick="javascript:f_select($('#<s:property value='code'/>'),0);">取消</dt>
 				<dd>
-					<ul>
-						<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X1
-		         		</li>
-		         		<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X5
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 X6
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">宝马 730Li
-		         		</li>
-					
+					<ul id="<s:property value='code'/>">						 
+							<s:checkboxlist theme="simple" list="%{series}" listKey="code" listValue="cname" name="selseriesCode"/>	
 					</ul>
 				</dd>
 			</dl>
-			<dl>
-				<dt>奥迪 <input type="radio" name="" value="">全选<input type="radio" checked="checked" value="" >取消</dt>
-				<dd>
-					<ul>
-						<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>
-		         		<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>	<li>
-							<input type="checkbox" checked="checked" value="" id="checkbox2">奥迪 Q3
-		         		</li>
-					
-					</ul>
-				</dd>
-			</dl>
-			<div class="pcontent-btn"><input type="button" class="btn btn-primary btn-small" value=" 确定 "></div>
+		</s:iterator>
+	  </div><div>
+		<input type="button" class="btn btn-primary btn-small" value=" 确定 " onclick="javascript:f_save();">
 		</div>
-		
-	</div>
+		</s:if>
+
+	</s:form>
 </body>
 </html>

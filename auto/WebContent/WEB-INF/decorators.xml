@@ -3,8 +3,8 @@
 	<excludes>
 		<pattern>*.html</pattern>
 		<pattern>/ajax/*</pattern>
-		<pattern>/provider/provider_login.action</pattern>
-		<pattern>/provider/provider_register.action</pattern>
+		<pattern>/provider/provider_login.action*</pattern>
+		<pattern>/provider/provider_register.action*</pattern>
 	</excludes>
 	<decorator name="simpleHeaderTheme" page="simpleHeaderTheme.jsp">
     	<pattern>/auth/*</pattern>

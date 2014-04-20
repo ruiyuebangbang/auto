@@ -2,8 +2,14 @@ package com.autoboys.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -67,10 +73,22 @@ public class ProviderDAOImpl implements ProviderDAO {
 	
 	public Provider listProviderById(Long providerId) {
 		Provider provider = null;
-		try {
+		/*try {
 			provider = (Provider) session.get(Provider.class, providerId);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}*/
+		java.sql.Connection conn = null;
+		try {
+			String sql = "select * from provider where id=?";
+			conn = ProxoolConnection.getConnection();
+	        QueryRunner qRunner = new QueryRunner();   
+	        provider = (Provider) qRunner.query(conn, sql, new BeanHandler(Provider.class),providerId);
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();}catch(Exception e){}
 		}
 		return provider;
 	}
@@ -87,7 +105,7 @@ public class ProviderDAOImpl implements ProviderDAO {
 			session.beginTransaction();
 			Query q = session.createQuery(sql);
 			
-			q.setLong(0, provider.getREGION_ID());
+			q.setLong(0, provider.getREGION_ID()==null? 0:provider.getREGION_ID());
 			q.setString(1, provider.getSHORT_NAME());
 			q.setString(2, provider.getFULL_NAME());
 			q.setString(3, provider.getAGENT());
@@ -169,4 +187,125 @@ public class ProviderDAOImpl implements ProviderDAO {
 		return ret;
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<Provider> qryAuditProviderList(int pageNo ,int pageSize) {
+		List<Provider> list = new ArrayList<Provider>();
+		try {
+			java.sql.Connection conn = null;
+			try {
+				String sql = "select b.*,f_getRegionName(b.REGION_ID) regionName from (select a.*,rownum rn from (select * from provider where status is null order by status,apply_date) a where rownum<=?) b where rn >?";
+				conn = ProxoolConnection.getConnection();
+		        QueryRunner qRunner = new QueryRunner();   
+		        list = (List<Provider>) qRunner.query(conn, sql, new BeanListHandler(Provider.class),pageNo*pageSize,(pageNo-1)*pageSize);
+		        
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {conn.close();}catch(Exception e){}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}	
+	
+	
+	public int qryAuditProviderCnt() {
+		int ret = 0;
+		try {
+			StringBuilder sb =  new StringBuilder("select count(1) from provider where status is null ");
+			Query q = session.createSQLQuery(sb.toString());
+			ret = ((java.math.BigDecimal)q.uniqueResult()).intValue();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}	
+	
+	public int auditProvider(Long providerId,int stat) {
+		int ret = 0, mbstat=0, prstat=0 ;
+		if( stat == 1) {
+			prstat=1;
+			mbstat=1;
+		} else {
+			prstat=2;
+			mbstat=0;
+		}
+		Connection conn = null;
+		try {
+			conn = ProxoolConnection.getConnection();
+			PreparedStatement ps = conn.prepareStatement(" update provider set status=? where id = ?");
+			ps.setInt(1, prstat);
+			ps.setLong(2, providerId);
+			ret = ps.executeUpdate();
+			
+			ps = conn.prepareStatement(" update member set IS_DISABLED =? where PROVIDER_ID = ?");
+			ps.setInt(1, mbstat);
+			ps.setLong(2, providerId);
+			ret = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//session.getTransaction().rollback();
+		} finally {
+			try {conn.close();}catch(Exception e){}
+		}
+		return ret;
+	}
+	
+	public List<Provider> qryProviderList(String name,Long reg1,Long reg2,int pageNo ,int pageSize) {
+		List<Provider> list = new ArrayList<Provider>();
+		try {
+			java.sql.Connection conn = null;
+			try {
+				StringBuilder sb = new StringBuilder("select b.*,f_getRegionName(b.REGION_ID) regionName from (select a.*,rownum rn from (select * from provider where 1=1 "); 
+				if(name!=null&&!"".equals(name)) {
+					sb.append(" and short_name like '%").append(StringUtil.fiterSQLParam(name)).append("%' ");
+				}
+				if(reg2!=null) {
+					sb.append(" and region_id in (select id from region where parent_id=").append(reg2).append(")");
+				} else if (reg1!=null) {
+					sb.append(" and region_id in (select id from region where parent_id in (select id from region where parent_id=").append(reg1).append("))");
+				}
+				sb.append("order by status,apply_date) a where rownum<=?) b where rn >?");
+				conn = ProxoolConnection.getConnection();
+		        QueryRunner qRunner = new QueryRunner();   
+		        list = (List<Provider>) qRunner.query(conn, sb.toString(), new BeanListHandler(Provider.class),pageNo*pageSize,(pageNo-1)*pageSize);
+		        
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {conn.close();}catch(Exception e){}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}	
+	
+	
+	public int qryProviderCnt(String name,Long reg1,Long reg2) {
+		int ret = 0;
+		try {
+			StringBuilder sb =  new StringBuilder("select count(1) from provider where 1=1 ");
+			if(name!=null&&!"".equals(name)) {
+				sb.append(" and short_name like '%").append(StringUtil.fiterSQLParam(name)).append("%' ");
+			}
+			if(reg2!=null) {
+				sb.append(" and region_id in (select id from region where parent_id=").append(reg2).append(")");
+			} else if (reg1!=null) {
+				sb.append(" and region_id in (select id from region where parent_id in (select id from region where parent_id=").append(reg1).append("))");
+			}
+			Query q = session.createSQLQuery(sb.toString());
+			ret = ((java.math.BigDecimal)q.uniqueResult()).intValue();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}	
 }

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 
 <head>
@@ -17,16 +17,16 @@
 		<div id="store-top">
 			<div class="top-info">
 				<div class="store-name">
-					<h1>东昊（栖山店）</h1>
+					<h1><s:property value="provider.SHORT_NAME"/></h1>
 
 				</div>
 				<div class="rows">
-					地址: 浦东新区栖山路129号（近巨野路） <a href="/stores/100054/map.html">查看地图</a>
+					<s:property value="provider.ADDRESS"/> <a href="/stores/100054/map.html">查看地图</a>
 				</div>
 
 				<div class="rows">
-					<div class="rows-item">服务热线: 021-50521911</div>
-					<div class="rows-item">营业时间: 07:30 - 20:00</div>
+					<div class="rows-item">服务热线: <s:property value="provider.SERVICE_PHONE"/></div>
+					<div class="rows-item">营业时间: <s:property value="provider.SERVICE_TIME"/></div>
 				</div>
 				<div class="rows vote_order">
 
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<div class="qualification floatleft">
-							<span>认证资质（一类）</span>
+							<span>认证资质 <s:property value="provider.QUALIFICATION"/></span>
 						</div>
 						<div class="help floatleft">
 							<div style="display: none;">
@@ -53,7 +53,8 @@
 							</div>
 						</div>
 						<div class="floatleft xxpf">
-							<span>先行赔付</span>
+							<span><s:if test="provider.HAS_BOND == 1">
+                            先行赔付</s:if></span>
 						</div>
 					</div>
 
@@ -61,8 +62,7 @@
 				</div>
 			</div>
 			<div class="shopimg">
-				<img
-					src="http://www.bimawen.com//upload/shop_img/c99b07da-5c3f-4788-b8fb-cd874a61fd38.jpg"
+				<img src="<%=request.getContextPath() %>/uploadimage/<s:property value='provider.LOGO'/>"
 					width="200px" height="150px">
 			</div>
 			<div class="clearfix"></div>
@@ -84,33 +84,26 @@
 		</div>
 		<div class="mod_wrap">
 			<div class="mod_content">
+                <s:if test="brands.size() > 0">
 				<div class="store_item">
 					<div class="store_title">
 						<h1>服务品牌</h1>
 					</div>
 					<div class="brandlist">
-						<span class="brand_209">MINI</span> <span class="brand_218">Smart</span>
-
-						<span class="brand_110">奥迪</span> <span class="brand_103">宝马</span>
-
-						<span class="brand_220">保时捷</span> <span class="brand_104">奔驰</span>
-
-						<span class="brand_221">捷豹</span> <span class="brand_222">路虎</span>
-
-						<span class="brand_132">沃尔沃</span>
+                        <s:iterator value="brands" >
+						<span class="brand_209"><s:property value="cname"/></span> 
+                        </s:iterator>
 
 					</div>
 				</div>
+                </s:if>
 				<div class="store_item">
 					<div class="store_title">
 						<h1>商家介绍</h1>
 					</div>
 					<div class="intro">
-						<span
-							style="LINE-HEIGHT: 22px; FONT-FAMILY: 宋体; COLOR: rgb(51, 51, 51); FONT-SIZE: 13px">&nbsp;
-							&nbsp;华胜创立于1998年，总部位于广州，是中国第一家也是目前中国最大的一家专门致力于奔驰、宝马、奥迪汽车专业维修的连锁企业。多年来华胜始终坚持“豪华车专业维修、连锁经营”的发展道路，秉承“专诚奉献、彰显卓越”的核心价值理念，赢得了豪华车客户的信赖和认可。<br>&nbsp;
-							&nbsp;华胜上海浦东店是华胜连锁上海第3家，全国第45家店。也是上海第一家全新VI的华胜连锁店。 <br>车间及设备——车间宽敞，环境整洁规范，所有设备水准与4S店完全同步，配备了3D四轮定位仪，液压举升机，先进的电脑检测设备等，为客户提供最科学、最权威的维修检测。客户休息厅——休息厅设有豪华舒适的上网区、影视区、阅读区、休息区、吧台等配套服务设施。
-						</span>
+						<span style="LINE-HEIGHT: 22px; FONT-FAMILY: 宋体; COLOR: rgb(51, 51, 51); FONT-SIZE: 13px">&nbsp;
+						<s:property value="provider.REMARK"/>	</span>
 					</div>
 				</div>
 
@@ -119,21 +112,31 @@
 						<h1>图片展示</h1>
 					</div>
 					<div class="photolist">
-
-						<p>
-							<img
-								src="http://www.bimawen.com/admin/shopInfo/100064/2013012115272323.jpg">
+                        <s:if test="provider.IMG1 != null">
+						<p>                    
+							<img src="<%=request.getContextPath() %>/uploadimage/<s:property value='provider.IMG1'/>" >
 						</p>
-
-						<p>
-							<img
-								src="http://www.bimawen.com/admin/shopInfo/100064/2013012115275058.jpg">
+                        </s:if>
+						<s:if test="provider.IMG2 != null">
+						<p>                    
+							<img src="<%=request.getContextPath() %>/uploadimage/<s:property value='provider.IMG2'/>" >
 						</p>
-
-						<p>
-							<img
-								src="http://www.bimawen.com/admin/shopInfo/100064/2013012115271925.jpg">
+                        </s:if>
+                        <s:if test="provider.IMG3 != null">
+						<p>                    
+							<img src="<%=request.getContextPath() %>/uploadimage/<s:property value='provider.IMG3'/>" >
 						</p>
+                        </s:if>
+                        <s:if test="provider.IMG4 != null">
+						<p>                    
+							<img src="<%=request.getContextPath() %>/uploadimage/<s:property value='provider.IMG4'/>" >
+						</p>
+                        </s:if>
+                        <s:if test="provider.IMG5 != null">
+						<p>                    
+							<img src="<%=request.getContextPath() %>/uploadimage/<s:property value='provider.IMG5'/>" >
+						</p>
+                        </s:if>
 
 						<div class="clear"></div>
 					</div>

@@ -29,6 +29,7 @@
 		<action name="provider_login" class="com.autoboys.action.provider.LoginAction">
 			<result name="login">login.jsp</result>
             <result name="success">success.jsp</result>
+            <result name="home" type="chain">main.action</result>
 		</action>
 		<action name="index" class="com.autoboys.action.provider.ProviderAction">
 			<result name="success">orderQuery.jsp</result>
@@ -58,8 +59,10 @@
 		<action name="uploadImage" method="uploadImage" class="com.autoboys.action.provider.StoreManagerAction">
 			<!-- 动态设置savePath的属性 -->            
 			<param name="savePath">/images</param>
-			<result name="success" type="redirect">editStoreInfo.action</result>
-			
+			<result name="success" type="redirectAction">
+			    <param name="actionName">editStoreInfo</param> 
+                <param name="picType">${picType}</param>
+            </result>
 			<interceptor-ref name="fileUpload">                
 				<!-- 文件过滤 -->                
 				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>

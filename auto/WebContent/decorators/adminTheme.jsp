@@ -93,7 +93,7 @@
 					    <ul>
 					    	  					        
 					        <li id="menu-5-1" class="menu_item_child selected">	
-					        <a href="${pageContext.request.contextPath}/admin/auditProvider.action">商家审核</a></li>
+					        <a href="${pageContext.request.contextPath}/admin/auditProviderQry.action">商家审核</a></li>
 					        <li id="menu-5-2" class="menu_item_child">	
 					        <a href="${pageContext.request.contextPath}/admin/queryProvider.action">查询商家</a></li>
 					        

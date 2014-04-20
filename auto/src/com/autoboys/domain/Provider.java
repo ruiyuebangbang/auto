@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Provider {
 
 	  private long ID;               
-	  private long REGION_ID;        
+	  private Long REGION_ID;        
 	  private String SHORT_NAME;       
 	  private String FULL_NAME;       
 	  private String BUSINESS_LICENSE ;
@@ -38,7 +38,38 @@ public class Provider {
 	  private String IMG9   ;          
 	  private String IMG10  ;
 
+	  private String apply_date;
+	  private String apply_type;
+	  private Integer status;
+	  private String regionName;
 	  
+	  
+	public String getApply_date() {
+		return apply_date;
+	}
+	public void setApply_date(String app_date) {
+		this.apply_date = app_date;
+	}
+	public String getApply_type() {
+		return apply_type;
+	}
+	public void setApply_type(String app_type) {
+		this.apply_type = app_type;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getRegionName() {
+		return regionName;
+	}
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
+	}
+	
+	
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
@@ -46,7 +77,7 @@ public class Provider {
 		return ID;
 	}
 	@Column(name="REGION_ID")
-	public long getREGION_ID() {
+	public Long getREGION_ID() {
 		return REGION_ID;
 	}
 	@Column(name="SHORT_NAME")
@@ -144,7 +175,7 @@ public class Provider {
 	public void setID(long iD) {
 		ID = iD;
 	}
-	public void setREGION_ID(long rEGION_ID) {
+	public void setREGION_ID(Long rEGION_ID) {
 		REGION_ID = rEGION_ID;
 	}
 	public void setSHORT_NAME(String sHORT_NAME) {

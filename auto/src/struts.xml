@@ -71,6 +71,12 @@
 		<action name="upload" class="com.autoboys.action.UploadAction">
 			<result name="success">upload.jsp</result>
 		</action>
+		<action name="getService" method="getServiceByCat" class="com.autoboys.action.AjaxAction">
+			<result name="success">/null.jsp</result>
+		</action>
+		<action name="getVehicleSeries" method="getVehicleSeries1" class="com.autoboys.action.AjaxAction">
+			<result name="success">/null.jsp</result>
+		</action>
 	</package>
 	<package name="store" extends="struts-default" namespace="/store">
 		<action name="store" class="com.autoboys.action.StoreAction">
@@ -165,3 +171,4 @@
 		</action>
 	</package>
 </struts>
+

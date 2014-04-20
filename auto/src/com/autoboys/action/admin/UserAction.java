@@ -21,6 +21,35 @@ public class UserAction extends ActionSupport {
 	private List<Member> memberList ;
 	private MemberDAO memberDAO = new MemberDAOImpl();
 		
+	private int typeId;
+	private Pager pager;
+	private String keyword;
+	
+	
+	public int getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+
+	public Pager getPager() {
+		return pager;
+	}
+
+	public void setPager(Pager pager) {
+		this.pager = pager;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	/**
 	 * To save or update user.
 	 * @return String
@@ -38,8 +67,15 @@ public class UserAction extends ActionSupport {
 	public String list()
 	{
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-		Integer typeId = Integer.valueOf(request.getParameter("typeId").toString());
-		memberList = memberDAO.listMember(typeId);
+		//Integer typeId = Integer.valueOf(request.getParameter("typeId").toString());
+		
+		
+		if(pager == null) {
+			pager = new Pager();
+		}
+		pager.setTotal(memberDAO.qryMemberByKeywordCnt(typeId,keyword));
+		memberList = memberDAO.qryMemberByKeywordList(typeId,keyword,pager.getPageCurr(),pager.getPageSize());
+		
 		return SUCCESS;
 	}
 	
@@ -104,5 +140,14 @@ public class UserAction extends ActionSupport {
 	}
 	
 
-
+	public String disableUser() throws Exception {
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		
+		String 	id = request.getParameter("pid");
+		String  stat = request.getParameter("stat");
+		
+		memberDAO.disableUser(Long.parseLong(id), Integer.parseInt(stat));
+		
+		return SUCCESS;
+	}
 }

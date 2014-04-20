@@ -112,8 +112,8 @@ color:#fff;
 							<table class="wwFormTable">
 								<div class="info_list" style="background-color: #fff;">
 									<label class="username"> <input class="G_input"
-										type="text" name="userName" id="userName" alt="输入登录邮箱或手机号码"
-										value="" autocomplete="off">
+										type="text" name="username" id="userName" alt="输入登录邮箱或手机号码"
+										 autocomplete="off" value="<s:property value='username'/>">
 
 									</label>
 								</div>
@@ -142,7 +142,7 @@ color:#fff;
 									
 										<span class="no_reg_tip">还没入驻，<a href="/auto/provider/provider_register.action" title="申请入驻" class="ml10">申请入驻</a></span>
 										<a href="javascript:void(0)" class="btn btn-large btn-block btn-primary" style="width: 160px; float: left;" id="sbmit">登录</a>
-										<input type="hidden" value="<%=request.getContextPath()%>/provider/main.action"	name="returnURL"> 
+										<s:hidden name="returnURL"/>
 								</div>
 
 

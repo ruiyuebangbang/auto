@@ -95,16 +95,32 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 	public String execute() throws Exception {
 		String method = request.getMethod();
 		if(method.equals("POST"))	{
+			if(mb.getEmail()==null||"".equals(mb.getEmail().trim())) {
+				this.addFieldError("mb.email", "<div class='field-error'>公司名称不能为空</div>");
+				return "create";
+			}
+			if(mb.getNickName()==null||"".equals(mb.getNickName().trim())) {
+				this.addFieldError("mb.nickName", "<div class='field-error'>联系人不能为空</div>");
+				return "create";
+			}
+			if(mb.getMobilePhone()==null||"".equals(mb.getMobilePhone().trim())) {
+				this.addFieldError("mb.mobile", "<div class='field-error'>联系电话不能为空</div>");
+				return "create";
+			}
+			if(mb.getPassword()==null||"".equals(mb.getPassword().trim())) {
+				this.addFieldError("mb.password", "<div class='field-error'>密码不能为空</div>");
+				return "create";
+			}
 			int ret = memberDAO.insertProvider(mb);
 			switch(ret) {
 				case -1001:
-					this.addFieldError("mb.mobile", "<div class='field-error'>手机号已经存在</div>");
+					this.addFieldError("mb.mobile", "<div class='field-error'>联系电话已经存在</div>");
 					return "create";
 				case -1002:
 					this.addFieldError("mb.email", "<div class='field-error'>公司名已经存在</div>");
 					return "create";
 				case -1003:
-					this.addFieldError("mb.nickName", "<div class='field-error'>昵称已经存在</div>");
+					this.addFieldError("mb.nickName", "<div class='field-error'>联系人已经存在</div>");
 					return "create";
 			}
 			

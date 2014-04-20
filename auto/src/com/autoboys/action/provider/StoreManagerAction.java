@@ -1,5 +1,6 @@
 package com.autoboys.action.provider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,13 +37,13 @@ public class StoreManagerAction extends ActionSupport implements ServletRequestA
     private String imageFileName; //文件名称    
     private String imageContentType; //文件类型
 
-    private String imageType ;//= "logo";
+    private String picType ;//= "logo";
     
-    public String getImageType() {
-		return imageType;
+    public String getPicType() {
+		return picType;
 	}
-	public void setImageType(String imageType) {
-		this.imageType = imageType;
+	public void setPicType(String imageType) {
+		this.picType = imageType;
 	}
 	public File getImage() {
 		return image;
@@ -172,16 +173,29 @@ public class StoreManagerAction extends ActionSupport implements ServletRequestA
 			
 		Member member = (Member) request.getSession().getAttribute("login_user");
 		long providerId = member.getProvid();
-		provider = dao.listProviderById(new Long(providerId));
-		ProviderRegion tmp = rdao.getObjectById(provider.getREGION_ID());
-		regions3 = rdao.getChildrenByParent(tmp.getParent());
-		tmp = rdao.getObjectById(tmp.getParent());
-		region2 = tmp.getId();
-		regions2 = rdao.getChildrenByParent(tmp.getParent());
-		tmp = rdao.getObjectById(tmp.getParent());
-		region1 = tmp.getId();
-		regions1 = rdao.getChildrenByParent(tmp.getParent());
-		
+		if(method.equals("GET")) {
+			provider = dao.listProviderById(new Long(providerId));
+		}
+		if(provider.getREGION_ID()!=null && provider.getREGION_ID()!=0) {
+			ProviderRegion tmp = rdao.getObjectById(provider.getREGION_ID());
+			if(tmp !=null ) {
+				regions3 = rdao.getChildrenByParent(tmp.getParent());
+				tmp = rdao.getObjectById(tmp.getParent());
+			}
+			if(tmp !=null ) {
+				region2 = tmp.getId();
+				regions2 = rdao.getChildrenByParent(tmp.getParent());
+				tmp = rdao.getObjectById(tmp.getParent());
+			}
+			if(tmp !=null ) {
+				region1 = tmp.getId();
+				regions1 = rdao.getChildrenByParent(tmp.getParent());
+			}
+		} else {
+			regions1 =  rdao.getChildrenByParent(0L);
+			regions2 = rdao.getChildrenByParent(regions1.get(0).getId());
+			regions3 = rdao.getChildrenByParent(regions2.get(0).getId());
+		}
 		return "editForm";
 
 	}
@@ -223,8 +237,8 @@ public class StoreManagerAction extends ActionSupport implements ServletRequestA
 		//取web.xml中配置的<context-param>参数 
 		//String realpath = ServletActionContext.getServletContext().getInitParameter("imagepath");
 		//System.out.println("realpath: " + realpath);
-		//String str = request.getParameter("imageType");
-		if ("logo".equals(imageType)) {
+		String str = request.getParameter("selImage");
+		if ("logo".equals(str)) {
 			String realpath = ServletActionContext.getServletContext().getRealPath("/uploadimage");
 			if (image != null) {
 				File savefile = new File(new File(realpath), "logo" + provider.getID() + imageFileName.substring(imageFileName.lastIndexOf('.')));
@@ -234,7 +248,7 @@ public class StoreManagerAction extends ActionSupport implements ServletRequestA
 				
 				provider.setLOGO(savefile.getName());
 				dao.updateLogo(provider);
-				imageType = "logo";
+				picType = "logo";
 			}
 		} else {
 			String realpath = ServletActionContext.getServletContext().getRealPath("/uploadimage");
@@ -246,7 +260,7 @@ public class StoreManagerAction extends ActionSupport implements ServletRequestA
 				
 				//index属性暂不用，图片直接填空位
 				dao.updateImage(provider.getID(), savefile.getName(),1);
-				imageType="normal";
+				picType="normal";
 			}
 		}
 		return SUCCESS;

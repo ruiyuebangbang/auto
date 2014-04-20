@@ -203,4 +203,72 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return ret;
 	}
+	
+	public int qryMemberByKeywordCnt(int typeId, String keyword) {
+		int ret = 0;
+		try {
+			if(keyword !=null &&!"".equals(keyword)) {
+				Query q = session.createSQLQuery("select count(1) from member where CLASSIFICATION=? and (MOBIEPHONE like ? or nickname like ? or email like ?)");
+				q.setInteger(0,typeId);
+				q.setString(1, "%"+keyword + "%");
+				q.setString(2, "%"+keyword + "%");
+				q.setString(3, "%"+keyword + "%");
+				ret = ((java.math.BigDecimal)q.uniqueResult()).intValue();
+			} else {
+				Query q = session.createSQLQuery("select count(1) from member where CLASSIFICATION=?");
+				q.setInteger(0,typeId);
+				ret = ((java.math.BigDecimal)q.uniqueResult()).intValue();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
+	
+	public List<Member> qryMemberByKeywordList(int typeId, String keyword,int pageNo ,int pageSize) {
+		List<Member> courses = null;
+		try {
+			if(keyword !=null &&!"".equals(keyword)) {
+				String sql = "select b.* from (select a.*, rownum rn from (select * from Member where classification=? and (MOBIEPHONE like ? or nickname like ? or email like ?))a where rownum<=?)b where rn>?";
+				Query q = session.createSQLQuery(sql).addEntity(Member.class);
+				q.setInteger(0, typeId);
+				q.setString(1, "%"+keyword + "%");
+				q.setString(2, "%"+keyword + "%");
+				q.setString(3, "%"+keyword + "%");
+				q.setInteger(4,pageNo*pageSize);
+				q.setInteger(5,(pageNo-1)*pageSize);
+				courses = q.list();
+				
+			} else {
+				String sql = "select b.* from (select a.*, rownum rn from (select * from Member where classification=? )a where rownum<=?)b where rn>?";
+				Query q = session.createSQLQuery(sql).addEntity(Member.class);
+				q.setInteger(0, typeId);
+				q.setInteger(1,pageNo*pageSize);
+				q.setInteger(2,(pageNo-1)*pageSize);
+				courses = q.list();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return courses;
+	}
+	
+	public int disableUser(long id ,int status) {
+		int ret = 0;
+		try {
+			session.beginTransaction();  
+			Query query = session.createSQLQuery("update Member t set IS_DISABLED =? where id = ?");
+			query.setInteger(0, status);
+			query.setLong(1,id);
+			ret = query.executeUpdate();  
+			session.getTransaction().commit();  
+
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return ret;
+	}
 }
+
+

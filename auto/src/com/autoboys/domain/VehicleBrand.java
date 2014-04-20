@@ -1,10 +1,13 @@
 package com.autoboys.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="vehicle_brand")
@@ -15,6 +18,24 @@ public class VehicleBrand {
 	private String firstCharacter;
 	private String brandLogo;
 	private String isHot;
+	private String mapped;
+	
+	@Transient
+	public String getMapped() {
+		return mapped;
+	}
+	public void setMapped(String mapped) {
+		this.mapped = mapped;
+	}
+	private List<VehicleSeries> series;
+	
+	@Transient
+	public List<VehicleSeries> getSeries() {
+		return series;
+	}
+	public void setSeries(List<VehicleSeries> series) {
+		this.series = series;
+	}
 	@Id
 	@GeneratedValue
 	@Column(name="code")

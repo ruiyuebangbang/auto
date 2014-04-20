@@ -38,8 +38,6 @@ public class DBUtilTst {
           
         //创建SQL执行工具   
         QueryRunner qRunner = new QueryRunner();   
-          
-        @SuppressWarnings("unchecked")  
         List<Provider> list = (List<Provider>) qRunner.query(conn, "select id,short_name,address from provider", new BeanListHandler(Provider.class));   
         //输出查询结果   
         for (Provider user : list) {   

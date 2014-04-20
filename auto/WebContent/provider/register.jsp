@@ -60,20 +60,22 @@
 							id="nickName" name="mb.nickName" alt="联系人" value='<s:property value="mb.nickName"/>'>
 
 					</label>
-					<s:property value="errors['mb.nickName'][0]" escape="false" />
+					
 					</div>
-                    <div class="info_list">
+					<s:property value="errors['mb.nickName'][0]" escape="false" />
+          <div class="info_list">
 						<label class="username"> <input class="G_input" type="text"
 							id="mobilePhone" name="mb.mobilePhone" alt="联系电话" style="width: 246px;" value='<s:property value="mb.mobilePhone"/>'>
 						</label>
-						<s:property value="errors['mb.mobile'][0]" escape="false" />
 					</div>
+					<s:property value="errors['mb.mobile'][0]" escape="false" />
 					<div class="info_list">
 						<label class="inpt"> <input class="G_input"
 							type="password" id="password" name="mb.password" alt="登录密码">
 
 						</label>
 					</div>
+					<s:property value="errors['mb.password'][0]" escape="false" />
 					<div class="info_list">
 						<label class="inpt"> <input class="G_input"
 							type="password" name="mb.repassword" id="repassword" alt="确认登录密码">
