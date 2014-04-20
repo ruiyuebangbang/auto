@@ -6,8 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="CN">
 <title></title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="StyleSheet" href="css/main.css" type="text/css">
+
 <style>
 body {
 	/*background: #453b3b;

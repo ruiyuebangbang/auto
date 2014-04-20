@@ -1,4 +1,4 @@
---
+ï»¿--
 -- Create Schema Script 
 --   Database Version   : 11.2.0.1.0 
 --   Toad Version       : 10.5.0.41 
@@ -153,7 +153,7 @@ END p_update_provider_image;
 -- P_DEBUG  (Procedure) 
 --
 CREATE OR REPLACE PROCEDURE YANGCHEKE.p_debug
-----¼à¿ØÈÕÖ¾¼ÇÂ¼
+----ç›‘æ§æ—¥å¿—è®°å½•
 (
     vsource in varchar2,
     vinfo   in varchar2
@@ -169,7 +169,7 @@ Begin
 
 Exception
     When Others Then
-        Dbms_Output.Put_Line('¼ÇÂ¼ÈÕÖ¾³ö´í£¡');
+        Dbms_Output.Put_Line('è®°å½•æ—¥å¿—å‡ºé”™ï¼');
 End;
 /
 
@@ -178,10 +178,10 @@ End;
 -- F_INSERTPROVIDERPRODUCT  (Function) 
 --
 CREATE OR REPLACE FUNCTION YANGCHEKE.f_insertProviderProduct(
-                                                             vprovider in Integer,              --¹©Ó¦ÉÌ
-                                                             vproduct in varchar2,             --²úÆ·
-                                                             vdiscountPrice in varchar2,     --ÕÛ¿Û¼Û
-                                                             vlabourPrice in varchar2         --ÈË¹¤·Ñ
+                                                             vprovider in Integer,              --ä¾›åº”å•†
+                                                             vproduct in varchar2,             --äº§å“
+                                                             vdiscountPrice in varchar2,     --æŠ˜æ‰£ä»·
+                                                             vlabourPrice in varchar2         --äººå·¥è´¹
 )RETURN NUMBER IS
 tmpVar NUMBER;
 /******************************************************************************
@@ -202,7 +202,7 @@ BEGIN
     select * into cp
     from product where id = to_number(vproduct);
     
-    --²åÈë·şÎñÉÌ²úÆ·±í
+    --æ’å…¥æœåŠ¡å•†äº§å“è¡¨
     select count(*) into vcount from provider_product where provider_id=vprovider and product_id=vproduct;
     if vcount >0 then 
         update provider_product set discount_price=vdiscountPrice, labour_price = vlabourPrice where provider_id=vprovider and product_id=vproduct
@@ -215,7 +215,7 @@ BEGIN
                 cp.STANDARD_PRICE ,to_number(vdiscountPrice),to_number(vlabourPrice),vproduct)
         returning id into tmpVar;
 
-        --²åÈë·şÎñÉÌ¶ÔÓ¦Æ·ÅÆ±í
+        --æ’å…¥æœåŠ¡å•†å¯¹åº”å“ç‰Œè¡¨
         select brand_code into vbrand
         from PRODUCT_VEHICLE t1 join VEHICLE t2 on t1.VEHICLE_ID = t2.id
         where PRODUCT_ID = vproduct;
@@ -240,16 +240,16 @@ END f_insertProviderProduct;
 -- F_INSERTPROVIDER  (Function) 
 --
 CREATE OR REPLACE FUNCTION YANGCHEKE.f_insertProvider(
-    vcompname in varchar2, --¹«Ë¾Ãû³Æ
-    vagent in varchar2,        --¸ºÔğÈË
-    vmobile in varchar2,        --¸ºÔğÈËµç»°
-    vpassword in varchar2   --ÓÃ»§ÃÜÂë
+    vcompname in varchar2, --å…¬å¸åç§°
+    vagent in varchar2,        --è´Ÿè´£äºº
+    vmobile in varchar2,        --è´Ÿè´£äººç”µè¯
+    vpassword in varchar2   --ç”¨æˆ·å¯†ç 
     
 )RETURN number IS
 tmpVar NUMBER;
 /******************************************************************************
    NAME:       f_insertProvider
-   PURPOSE:    ¹©Ó¦ÉÌ×¢²á
+   PURPOSE:    ä¾›åº”å•†æ³¨å†Œ
 
    REVISIONS:
    Ver        Date        Author           Description

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-
+<link rel="shortcut icon" href="/auto/favicon.ico" type="image/x-icon">
 <meta name="description" content="专业汽车保养、维修服务平台">
 <meta name="keywords" content="">
 <title>养车客：互联网养车新模式，养车也可以如此轻松惬意！</title>
@@ -42,86 +42,103 @@
 
 </head>
 
-<body class="rigister" screen_capture_injected="true" text="">
-	<div class="G_nologin_main clear">
-		<s:form action="provider_register" method="post">
-			<div class="loginbox">
-				<div class="W_login_form" id="phoneLogin_content">
-					<h2>
-						商家注册，在您注册成功后，我们的工作人员将会在一个工作日内联系您！
-					</h2>
-					<div class="info_list">
-						<label class="inpt"> <input  class="G_input" maxlength="11" type="text" id="email" name="mb.email" alt="公司名称" value='<s:property value="mb.email"/>'>
-						</label>
-					</div>
-					<s:property value="errors['mb.email'][0]" escape="false" />
-					<div class="info_list">
-						<label class="inpt"> <input class="G_input" type="text"
-							id="nickName" name="mb.nickName" alt="联系人" value='<s:property value="mb.nickName"/>'>
+<body screen_capture_injected="true">
+	<div id="wrap">
+		<div class="simple-header clear">
+			<div class="reg-logo">
+				<a href="/auto" class="logo"> <img src="/auto/image/blank.gif"
+					alt="养车客" width="202" height="70">
+				</a>
+			</div>
 
-					</label>
-					
-					</div>
-					<s:property value="errors['mb.nickName'][0]" escape="false" />
-          <div class="info_list">
-						<label class="username"> <input class="G_input" type="text"
-							id="mobilePhone" name="mb.mobilePhone" alt="联系电话" style="width: 246px;" value='<s:property value="mb.mobilePhone"/>'>
-						</label>
-					</div>
-					<s:property value="errors['mb.mobile'][0]" escape="false" />
-					<div class="info_list">
-						<label class="inpt"> <input class="G_input"
-							type="password" id="password" name="mb.password" alt="登录密码">
+			<h1></h1>
+		</div>
+		<!--  div super-container start -->
+		<div class="container">
 
-						</label>
-					</div>
-					<s:property value="errors['mb.password'][0]" escape="false" />
-					<div class="info_list">
-						<label class="inpt"> <input class="G_input"
-							type="password" name="mb.repassword" id="repassword" alt="确认登录密码">
+			<div class="G_nologin_main clear">
+				<s:form action="provider_register" method="post">
+					<div class="loginbox">
+						<div class="W_login_form" id="phoneLogin_content">
+							<div style="font-size:22px;font-family: Microsoft YaHei,Hiragino Sans GB,\5b8b\4f53;margin-bottom:10px;">商家注册<span style="margin:0 10px;">您注册成功后，我们的工作人员将会在一个工作日内联系您。</span></div>
+							<div class="info_list">
+								<label class="inpt"> <input class="G_input"
+									maxlength="11" type="text" id="email" name="mb.email"
+									alt="公司名称" value='<s:property value="mb.email"/>'>
+								</label>
+							</div>
+							<s:property value="errors['mb.email'][0]" escape="false" />
+							<div class="info_list">
+								<label class="inpt"> <input class="G_input" type="text"
+									id="nickName" name="mb.nickName" alt="联系人"
+									value='<s:property value="mb.nickName"/>'>
 
-						</label>
+								</label>
+
+							</div>
+							<s:property value="errors['mb.nickName'][0]" escape="false" />
+							<div class="info_list">
+								<label class="inpt"> <input class="G_input"
+									type="text" id="mobilePhone" name="mb.mobilePhone" alt="联系电话"
+									style="width: 246px;"
+									value='<s:property value="mb.mobilePhone"/>'>
+								</label>
+							</div>
+							<s:property value="errors['mb.mobile'][0]" escape="false" />
+							<div class="info_list">
+								<label class="inpt"> <input class="G_input"
+									type="password" id="password" name="mb.password" alt="登录密码">
+
+								</label>
+							</div>
+							<s:property value="errors['mb.password'][0]" escape="false" />
+							<div class="info_list">
+								<label class="inpt"> <input class="G_input"
+									type="password" name="mb.repassword" id="repassword"
+									alt="确认登录密码">
+
+								</label>
+							</div>
+							<div style="margin-bottom: 20px;">
+								<input type="checkbox" name="service2" checked="checked"
+									id="service2"><label for="service2" class="ml5">我接受服务协议表明您已经阅读并同意接受养车客的</label><a
+									href="/service/treaty.dhtml"
+									style="margin-left: 5px; color: #333" target="_blank">商家入住协议</a>
+							</div>
+							<div class="info_list no_reg clear">
+								<a href="javascript:void(0);" id="sbmit"
+									onclick="savePhoneReg();" class="tostep2 on">申请入住</a>
+							</div>
+						</div>
 					</div>
-					<div style="margin-bottom: 20px;">
-						<input type="checkbox" name="service2" checked="checked"
-							id="service2"><label for="service2" class="ml5">我接受服务协议表明您已经阅读并同意接受养车客的</label><a
-							href="/service/treaty.dhtml"
-							style="margin-left: 5px; color: #333" target="_blank">商家入住协议</a>
-					</div>
-					<div class="info_list no_reg clear">
-						<a href="javascript:void(0);" id="sbmit" onclick="savePhoneReg();"
-							class="tostep2 on">申请入住</a>
+				</s:form>
+				<div class="scroll_img">
+					<h2>已经有养车客账号？</h2>
+					<a href="/auto/provider/provider_login.action"
+						class="btn btn-small btn-primary" style="margin-left: 3px;"><span>立即登录</span></a>
+					<div class="cooperation clear" style="margin-top: 50px;">
+						<dl>
+							<dt>其它账号登录：</dt>
+							<dd class="mt10" style="padding-left: 3px;">
+								<a href="/login/sinaLogin.xhtml" target="_blank" title="新浪账号登录"
+									class="sina"><img
+									src="http://static5.silunzi.com/css/images/blank.gif"
+									height="90" width="90">新浪</a> <a href="/login/qqLogin.xhtml"
+									target="_blank" title="QQ账号登录" class="qq"><img
+									src="http://static5.silunzi.com/css/images/blank.gif"
+									height="90" width="90">腾讯</a>
+
+							</dd>
+						</dl>
 					</div>
 				</div>
 			</div>
-		</s:form>
-		<div class="scroll_img">
-			<h2>已经有养车客账号？</h2>
-			<a href="/auto/provider/provider_login.action" class="btn btn-small btn-primary"
-				style="margin-left: 3px;"><span>立即登录</span></a>
-			<div class="cooperation clear" style="margin-top: 50px;">
-				<dl>
-					<dt>其它账号登录：</dt>
-					<dd class="mt10" style="padding-left: 3px;">
-						<a href="/login/sinaLogin.xhtml" target="_blank" title="新浪账号登录"
-							class="sina"><img
-							src="http://static5.silunzi.com/css/images/blank.gif" height="90"
-							width="90">新浪</a> <a href="/login/qqLogin.xhtml"
-							target="_blank" title="QQ账号登录" class="qq"><img
-							src="http://static5.silunzi.com/css/images/blank.gif" height="90"
-							width="90">腾讯</a>
-
-					</dd>
-				</dl>
-			</div>
-		</div>
-	</div>
-
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/scripts/mootools.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/scripts/silunzi.js?n=silunzi-util&v=2014022209"></script>
-	<script type="text/javascript">
+			<div style="clear:both;"></div>
+			<script type="text/javascript"
+				src="<%=request.getContextPath()%>/scripts/mootools.js"></script>
+			<script type="text/javascript"
+				src="<%=request.getContextPath()%>/scripts/silunzi.js?n=silunzi-util&v=2014022209"></script>
+			<script type="text/javascript">
 		window.addEvent('domready', function() {
 			lunziUtil.textOver('.G_input');
 			$$(".G_input").addEvents({
@@ -311,26 +328,25 @@
 			GetRTime();
 		}
 		function checkNickName(tag) {
-			var url = '<%=request.getContextPath()%>/auth/validateNickName.action', el = document
-					.getElement('input[name=' + tag + ']');
-			var values = {
-				'tag' : tag,
-				'itemvalue' : el.value
-			};
-			silunziUtil.sendRequest(url, values, function(result) {
-				if (!result.success) {
-					if (result.errorMap) {
-						focusError(el, el.alt + "已被使用,请换一个！");
-					} else {
-						focusError(el, result.msg);
-					}
-				} else
-					remmoveError(el);
-			}.bind(this), 'get');
-		}
-		
-	</script>
+			var url = '<%=request.getContextPath()%>/auth/validateNickName.action', el = document.getElement('input[name=' + tag + ']');
+					var values = {
+						'tag' : tag,
+						'itemvalue' : el.value
+					};
+					silunziUtil.sendRequest(url, values, function(result) {
+						if (!result.success) {
+							if (result.errorMap) {
+								focusError(el, el.alt + "已被使用,请换一个！");
+							} else {
+								focusError(el, result.msg);
+							}
+						} else
+							remmoveError(el);
+					}.bind(this), 'get');
+				}
+			</script>
 
-
+		</div>
+	</div>
 </body>
 </html>

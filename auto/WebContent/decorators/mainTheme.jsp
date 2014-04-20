@@ -11,6 +11,10 @@
 <meta name="description" content="养车客，中国领先的养车生活服务平台，免费为车主提供汽车保养、维修、美容、改装等车生活解决方案，免费为车主甄别优质的汽车服务商家，提供公开、透明的产品价格，解决车主的养车烦恼，让车生活变得更加简单惬意！">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/main.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/autoboys.css" />
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/scripts/mootools.js"></script>
 <script type="text/javascript"
