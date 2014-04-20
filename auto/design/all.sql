@@ -5,14 +5,14 @@
 --   DB Connect String  : ORCL 
 --   Schema             : YANGCHEKE 
 --   Script Created by  : YANGCHEKE 
---   Script Created at  : 2014-4-19 16:11:48 
+--   Script Created at  : 2014-4-20 20:56:01 
 --   Physical Location  :  
 --   Notes              :  
 --
 
 -- Object Counts: 
 --   Directories: 0 
---   Functions: 5       Lines of Code: 208 
+--   Functions: 5       Lines of Code: 210 
 --   Procedures: 2      Lines of Code: 73 
 --   Sequences: 6 
 
@@ -21,7 +21,7 @@
 -- S_MEMBER  (Sequence) 
 --
 CREATE SEQUENCE YANGCHEKE.S_MEMBER
-  START WITH 160
+  START WITH 170
   MAXVALUE 9999999999999999999999
   MINVALUE 100
   NOCYCLE
@@ -33,7 +33,7 @@ CREATE SEQUENCE YANGCHEKE.S_MEMBER
 -- S_PRODUCT_VEHICLE  (Sequence) 
 --
 CREATE SEQUENCE YANGCHEKE.S_PRODUCT_VEHICLE
-  START WITH 181
+  START WITH 703
   MAXVALUE 999999999999999999999999
   MINVALUE 1
   NOCYCLE
@@ -57,7 +57,7 @@ CREATE SEQUENCE YANGCHEKE.S_PROVIDER
 -- S_PROVIDER_BRAND  (Sequence) 
 --
 CREATE SEQUENCE YANGCHEKE.S_PROVIDER_BRAND
-  START WITH 1
+  START WITH 4
   MAXVALUE 9999999999999999
   MINVALUE 1
   NOCYCLE
@@ -69,7 +69,7 @@ CREATE SEQUENCE YANGCHEKE.S_PROVIDER_BRAND
 -- S_PROVIDER_PRODUCT  (Sequence) 
 --
 CREATE SEQUENCE YANGCHEKE.S_PROVIDER_PRODUCT
-  START WITH 11
+  START WITH 31
   MAXVALUE 99999999999999999999
   MINVALUE 1
   NOCYCLE
@@ -199,6 +199,7 @@ cp product%rowtype;
 vbrand VEHICLE_BRAND.code%type;
 vcount pls_integer;
 BEGIN
+    p_debug('f_insertProviderProduct','����:[vprovider]'||vprovider||'[vproduct]'||vproduct||'[vdiscountPrice]'||vdiscountPrice||'[vlabourPrice]'||vlabourPrice);
     select * into cp
     from product where id = to_number(vproduct);
     
@@ -218,7 +219,8 @@ BEGIN
         --插入服务商对应品牌表
         select brand_code into vbrand
         from PRODUCT_VEHICLE t1 join VEHICLE t2 on t1.VEHICLE_ID = t2.id
-        where PRODUCT_ID = vproduct;
+        where PRODUCT_ID = vproduct and rownum=1;
+        
         select count(*) into vcount
         from provider_brand where provider_id=vprovider and brand_code=vbrand;
         if vcount = 0 then

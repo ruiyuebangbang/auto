@@ -29,7 +29,7 @@
 		<action name="provider_login" class="com.autoboys.action.provider.LoginAction">
 			<result name="login">login.jsp</result>
             <result name="success">success.jsp</result>
-            <result name="home" type="chain">main.action</result>
+            <result name="home" type="redirect">main.action</result>
 		</action>
 		<action name="index" class="com.autoboys.action.provider.ProviderAction">
 			<result name="success">orderQuery.jsp</result>
