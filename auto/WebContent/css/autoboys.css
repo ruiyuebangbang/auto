@@ -1,6 +1,6 @@
 .btn {
 	border: none;
-	background: #34495e;
+	background: #CFD1D3;
 	color: white;
 	font-size: 16.5px;
 	text-decoration: none;
@@ -16,7 +16,7 @@
 }
 
 .btn:hover,.btn:focus {
-	background-color: #4e6d8d;
+	background-color: #D7DADD;
 	text-decoration: none;
 	color: white;
 	cursor: pointer;

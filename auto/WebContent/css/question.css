@@ -762,6 +762,7 @@ background: #fff;
 zoom: 1;
 position: relative;
 padding: 10px 10px 10px 0;
+clear:both;
 }
 .qa-a-item-content {
 margin-bottom: 10px;

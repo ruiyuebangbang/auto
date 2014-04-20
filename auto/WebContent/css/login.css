@@ -26,7 +26,7 @@ input{vertical-align: -2px;_vertical-align: 0px;}
 .W_login_form .no_reg{padding: 0;border-bottom:1px dashed #dddddd;height:61px;}
 .W_login_form .no_reg .W_btn_g{float:left;display:block;width:180px;height:60px;background-position:-1px -140px;font:30px/60px "΢���ź�",Arial,Helvetica,'����';color:#fff;text-align:center;border:0px;cursor: pointer;}
 .W_login_form .no_reg .W_btn_g:hover{background-position:-1px -220px;text-decoration:none;color:#fff;}
-.W_login_form .no_reg_tip{float:right;margin:32px 0 0;}
+.W_login_form .no_reg_tip{float:right;margin:18px 0 0;}
 
 .W_login_form .cooperation dt{font-size:20px;color:#333;}
 .W_login_form .cooperation dd a{

@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.autoboys.dao.MemberDAO;
 import com.autoboys.dao.MemberDAOImpl;
 import com.autoboys.domain.Member;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.autoboys.util.StringUtil;
@@ -112,6 +115,29 @@ public class MemberAction extends ActionSupport implements ServletRequestAware,
 		printMessage(message);
 		return null;
 	}
+	
+	public String changePassword() {
+		String method = request.getMethod();
+		if(method.equals("POST")){
+			return SUCCESS; 
+		}else{
+			return INPUT;
+		}
+		
+	}
+	
+	public String edit()
+	{
+		String method = request.getMethod();
+		request.setAttribute("subMenuName", "个人信息");
+		if(method.equals("POST")){
+			return SUCCESS; 
+		}else{
+			member =  (Member) request.getSession().getAttribute("login_user");
+			return INPUT;
+		}
+		
+	}
 
 	private void printMessage(String message) {
 		response.setCharacterEncoding("utf-8");
@@ -164,5 +190,13 @@ public class MemberAction extends ActionSupport implements ServletRequestAware,
 	 */
 	private boolean validateMobilePhone(String mobilePhone) {
 		return StringUtil.validateMobilePhone(mobilePhone);
+	}
+	
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 }

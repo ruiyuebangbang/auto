@@ -93,6 +93,11 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 		return SUCCESS;
 	}
 	
+	public String upload() {
+		
+		return SUCCESS;
+	}
+	
 	/**
 	 * 根据父类Code获取车型列表
 	 * @return

@@ -3,7 +3,6 @@
 <html>
 
 <head>
-
 <meta name="description" content="专业汽车保养、维修服务平台">
 <meta name="keywords" content="">
 <title>养车客：互联网养车新模式，养车也可以如此轻松惬意！</title>
@@ -11,6 +10,8 @@
 	type="text/css">
 <link rel="StyleSheet"
 	href="<%=request.getContextPath()%>/css/register.css" type="text/css">
+<link rel="StyleSheet"
+	href="<%=request.getContextPath()%>/css/autoboys.css" type="text/css">
 <style>
 .simple-header {
 	width: 990px;
@@ -100,7 +101,7 @@
 		</form>
 		<div class="scroll_img">
 			<h2>已经有养车客账号？</h2>
-			<a href="/auto/auth/login.action" class="btn btn-small btn-primary"
+			<a href="/auto/auth/login.action" class="btn btn-large btn-primary"
 				style="margin-left: 3px;"><span>立即登录</span></a>
 			<div class="cooperation clear" style="margin-top: 50px;">
 				<dl>

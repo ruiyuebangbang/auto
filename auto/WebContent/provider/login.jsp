@@ -10,6 +10,8 @@
 <link rel="StyleSheet"
 	href="<%=request.getContextPath()%>/css/main.css" type="text/css">
 <link rel="StyleSheet"
+	href="<%=request.getContextPath()%>/css/autoboys.css" type="text/css">
+<link rel="StyleSheet"
 	href="<%=request.getContextPath()%>/css/login.css" type="text/css">
 <style>
 body {
@@ -98,7 +100,7 @@ color:#fff;
 
 		</div>
 		<div class="login-title">
-			<h1>养车客车生活服务商家后台管理系统</h1>
+			<h1>养车客车生活服务平台商家管理系统</h1>
 		</div>
 		<!--  div super-container start -->
 		<div class="container">
@@ -140,8 +142,8 @@ color:#fff;
 								<s:property value="errors['member.captcha'][0]" escape="false" />
 								<div class="info_list no_reg clear">
 									
-										<span class="no_reg_tip">还没入驻，<a href="/auto/provider/provider_register.action" title="申请入驻" class="ml10">申请入驻</a></span>
-										<a href="javascript:void(0)" class="btn btn-large btn-block btn-primary" style="width: 160px; float: left;" id="sbmit">登录</a>
+										<span class="no_reg_tip" >还没入驻，<a href="/auto/provider/provider_register.action" title="申请入驻" class="ml10" style="font-size:16px;font-weight:bold;">申请入驻</a></span>
+										<a href="javascript:void(0)" class="btn btn-large btn-block btn-primary" style="width: 120px; float: left;" id="sbmit">登录</a>
 										<s:hidden name="returnURL"/>
 								</div>
 
