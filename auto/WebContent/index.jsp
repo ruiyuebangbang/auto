@@ -5,8 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Language" content="CN">
-<meta http-equiv="imagetoolbar" content="no">
-<meta name="viewport" content="width=1020">
 <title></title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="StyleSheet" href="css/main.css" type="text/css">
@@ -17,7 +15,17 @@ body {
   	#wrap {
 	/*background: transparent url(image/bg_ad.jpg) center 0 no-repeat;
 	padding-top:150px;*/
-	
+}
+.mask2 {
+position: relative;
+width: 670px;
+height: 140px;
+overflow: hidden;
+margin:10px;
+}
+#box5 {
+position: absolute;
+width: 670px;
 }
 </style>
 </head>
@@ -412,22 +420,50 @@ body {
 					</div>
 				</div>
 				<!-- 他们在使用养车客 -->
+				
 				<div class="yck-box">
 					<div class="hd">
 						<h2>他(她)们在使用养车客</h2>
 					</div>
-					<div class="bd">
-						<div class="fws-item-content">
-							<a href="" target="_blank"> <em class="start"></em>在维修店看到养车客的易拉宝广告，“养车客，让车生活更简单”，朴素而实在。后来抽空去网站大致了解了一下。再次到保养汽车的时候，就尝试通过养车客寻找信得过的服务商，简单输入汽车行驶里程，购车时间后，养车客迅速给出各家服务商报价。参考其他车友的点评，选出了一家信誉好的服务商。就这样第一次经历互联网养车，过程简单，服务商服务也不错。<em
-								class="end"></em>
-							</a>
-							<p
-								style="text-align: right; padding-right: 4px; font-weight: bold; color: #888383">
-								<span>携程旅行网高级研发经历：苏红超</span>
-							</p>
+					<div class="mask2">
+						<div id="box5" style="height: 1440px; top: -1260px;">
+				  			<div class="bd">
+								<div class="fws-item-content">
+									<a href="" target="_blank"> <em class="start"></em>在维修店看到养车客的易拉宝广告，“养车客，让车生活更简单”，朴素而实在。后来抽空去网站大致了解了一下。再次到保养汽车的时候，就尝试通过养车客寻找信得过的服务商，简单输入汽车行驶里程，购车时间后，养车客迅速给出各家服务商报价。参考其他车友的点评，选出了一家信誉好的服务商。就这样第一次经历互联网养车，过程简单，服务商服务也不错。<em
+										class="end"></em>
+									</a>
+									<p
+										style="text-align: right; padding-right: 4px; font-weight: bold; color: #888383">
+										<span>携程网高级研发经理：苏红超</span>
+									</p>
+								</div>
+							</div>
+							<div class="bd">
+								<div class="fws-item-content">
+									<a href="" target="_blank"> <em class="start"></em>在维修店看到养车客的易拉宝广告，“养车客，让车生活更简单”，朴素而实在。后来抽空去网站大致了解了一下。再次到保养汽车的时候，就尝试通过养车客寻找信得过的服务商，简单输入汽车行驶里程，购车时间后，养车客迅速给出各家服务商报价。参考其他车友的点评，选出了一家信誉好的服务商。就这样第一次经历互联网养车，过程简单，服务商服务也不错。<em
+										class="end"></em>
+									</a>
+									<p
+										style="text-align: right; padding-right: 4px; font-weight: bold; color: #888383">
+										<span>文立科技公司总经理：肖庆明</span>
+									</p>
+								</div>
+							</div>
+							<div class="bd">
+								<div class="fws-item-content">
+									<a href="" target="_blank"> <em class="start"></em>在维修店看到养车客的易拉宝广告，“养车客，让车生活更简单”，朴素而实在。后来抽空去网站大致了解了一下。再次到保养汽车的时候，就尝试通过养车客寻找信得过的服务商，简单输入汽车行驶里程，购车时间后，养车客迅速给出各家服务商报价。参考其他车友的点评，选出了一家信誉好的服务商。就这样第一次经历互联网养车，过程简单，服务商服务也不错。<em
+										class="end"></em>
+									</a>
+									<p
+										style="text-align: right; padding-right: 4px; font-weight: bold; color: #888383">
+										<span>人来枫技术总监：邵远骏</span>
+									</p>
+								</div>
+							</div>
 						</div>
+						<div id="info5" class="info" style="visibility: visible; zoom: 1; opacity: 0.5;"></div>
 					</div>
-
+					
 				</div>
 
 			</div>
@@ -574,14 +610,25 @@ body {
 				//imgView.prev.hide();
 				//imgView.next.hide();
 			});
-			var listShow01 = new slideGallery($$("#indexSportItem"), {
-				steps : 1,
-				mode : "line",
-				onPlay : function() {
-					this.fireEvent("start");
+			
+			var info5 = $('info5').set('opacity',0.5);
+			var sampleObjectItems =[
+				{title:'', link:'http://www.link1.com'},
+				{title:'', link:'http://www.link2.com'},
+				{title:'', link:'http://www.link3.com'}
+			];
+			var nS5 = new noobSlide({
+				mode: 'vertical',
+				box: $('box5'),
+				size: 140,
+				items: sampleObjectItems,
+				autoPlay: true,
+				onWalk: function(currentItem){
+					//info5.empty();
+					//new Element('h4').set('html','<a href="'+currentItem.link+'"></a>'+currentItem.title).inject(info5);
+					
 				}
 			});
-
 		});
 	</script>
 </body>

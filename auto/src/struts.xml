@@ -14,11 +14,21 @@
 		<action name="getCaptcha" method="getCaptcha" class="com.autoboys.action.CaptchaAction">
 			<result name="success">/ajax/captcha.jsp</result>
 		</action>
+		
 	</package>
 	<package name="member" extends="struts-default" namespace="/member">
 		<action name="member" class="com.autoboys.action.MemberAction">
 			<result name="success">member.jsp</result>
 		</action>
+		<action name="changePassword" method="changePassword" class="com.autoboys.action.MemberAction">
+			<result name="input">changepwd.jsp</result>
+			<result name="success">member.jsp</result>
+		</action>
+		<action name="edit" method="edit" class="com.autoboys.action.MemberAction">
+			<result name="input">memberInfo.jsp</result>
+			<result name="success">member.jsp</result>
+		</action>
+		
 	</package>
 	
 	<package name="Vehicle" extends="struts-default" namespace="/vehicle">
@@ -57,6 +67,9 @@
 		</action>
 		<action name="updateProductPrice" method="updatePrice" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
+		</action>
+		<action name="upload" class="com.autoboys.action.UploadAction">
+			<result name="success">upload.jsp</result>
 		</action>
 	</package>
 	<package name="store" extends="struts-default" namespace="/store">

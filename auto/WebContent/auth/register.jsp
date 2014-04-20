@@ -11,6 +11,8 @@
 	type="text/css">
 <link rel="StyleSheet"
 	href="<%=request.getContextPath()%>/css/register.css" type="text/css">
+<link rel="StyleSheet"
+	href="<%=request.getContextPath()%>/css/autoboys.css" type="text/css">
 <style>
 .simple-header {
 	width: 990px;
@@ -100,7 +102,7 @@
 		</form>
 		<div class="scroll_img">
 			<h2>已经有养车客账号？</h2>
-			<a href="/auto/auth/login.action" class="btn btn-small btn-primary"
+			<a href="/auto/auth/login.action" class="btn btn-large btn-primary"
 				style="margin-left: 3px;"><span>立即登录</span></a>
 			<div class="cooperation clear" style="margin-top: 50px;">
 				<dl>

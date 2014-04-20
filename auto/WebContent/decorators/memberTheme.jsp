@@ -1,21 +1,24 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<!--[if lt IE 7 ]> <html xmlns:fb="http://www.facebook.com/2008/fbml" class="ie6 ie ltie9 ltie8 no-js" lang="zh"> <![endif]-->
-<!--[if IE 7 ]>    <html xmlns:fb="http://www.facebook.com/2008/fbml" class="ie7 ie ltie9 ltie8 no-js" lang="zh"> <![endif]-->
-<!--[if IE 8 ]>    <html xmlns:fb="http://www.facebook.com/2008/fbml" class="ie8 ie ltie9 no-js" lang="zh"> <![endif]-->
-<!--[if IE 9 ]>    <html xmlns:fb="http://www.facebook.com/2008/fbml" class="ie9 ie no-js" lang="zh"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html xmlns:fb="http://www.facebook.com/2008/fbml" class="no-js" lang="zh"> <!--<![endif]-->
-    <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.rg/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Language" content="CN">
 	<link rel="shortcut icon" href="<%=request.getContextPath() %>/favicon.ico" type="image/x-icon">
   	<link rel="StyleSheet" href="<%=request.getContextPath()%>/css/main.css" type="text/css">
   	<link rel="StyleSheet" href="<%=request.getContextPath()%>/css/member.css" type="text/css">
-  	<title><decorator:title default="养车客：让车生活更加简单惬意"/></title>
-  	<decorator:head></decorator:head>
+  	<link rel="StyleSheet" href="<%=request.getContextPath()%>/css/autoboys.css" type="text/css">
+  	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/mootools.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/silunzi.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/common.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/autoboys.js"></script>
+<decorator:head />
+<title><decorator:title default="养车客，让车生活更加简单惬意" /></title>
 </head>
 <%
 String url = request.getRequestURI();
@@ -42,7 +45,12 @@ else
 
 			<div class="hr">
 				<div id="nav-shortcut">
-					
+					<script type="text/javascript">
+					window.addEvent('domready', function() {
+						nav.init();
+			
+					});
+				</script>
 				</div>
 				<div class="guarantee">
 					<a href="#" rel="nofollow"
@@ -65,190 +73,7 @@ else
 						href="<%=request.getContextPath()%>/main.action" ><span>首页</span></a></li>
 					<li id="hover" class="autoservice <%=serviceClass%>"><a class="menua"
 						href="" >汽车服务<i class="icon-chevron-down"></i></a>
-						<div id="maintenance_wrap" style="display: none;">
-							<div id="automaintenance" class="automaintenance"></div>
-							<div class="maintenancelist">
-								<div class="pmain">
-									<b class="ptitle" style="float:left;"><i class="icon-hand-right"></i>保养项目查询</b><span style="margin-left:10px;">（我也不知道保养啥项目，查询一下）</span>
-									<div class="psearch">
-										<dl>
-											<dt>
-												<span>已行驶：</span>
-												<div><input type="text" id="nav_CurMileage" maxlength="7" value=""> </div>
-												<span>公里；</span></dt>
-											<dd>
-												<span>新车购买于：</span>
-												<ol>
-													<li>
-														<div class="newSel">
-															<div class="newInput" id="nav-txt-roadyears" name="2009">2009年</div>
-															<a class="NewSelBut" href="javascript:;"
-																id="nav-arrow-roadyears"></a>
-															<div class="clearfix"></div>
-															<div style="display: none;" class="newSelLayer"
-																id="nav-roadyears">
-																<ul>
-																	<li><a class="autoitem" href="javascript:;"
-																		name="0">年份</a></li>
-																	<li><a class="autoitem" href="javascript:;"
-																		name="2014">2014年</a></li>
-																	<li><a class="autoitem" href="javascript:;"
-																		name="2013">2013年</a></li>
-																	<li><a class="autoitem" href="javascript:;"
-																		name="2012">2012年</a></li>
-																	<li><a class="autoitem" href="javascript:;"
-																		name="2011">2011年</a></li>
-																	<li><a class="autoitem" href="javascript:;"
-																		name="2010">2010年</a></li>
-																	<li><a class="autoitem" href="javascript:;"
-																		name="2009">2009年</a></li>
-																</ul>
-															</div>
-														</div>
-													</li>
-													<li>
-														<div class="newSel">
-															<div class="newInput" id="nav-txt-roadmonth" name="8">8月</div>
-															<a class="NewSelBut" href="javascript:;"
-																id="nav-arrow-roadmonth"></a>
-															<div class="clearfix"></div>
-															<div style="display: none;" class="newSelLayer"
-																id="nav-roadmonth">
-																<ul>
-
-																</ul>
-															</div>
-														</div>
-													</li>
-													<div class="clearfix"></div>
-												</ol>
-												<div class="clearfix"></div>
-											</dd>
-											<div class="psearchBut">
-												<form action="/auto/service/proposal.action?act=zn" method="post">
-													<button type="submit" class="btn btn-danger">看看需要做哪些保养</button>
-												</form>
-											</div>
-										</dl>
-										
-										
-										<div class="c"></div>
-									</div>
-									<div class="clearfix"></div>
-									<!--psearch-->
-									<b class="ptitle" style="float:left;"><i class="icon-hand-right"></i>直接选择保养项目</b><span style="margin-left:10px;">（知道需要什么服务，快速选择）</span>
-									<div class="pproject">
-										<dl>
-											<dt>保养类服务</dt>
-											<dd>
-												<ol>
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100101">更换机滤</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100102">更换空气滤芯</a></li>                        
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100103">更换空调滤芯</a></li>                        
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100104">更换汽油滤芯</a></li>                        
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100105">更换变速箱油</a></li>                        
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100106">清洗喷油嘴</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100107">更换刹车油</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100108">更换防冻液</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100109">更换助力油</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100110">更换火花塞</a></li>                         
-													<!-- li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100111">更换蓄电池</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100112">保养计划</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=100113">皮带类？？？</a></li -->   
-												</ol>
-											</dd>
-										</dl>
-
-									</div>
-									<!--pproject-->
-									<div class="c"></div>
-									<div class="pproject">
-										<dl>
-											<dt>轮胎类服务</dt>
-											<dd>
-												<ol>
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=101101">四轮定位</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=101102">车轮动平衡</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=101103">轮胎换位</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=101104">补胎/轮胎修复</a></li>                       
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=101105">胎压监测</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=101106">轮毂修复</a></li>   
-
-												</ol>
-											</dd>
-										</dl>
-										<div class="c"></div>
-									</div>
-									<!--pproject-->
-									<div class="c"></div>
-									<div class="pproject">
-										<dl>
-											<dt>检修类服务</dt>
-											<dd>
-												<ol>
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=102101">刹车类(检测+更换)</a></li>                   
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=102102">转向和悬挂</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=102103">皮带软管类</a></li>   
-
-												</ol>
-											</dd>
-										</dl>
-										<div class="c"></div>
-									</div>
-									
-									<!--pproject-->
-									<div class="c"></div>
-									<div class="pproject">
-										<dl>
-											<dt>美容类服务</dt>
-											<dd>
-												<ol>
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=103101">车身打蜡</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=103102">内室清洗</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=103103">划痕修复</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=103104">车身封釉</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=103105">车身镀膜</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=103106">消毒去味</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=103107">皮革护理</a></li>    
-
-												</ol>
-											</dd>
-										</dl>
-										<div class="c"></div>
-									</div>
-									<!--pproject-->
-									<div class="c"></div>
-									<div class="pproject">
-										<dl>
-											<dt>特殊类服务</dt>
-											<dd>
-												<ol>
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104101">改装音响</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104102">改装悬挂</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104103">发动机调优</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104104">加装倒车雷达</a></li>                        
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104105">加装倒车影像</a></li>                        
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104106">换真皮座椅</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104107">灯光改装</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104108">定制脚垫</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104109">定制座椅套</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104110">加装导航</a></li>                          
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104111">加装日行灯</a></li>                         
-													<li> <a  class="sitem" href="<%=request.getContextPath() %>/service/proposal.action?act=zx&s=104112">其他</a></li>     
-
-												</ol>
-											</dd>
-										</dl>
-										<div class="c"></div>
-									</div>
-								</div>
-
-							</div>
-							<!--packlist-->
-
-
-
-						</div></li>
+						</li>
 					<li class="<%=storeClass%>"><a class="menua"
 						href="<%=request.getContextPath()%>/store/main.action"
 						>周边商家</a></li>
@@ -276,7 +101,7 @@ else
 			    <p>当前位置：</p>
 			    <p><a href="/">首页</a></p>
 			    <p>&nbsp;&gt; <a href="/my/">用户中心</a></p>
-			    <p>&nbsp;&gt; 订单管理</p>
+			    <p>&nbsp;&gt; <%=request.getAttribute("subMenuName") %></p>
 			</div>
 			
 			<div class="my-container">
@@ -292,9 +117,8 @@ else
 					</div>
 					<div class="menu_item_children" itemtype="order">
 					    <ul>
-					        <li class="menu_item_child selected" id="menu-1-0"><a href="${pageContext.request.contextPath}/orderlist.aspx">全部订单</a></li>
-					        <li class="menu_item_child" id="menu-1-6"><a href="orderlist.aspx?state=5">已完成订单</a></li>
-					        <li class="menu_item_child" id="menu-1-7"><a href="orderlist.aspx?type=cancel">已取消订单</a></li>
+					        <li class="menu_item_child selected" id="menu-1-0"><a href="${pageContext.request.contextPath}/orderlist.aspx">最新订单</a></li>
+					        <li class="menu_item_child" id="menu-1-6"><a href="orderlist.aspx?state=5">全部订单</a></li>
 					        <li class="menu_item_child" id="menu-4-3"><a href="votelist.aspx">我的评价</a></li>
 					    </ul>
 					</div>
@@ -330,8 +154,8 @@ else
 					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">个人信息</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="account">
 					    <ul>
-					        <li class="menu_item_child" id="menu-4-1"><a href="myinfo.aspx">个人资料</a></li>
-					        <li class="menu_item_child" id="menu-4-2"><a href="password.aspx">修改密码</a></li>
+					        <li class="menu_item_child" id="menu-4-1"><a href="<%=request.getContextPath() %>/member/edit.action"">个人信息</a></li>
+					        <li class="menu_item_child" id="menu-4-2"><a href="<%=request.getContextPath() %>/member/changePassword.action">修改密码</a></li>
 					    </ul>
 					</div>
 				</div>

@@ -8,6 +8,8 @@
 	type="text/css">
 <link rel="StyleSheet"
 	href="<%=request.getContextPath()%>/css/login.css" type="text/css">
+<link rel="StyleSheet"
+	href="<%=request.getContextPath()%>/css/autoboys.css" type="text/css">
 <style>
 .simple-header {
 	width: 990px;
