@@ -13,7 +13,7 @@
 		<div class="user_info clearfix">
 			<div id="user_avatar">
 				<div id="uc-avatar" >
-					<img id="img-avatar" src="/auto/image/member/default_m.png" width=120px height=120px/>
+					<img id="img-avatar" src="<s:url value='/image/member/default_m.png' includeParams='none'/>" width=120px height=120px/>
 					<a href="#" id="select-0" >更换头像</a>
 				</div>
 			</div>
@@ -54,10 +54,12 @@
 					</tr>
 					<tr>
 						<td class="td_l">密码：</td>
-						<td><a href="/pass/changePassword?userId=38337095"
-							class="mar_no">更改</a> <span class="p_pop"> <span
-								class="doubt"></span> <span class="pop"> <span
-									class="lit_tip"></span> <span class="td_lht">您可以更改登录密码</span>
+						<td>
+							<s:a href="changePassword.action" class="mar_no">更改</s:a> 
+							<span class="p_pop"> 
+								<span class="doubt"></span> 
+							<span class="pop"> 
+								<span class="lit_tip"></span> <span class="td_lht">您可以更改登录密码</span>
 							</span>
 						</span></td>
 					</tr>
@@ -67,9 +69,9 @@
 		</div>
 		
 	</div>
-	<link rel="stylesheet" type="text/css" href="http://digitarald.de/project/roar/1-0/assets/Roar.css">
-	<script type="text/javascript" src="http://digitarald.de/project/fancyupload/3-0/source/Swiff.Uploader.js"></script>
-	<script type="text/javascript" src="http://digitarald.de/project/roar/1-0/source/Roar.js"></script>
+	<link rel="stylesheet" type="text/css" href="<s:url value='/css/Roar.css' />">
+	<script type="text/javascript" src="<s:url value='/scripts/Swiff.Uploader.js' />"></script>
+	<script type="text/javascript" src="<s:url value='/scripts/Roar.js' />"></script>
 	<script type="text/javascript">
 	window.addEvent('domready', function() {
 		 
@@ -113,18 +115,11 @@
 			appendCookieData: true,
 			onQueue: linkUpdate,
 			onFileComplete: function(file) {
-	 
-				// We *don't* save the uploaded images, we only take the md5 value and create a monsterid ;)
-				if (file.response.error) {
+	 			if (file.response.error) {
 					log.alert('上传失败', '上传 <em>' + this.fileList[0].name + '</em> 失败, 请重新上传.');
 				} else {
-					var md5 = JSON.decode(file.response.text, true).hash; // secure decode
-	 
-					//log.alert('Successful Upload', 'an MD5 hash was created from <em>' + this.fileList[0].name + '</em>: <code>' + md5 + '</code>.<br />gravatar.com generated a fancy and unique monsterid for it, since we did not save the image.');
-	 
-					$('img-avatar').set('src', 'http://localhost:8080/auto/image/tmp/test.jpg');
-					
-					
+					var url = JSON.decode(file.response.text, true).hash; // secure decode
+		 			$('img-avatar').set('src', 'http://localhost:8080/auto/image/tmp/test.jpg');					
 				}
 	 
 				file.remove();

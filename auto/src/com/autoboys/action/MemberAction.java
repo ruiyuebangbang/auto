@@ -117,6 +117,7 @@ public class MemberAction extends ActionSupport implements ServletRequestAware,
 	}
 	
 	public String changePassword() {
+		request.setAttribute("subMenuName", "修改密码");
 		String method = request.getMethod();
 		if(method.equals("POST")){
 			return SUCCESS; 
