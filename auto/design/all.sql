@@ -199,7 +199,7 @@ cp product%rowtype;
 vbrand VEHICLE_BRAND.code%type;
 vcount pls_integer;
 BEGIN
-    p_debug('f_insertProviderProduct','²ÎÊý:[vprovider]'||vprovider||'[vproduct]'||vproduct||'[vdiscountPrice]'||vdiscountPrice||'[vlabourPrice]'||vlabourPrice);
+    p_debug('f_insertProviderProduct','ï¿½ï¿½ï¿½ï¿½:[vprovider]'||vprovider||'[vproduct]'||vproduct||'[vdiscountPrice]'||vdiscountPrice||'[vlabourPrice]'||vlabourPrice);
     select * into cp
     from product where id = to_number(vproduct);
     
