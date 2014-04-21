@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -308,4 +309,26 @@ public class ProviderDAOImpl implements ProviderDAO {
 		}
 		return ret;
 	}	
+	
+	public int insertProvider(Member mb) {
+		int ret =0;
+		java.sql.Connection conn = null;
+		try {
+			conn = ProxoolConnection.getConnection();
+			CallableStatement cs = conn.prepareCall("{? = call f_insertProvider(?, ? ,? ,?)}");  
+			cs.registerOutParameter(1, Types.INTEGER); 	
+			cs.setString(2,mb.getEmail());
+			cs.setString(3, mb.getNickName());  
+			cs.setString(4, mb.getMobilePhone());
+			cs.setString(5, mb.getPassword());
+			cs.executeUpdate();  
+			ret = cs.getInt(1);
+			cs.close();	
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {conn.close();}catch(Exception e) {}
+		}
+		return ret;
+	}
 }

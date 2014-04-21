@@ -350,8 +350,8 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 		String product = request.getParameter("product_id");
 		String discountPrice = request.getParameter("discount_price");
 		String labourPrice =request.getParameter("labour_price");
-		//Member user = (Member) request.getSession().getAttribute("USER");
-		Member user = new Member(); user.setProvid(1L);
+		Member user = (Member) request.getSession().getAttribute("login_user");
+		//Member user = new Member(); user.setProvid(1L);
 		if(id !=null &&!"".equals(id)) {
 				ppdao.updatePrice(id,discountPrice,labourPrice);
 		} else {
