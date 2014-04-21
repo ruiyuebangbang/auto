@@ -195,7 +195,7 @@ public class ProviderDAOImpl implements ProviderDAO {
 		try {
 			java.sql.Connection conn = null;
 			try {
-				String sql = "select b.*,f_getRegionName(b.REGION_ID) regionName from (select a.*,rownum rn from (select * from provider where status is null order by status,apply_date) a where rownum<=?) b where rn >?";
+				String sql = "select b.*,f_getRegionName(b.REGION_ID) regionName from (select a.*,rownum rn from (select * from provider where status is null  or status =0 order by status,apply_date) a where rownum<=?) b where rn >?";
 				conn = ProxoolConnection.getConnection();
 		        QueryRunner qRunner = new QueryRunner();   
 		        list = (List<Provider>) qRunner.query(conn, sql, new BeanListHandler(Provider.class),pageNo*pageSize,(pageNo-1)*pageSize);
@@ -216,7 +216,7 @@ public class ProviderDAOImpl implements ProviderDAO {
 	public int qryAuditProviderCnt() {
 		int ret = 0;
 		try {
-			StringBuilder sb =  new StringBuilder("select count(1) from provider where status is null ");
+			StringBuilder sb =  new StringBuilder("select count(1) from provider where status=0 or status is null ");
 			Query q = session.createSQLQuery(sb.toString());
 			ret = ((java.math.BigDecimal)q.uniqueResult()).intValue();
 			
@@ -310,17 +310,18 @@ public class ProviderDAOImpl implements ProviderDAO {
 		return ret;
 	}	
 	
-	public int insertProvider(Member mb) {
+	public int insertProvider(Member mb,Provider pro) {
 		int ret =0;
 		java.sql.Connection conn = null;
 		try {
 			conn = ProxoolConnection.getConnection();
-			CallableStatement cs = conn.prepareCall("{? = call f_insertProvider(?, ? ,? ,?)}");  
+			CallableStatement cs = conn.prepareCall("{? = call f_insertProvider(?, ? ,? ,?,?)}");  
 			cs.registerOutParameter(1, Types.INTEGER); 	
-			cs.setString(2,mb.getEmail());
+			cs.setString(2,pro.getSHORT_NAME());
 			cs.setString(3, mb.getNickName());  
 			cs.setString(4, mb.getMobilePhone());
 			cs.setString(5, mb.getPassword());
+			cs.setLong(6,pro.getREGION_ID());
 			cs.executeUpdate();  
 			ret = cs.getInt(1);
 			cs.close();	

@@ -22,6 +22,7 @@ function changeReg1(reg1){
 		  //alert(data);
 		  //$("#region2").empty();
 		  $("#region2").html(data);
+		  changeReg2($("#region2").val());
 		 }
 	);
 }

@@ -1,11 +1,11 @@
-ï»¿--
+--
 -- Create Schema Script 
 --   Database Version   : 11.2.0.1.0 
 --   Toad Version       : 10.5.0.41 
 --   DB Connect String  : ORCL 
 --   Schema             : YANGCHEKE 
 --   Script Created by  : YANGCHEKE 
---   Script Created at  : 2014-4-20 20:56:01 
+--   Script Created at  : 2014-4-21 21:58:12 
 --   Physical Location  :  
 --   Notes              :  
 --
@@ -21,7 +21,7 @@
 -- S_MEMBER  (Sequence) 
 --
 CREATE SEQUENCE YANGCHEKE.S_MEMBER
-  START WITH 170
+  START WITH 180
   MAXVALUE 9999999999999999999999
   MINVALUE 100
   NOCYCLE
@@ -45,7 +45,7 @@ CREATE SEQUENCE YANGCHEKE.S_PRODUCT_VEHICLE
 -- S_PROVIDER  (Sequence) 
 --
 CREATE SEQUENCE YANGCHEKE.S_PROVIDER
-  START WITH 160
+  START WITH 170
   MAXVALUE 9999999999999999999999
   MINVALUE 100
   NOCYCLE
@@ -153,7 +153,7 @@ END p_update_provider_image;
 -- P_DEBUG  (Procedure) 
 --
 CREATE OR REPLACE PROCEDURE YANGCHEKE.p_debug
-----ç›‘æ§æ—¥å¿—è®°å½•
+----¼à¿ØÈÕÖ¾¼ÇÂ¼
 (
     vsource in varchar2,
     vinfo   in varchar2
@@ -169,7 +169,7 @@ Begin
 
 Exception
     When Others Then
-        Dbms_Output.Put_Line('è®°å½•æ—¥å¿—å‡ºé”™ï¼');
+        Dbms_Output.Put_Line('¼ÇÂ¼ÈÕÖ¾³ö´í£¡');
 End;
 /
 
@@ -178,10 +178,10 @@ End;
 -- F_INSERTPROVIDERPRODUCT  (Function) 
 --
 CREATE OR REPLACE FUNCTION YANGCHEKE.f_insertProviderProduct(
-                                                             vprovider in Integer,              --ä¾›åº”å•†
-                                                             vproduct in varchar2,             --äº§å“
-                                                             vdiscountPrice in varchar2,     --æŠ˜æ‰£ä»·
-                                                             vlabourPrice in varchar2         --äººå·¥è´¹
+                                                             vprovider in Integer,              --¹©Ó¦ÉÌ
+                                                             vproduct in varchar2,             --²úÆ·
+                                                             vdiscountPrice in varchar2,     --ÕÛ¿Û¼Û
+                                                             vlabourPrice in varchar2         --ÈË¹¤·Ñ
 )RETURN NUMBER IS
 tmpVar NUMBER;
 /******************************************************************************
@@ -199,11 +199,11 @@ cp product%rowtype;
 vbrand VEHICLE_BRAND.code%type;
 vcount pls_integer;
 BEGIN
-    p_debug('f_insertProviderProduct','ï¿½ï¿½ï¿½ï¿½:[vprovider]'||vprovider||'[vproduct]'||vproduct||'[vdiscountPrice]'||vdiscountPrice||'[vlabourPrice]'||vlabourPrice);
+    p_debug('f_insertProviderProduct','²ÎÊı:[vprovider]'||vprovider||'[vproduct]'||vproduct||'[vdiscountPrice]'||vdiscountPrice||'[vlabourPrice]'||vlabourPrice);
     select * into cp
     from product where id = to_number(vproduct);
     
-    --æ’å…¥æœåŠ¡å•†äº§å“è¡¨
+    --²åÈë·şÎñÉÌ²úÆ·±í
     select count(*) into vcount from provider_product where provider_id=vprovider and product_id=vproduct;
     if vcount >0 then 
         update provider_product set discount_price=vdiscountPrice, labour_price = vlabourPrice where provider_id=vprovider and product_id=vproduct
@@ -216,7 +216,7 @@ BEGIN
                 cp.STANDARD_PRICE ,to_number(vdiscountPrice),to_number(vlabourPrice),vproduct)
         returning id into tmpVar;
 
-        --æ’å…¥æœåŠ¡å•†å¯¹åº”å“ç‰Œè¡¨
+        --²åÈë·şÎñÉÌ¶ÔÓ¦Æ·ÅÆ±í
         select brand_code into vbrand
         from PRODUCT_VEHICLE t1 join VEHICLE t2 on t1.VEHICLE_ID = t2.id
         where PRODUCT_ID = vproduct and rownum=1;
@@ -242,16 +242,16 @@ END f_insertProviderProduct;
 -- F_INSERTPROVIDER  (Function) 
 --
 CREATE OR REPLACE FUNCTION YANGCHEKE.f_insertProvider(
-    vcompname in varchar2, --å…¬å¸åç§°
-    vagent in varchar2,        --è´Ÿè´£äºº
-    vmobile in varchar2,        --è´Ÿè´£äººç”µè¯
-    vpassword in varchar2   --ç”¨æˆ·å¯†ç 
-    
+    vcompname in varchar2, --¹«Ë¾Ãû³Æ
+    vagent in varchar2,        --¸ºÔğÈË
+    vmobile in varchar2,        --¸ºÔğÈËµç»°
+    vpassword in varchar2,   --ÓÃ»§ÃÜÂë
+    vregion     in number      --¹«Ë¾ÇøÓò 
 )RETURN number IS
 tmpVar NUMBER;
 /******************************************************************************
    NAME:       f_insertProvider
-   PURPOSE:    ä¾›åº”å•†æ³¨å†Œ
+   PURPOSE:    ¹©Ó¦ÉÌ×¢²á
 
    REVISIONS:
    Ver        Date        Author           Description
@@ -279,7 +279,7 @@ BEGIN
     end if;
     
     insert into provider(ID,REGION_ID,SHORT_NAME,FULL_NAME,AGENT,TELEPHONE,apply_date,apply_type,status)
-    values(s_provider.nextval,0,vcompname,vcompname,vagent,vmobile,sysdate,0,0) returning id into vprovid;
+    values(s_provider.nextval,vregion,vcompname,vcompname,vagent,vmobile,sysdate,0,0) returning id into vprovid;
     
     insert into member(ID,MOBIEPHONE,NICKNAME,PASSWORD,CLASSIFICATION,PROVIDER_ID,IS_ADMIN,IS_DISABLED)
     values(s_member.nextval,vmobile,vagent,vpassword,2,vprovid,1,0);

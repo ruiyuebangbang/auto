@@ -65,7 +65,7 @@ clear: both;
 height: 30px;
 }
 </style>
-
+<script src="../scripts/jquery-1.11.0.js"></script>
 </head>
 
 <body screen_capture_injected="true">
@@ -95,7 +95,7 @@ height: 30px;
 									style="width: 246px;"
 									value='<s:property value="mb.mobilePhone"/>'>
 								</label>
-								<s:property value="errors['mb.mobile'][0]" escape="false" />
+								<font color='red'><s:property value="errors['mb.mobile'][0]" escape="false" /></font>
 								</dd>
 							</dl>
 							
@@ -106,7 +106,7 @@ height: 30px;
 									type="password" id="password" name="mb.password" alt="">
 
 								</label>
-								<s:property value="errors['mb.password'][0]" escape="false" />
+								<font color='red'><s:property value="errors['mb.password'][0]" escape="false" /></font>
 								</dd>
 							</dl>
 							
@@ -124,10 +124,10 @@ height: 30px;
 								<dt>店铺名称：</dt>
 								<dd>
 								<label class="inpt"> <input class="G_input"
-									maxlength="11" type="text" id="email" name="mb.email"
-									alt="" value='<s:property value="mb.email"/>'>
+									maxlength="11" type="text" id="email" name="provider.SHORT_NAME"
+									alt="" value='<s:property value="provider.SHORT_NAME"/>'>
 								</label>
-								<s:property value="errors['mb.email'][0]" escape="false" />
+								<font color='red'><s:property value="errors['provider.SHORT_NAME'][0]" escape="false" /></font>
 								</dd>
 							
 								
@@ -140,24 +140,16 @@ height: 30px;
 									value='<s:property value="mb.nickName"/>'>
 
 								</label>
-								<s:property value="errors['mb.nickName'][0]" escape="false" />
+								<font color='red'><s:property value="errors['mb.nickName'][0]" escape="false" /></font>
 								</dd>
 							</dl>
 							<dl class="info_list">
 								<dt>店铺地址：</dt>
 								<dd>
-									<select >
-										<option></option>
-										<option selected="true">上海</option>
-									</select>
-									<select >
-										<option>上海</option>
-									</select>
-									<select >
-										<option>徐汇区</option>
-										<option>长宁区</option>
-									</select>
-								
+									<s:select id="region1" name="region1" list="regions1"  theme="simple" cssClass="not_null" listKey="id" listValue="name" onchange="changeReg1(this.value);"></s:select> 
+							    <s:select id="region2" name="region2" list="regions2"  theme="simple" cssClass="not_null" listKey="id" listValue="name" onchange="changeReg2(this.value);"></s:select> 
+							    <s:select id="region3" name="provider.REGION_ID" list="regions3"  theme="simple" cssClass="not_null" listKey="id" listValue="name" ></s:select> 
+								<font color='red'><s:property value="errors['provider.region'][0]" escape="false" /></font>
 								</dd>
 							</dl>
 							<!--  dl class="info_list">
@@ -302,13 +294,14 @@ height: 30px;
 		}
 
 		function savePhoneReg() {
-			
-			var values = silunziUtil.getValues("phoneLogin_content");
+
+			//var values = silunziUtil.getValues("phoneLogin_content"); 该行报错
 			
 			//if (!validateForm(values))
 			//	return;
-			var svr2 = $("service2");
-			if (svr2.checked == false) {
+	
+			if ($("#service2").prop("checked") == false) {
+				//alert(3);
 				lunziUtil.alert("您必须同意服务协议");
 				return false;
 			}
@@ -329,6 +322,7 @@ height: 30px;
 							}
 						}
 					});*/
+
 					document.forms[0].submit();
 					
 		}
@@ -412,6 +406,24 @@ height: 30px;
 						} else
 							remmoveError(el);
 					}.bind(this), 'get');
+				}
+				
+				function changeReg1(reg1){	
+					$.get( "../ajax/common/getRegionsByReg1.action", { regId: reg1},
+					  function( data ) {  
+						  //alert(data);
+						  //$("#region2").empty();
+						  $("#region2").html(data);
+						  changeReg2($("#region2").val());
+						 }
+					);
+				}
+				function changeReg2(reg2) {
+					$.get( "../ajax/common/getRegionsByReg1.action", { regId: reg2},
+							  function( data ) {  
+								  $("#region3").html(data);
+								 }
+					);
 				}
 			</script>
 
