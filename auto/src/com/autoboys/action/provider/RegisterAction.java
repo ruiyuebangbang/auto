@@ -8,6 +8,8 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.autoboys.dao.MemberDAO;
 import com.autoboys.dao.MemberDAOImpl;
+import com.autoboys.dao.ProviderDAO;
+import com.autoboys.dao.ProviderDAOImpl;
 import com.autoboys.domain.Member;
 import com.autoboys.domain.Provider;
 import com.autoboys.domain.ProviderRegion;
@@ -82,7 +84,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 		this.mb = mb;
 	}
 	
-	private MemberDAO memberDAO = new MemberDAOImpl();
+	private ProviderDAO pDAO = new ProviderDAOImpl();
 	
 	
 	private HttpServletRequest request;
@@ -111,7 +113,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 				this.addFieldError("mb.password", "<div class='field-error'>密码不能为空</div>");
 				return "create";
 			}
-			int ret = memberDAO.insertProvider(mb);
+			int ret = pDAO.insertProvider(mb);
 			switch(ret) {
 				case -1001:
 					this.addFieldError("mb.mobile", "<div class='field-error'>联系电话已经存在</div>");
