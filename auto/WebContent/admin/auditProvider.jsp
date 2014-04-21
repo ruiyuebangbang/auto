@@ -8,11 +8,11 @@
 <meta name="keywords" content="">
 <title>养车客商家后台：互联网养车，开启养车新模式</title>
 <link rel="StyleSheet" href="css/main.css" type="text/css">
-<script src="../scripts/jquery-1.11.0.js"></script>
+
 <script language="javascript">
 function f_gotoPage(sel){
     //alert(sel);
-    $('#auditProvider_pager_pageCurr').val(sel);
+    $('auditProvider_pager_pageCurr').val(sel);
 
     document.forms[0].submit();
 }
@@ -43,7 +43,7 @@ function f_gotoPage(sel){
 			</thead>
 			<tbody>
 				<s:iterator value="providerList" status="rowstat">
-				<tr>
+				<tr style="line-height:24px">
 					<td><a href=""><s:property value="SHORT_NAME"/></a></td>
 					<td><s:property value="AGENT"/></td>
 					<td><s:property value="TELEPHONE"/></td>
@@ -51,8 +51,8 @@ function f_gotoPage(sel){
 					<td><s:property value="apply_date"/></td>
 					<td class="op">
 							<a href="editBasicInfo.action?provid=<s:property value='ID'/>">修改</a> | 
-							<a href="javascript:audit(<s:property value="ID"/>,1);">通过</a> | 
-							<a href="javascript:audit(<s:property value="ID"/>,2);">不通过</a> | 
+							<a href="javascript:openit(<s:property value="ID"/>,1)">通过</a> | 
+							<a href="javascript:closeit(<s:property value="ID"/>,2)">不通过</a> | 
 							<a href="editStoreInfo.action?provider.ID=<s:property value='ID'/>">店铺管理</a> 
 					</td>
 				</tr>
@@ -74,13 +74,23 @@ function f_gotoPage(sel){
 	    </div>
 </div>
 <script type="text/javascript">
-function audit(pid,stat){
-	document.forms[0].pid.value=pid;
-	document.forms[0].stat.value=stat;
-	document.forms[0].action="<%=request.getContextPath()%>/admin/auditProvider.action";
-	//alert(document.forms[0].action);
-	document.forms[0].submit();
-	
+function openit(pid,stat){
+	lunziUtil.confirm("商家信息无误，确认开通?", function() {
+		document.forms[0].pid.value=pid;
+		document.forms[0].stat.value=stat;
+		document.forms[0].action="<%=request.getContextPath()%>/admin/auditProvider.action";
+		//alert(document.forms[0].action);
+		document.forms[0].submit();
+    });
+}
+function closeit(pid,stat){
+	lunziUtil.confirm("确认取消商家资格?", function() {
+		document.forms[0].pid.value=pid;
+		document.forms[0].stat.value=stat;
+		document.forms[0].action="<%=request.getContextPath()%>/admin/auditProvider.action";
+		//alert(document.forms[0].action);
+		document.forms[0].submit();
+    });	
 }
 </script>
 </body>

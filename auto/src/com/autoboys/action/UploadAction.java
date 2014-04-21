@@ -11,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.io.FileUtils;
+import com.autoboys.util.ImageUtil;
 public class UploadAction extends ActionSupport{
 
 	private File Filedata;
@@ -22,6 +23,10 @@ public class UploadAction extends ActionSupport{
 	public String execute() throws Exception
 	{
 		String realpath = ServletActionContext.getServletContext().getRealPath("/uploadimage");
+		String imageType = FiledataFileName.substring(FiledataFileName.lastIndexOf('.'));
+		InputStream is = new FileInputStream(Filedata);
+		OutputStream os = null;
+		ImageUtil.resizeImage(is, os, 230, imageType);
 		if (Filedata != null) {
 			File savefile = new File(new File(realpath), "test.jpg");
 			if (!savefile.getParentFile().exists())

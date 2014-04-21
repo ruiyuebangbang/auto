@@ -60,6 +60,7 @@ select {
 	border: 1px solid #C7C7C7;
 	color: #555555; 
 	outline:none
+	height:24px;
 }
 .app-header{
 position:relative;
@@ -284,7 +285,10 @@ padding: 2px 0 6px;
 .pcontent-filter .service {
 	width:160px;
 	padding: 3px 2px;
-	margin-left: 20px;
+	margin-right: 10px;
+}
+.pcontent-filter .store_name {
+	width:160px;
 }
 .pform {
 	margin:20px;
