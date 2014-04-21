@@ -6,11 +6,13 @@
 <link rel="shortcut icon" href="/auto/favicon.ico" type="image/x-icon">
 <meta name="description" content="专业汽车保养、维修服务平台">
 <meta name="keywords" content="">
-<title>养车客：互联网养车新模式，养车也可以如此轻松惬意！</title>
+<title>养车客：让每个车主车生活变得简单、好玩</title>
 <link rel="StyleSheet" href="<%=request.getContextPath()%>/css/main.css"
 	type="text/css">
 <link rel="StyleSheet"
 	href="<%=request.getContextPath()%>/css/register.css" type="text/css">
+<link rel="StyleSheet"
+	href="<%=request.getContextPath()%>/css/autoboys.css" type="text/css">
 <style>
 .simple-header {
 	width: 990px;
@@ -38,6 +40,30 @@
 	background-color: #fff;
 	border: 1px solid #ccccc8;
 }
+.W_login_form .info_list dt {
+	width: 80px;
+	float: left;
+	text-align: right;
+	line-height: 38px;
+}
+.W_login_form .info_list dd {
+	width:470px;
+	float:left;
+}
+.W_login_form .info_list dd select {
+	height: 34px;
+width: 100px;
+margin-right: 6px;
+}
+.loginbox .W_login_form{
+	padding-left:20px;
+}
+.W_login_form .info_list {
+margin: 0 0 20px;
+position: relative;
+clear: both;
+height: 30px;
+}
 </style>
 
 </head>
@@ -60,54 +86,97 @@
 				<s:form action="provider_register" method="post">
 					<div class="loginbox">
 						<div class="W_login_form" id="phoneLogin_content">
-							<div style="font-size:22px;font-family: Microsoft YaHei,Hiragino Sans GB,\5b8b\4f53;margin-bottom:10px;">商家注册<span style="margin:0 10px;">您注册成功后，我们的工作人员将会在一个工作日内联系您。</span></div>
-							<div class="info_list">
+							<div style="font-size:22px;font-family: Microsoft YaHei,Hiragino Sans GB,\5b8b\4f53;margin-bottom:30px;">商家注册<span style="margin:0 10px;">您注册成功后，我们的工作人员将会在一个工作日内联系您</span></div>
+							<dl class="info_list">
+								<dt>手机号：</dt>
+								<dd>
 								<label class="inpt"> <input class="G_input"
-									maxlength="11" type="text" id="email" name="mb.email"
-									alt="公司名称" value='<s:property value="mb.email"/>'>
-								</label>
-							</div>
-							<s:property value="errors['mb.email'][0]" escape="false" />
-							<div class="info_list">
-								<label class="inpt"> <input class="G_input" type="text"
-									id="nickName" name="mb.nickName" alt="联系人"
-									value='<s:property value="mb.nickName"/>'>
-
-								</label>
-
-							</div>
-							<s:property value="errors['mb.nickName'][0]" escape="false" />
-							<div class="info_list">
-								<label class="inpt"> <input class="G_input"
-									type="text" id="mobilePhone" name="mb.mobilePhone" alt="联系电话"
+									type="text" id="mobilePhone" name="mb.mobilePhone" alt=""
 									style="width: 246px;"
 									value='<s:property value="mb.mobilePhone"/>'>
 								</label>
-							</div>
-							<s:property value="errors['mb.mobile'][0]" escape="false" />
-							<div class="info_list">
+								<s:property value="errors['mb.mobile'][0]" escape="false" />
+								</dd>
+							</dl>
+							
+							<dl class="info_list">
+								<dt>登录密码：</dt>
+								<dd>
 								<label class="inpt"> <input class="G_input"
-									type="password" id="password" name="mb.password" alt="登录密码">
+									type="password" id="password" name="mb.password" alt="">
 
 								</label>
-							</div>
-							<s:property value="errors['mb.password'][0]" escape="false" />
-							<div class="info_list">
+								<s:property value="errors['mb.password'][0]" escape="false" />
+								</dd>
+							</dl>
+							
+							<dl class="info_list">
+								<dt>确认密码：</dt>
+								<dd>
 								<label class="inpt"> <input class="G_input"
 									type="password" name="mb.repassword" id="repassword"
-									alt="确认登录密码">
+									alt="">
 
 								</label>
-							</div>
-							<div style="margin-bottom: 20px;">
+								</dd>
+							</dl>
+							<dl class="info_list">
+								<dt>店铺名称：</dt>
+								<dd>
+								<label class="inpt"> <input class="G_input"
+									maxlength="11" type="text" id="email" name="mb.email"
+									alt="" value='<s:property value="mb.email"/>'>
+								</label>
+								<s:property value="errors['mb.email'][0]" escape="false" />
+								</dd>
+							
+								
+							</dl>
+							<dl class="info_list">
+								<dt>联系人：</dt>
+								<dd>
+								<label class="inpt"> <input class="G_input" type="text"
+									id="nickName" name="mb.nickName" alt=""
+									value='<s:property value="mb.nickName"/>'>
+
+								</label>
+								<s:property value="errors['mb.nickName'][0]" escape="false" />
+								</dd>
+							</dl>
+							<dl class="info_list">
+								<dt>店铺地址：</dt>
+								<dd>
+									<select >
+										<option></option>
+										<option selected="true">上海</option>
+									</select>
+									<select >
+										<option>上海</option>
+									</select>
+									<select >
+										<option>徐汇区</option>
+										<option>长宁区</option>
+									</select>
+								
+								</dd>
+							</dl>
+							<!--  dl class="info_list">
+								<dt>营业执照：</dt>
+								<dd>
+									<img src="<%=request.getContextPath() %>/image/b_licence_default.png" border="0" width="230px" style="float:left;">
+									<span style="float:left;margin: 106px 0 0 10px;"><a href="" class="btn btn-small">上传图片</a></span>
+								</dd>
+							</dl-->
+							
+							<div style="padding:10px 0 20px;clear:both;">
 								<input type="checkbox" name="service2" checked="checked"
 									id="service2"><label for="service2" class="ml5">我接受服务协议表明您已经阅读并同意接受养车客的</label><a
 									href="/service/treaty.dhtml"
 									style="margin-left: 5px; color: #333" target="_blank">商家入住协议</a>
 							</div>
-							<div class="info_list no_reg clear">
+							<div class="info_list no_reg clear" style="text-align:center;">
 								<a href="javascript:void(0);" id="sbmit"
-									onclick="savePhoneReg();" class="tostep2 on">申请入住</a>
+									onclick="savePhoneReg();" class="btn btn-primary btn-large">申请入住</a>
 							</div>
 						</div>
 					</div>

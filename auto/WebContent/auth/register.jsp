@@ -94,7 +94,7 @@
 					</div>
 					<div class="info_list no_reg clear">
 						<a href="javascript:void(0)" id="sbmit" onclick="savePhoneReg();"
-							class="btn btn-large btn-block btn-primary">呼，填好了！注册会员</a>
+							class="btn btn-large btn-primary">呼，填好了！注册会员</a>
 					</div>
 				</div>
 			</div>

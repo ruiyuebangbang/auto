@@ -146,7 +146,7 @@ input {
 	box-shadow: 1px 1px 1px 0 #eaeaea inset;
 	color: #ccc;
 	height: 30px;
-	padding: 9px 3px 3px 12px;
+	padding: 5px 3px 3px 12px;
 	display: block;
 	width: 300px;
 	float: left;
@@ -211,7 +211,6 @@ input {
 
 .W_login_form .no_reg {
 	padding-bottom: 20px;
-	width:240px;
 }
 
 .W_login_form .no_reg .W_btn_g {
