@@ -14,7 +14,6 @@ public interface MemberDAO {
 	public void deleteMember(Long memberId);
 	public List<Member> listMemberByPro(Long pid);
 	public int modifyPassword(Member member);
-	public int insertProvider(Member member);
 	
 	public int qryMemberByKeywordCnt(int typeId, String keyword);
 	public List<Member> qryMemberByKeywordList(int typeId, String keyword,int pageNo ,int pageSize);
