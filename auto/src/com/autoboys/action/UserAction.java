@@ -27,8 +27,37 @@ public class UserAction extends ActionSupport {
 	 */
 	public String saveOrUpdate()
 	{	
-		userDAO.saveOrUpdateMember(user);
-		return SUCCESS;
+		boolean bRet =false;
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		String method = request.getMethod();
+
+		if(user==null||user.getNickName()==null||"".equals(user.getNickName().trim())) {
+			this.addFieldError("user.nickName", "<div class='field-error'>用户昵称不能为空</div>");
+			bRet = true;
+		}
+		if(user==null||user.getPassword()==null||"".equals(user.getPassword().trim())) {
+			this.addFieldError("user.password", "<div class='field-error'>用户密码不能为空</div>");
+			bRet = true;
+		}
+		if(user==null||user.getMobilePhone()==null||"".equals(user.getMobilePhone().trim())) {
+			this.addFieldError("user.mobilePhone", "<div class='field-error'>用户手机号不能为空</div>");
+			bRet = true;
+		}
+		if(user==null||user.getEmail()==null||"".equals(user.getEmail().trim())) {
+			this.addFieldError("user.email", "<div class='field-error'>用户邮箱不能为空</div>");
+			bRet = true;
+		}
+
+		if(!bRet) {
+			userDAO.saveOrUpdateMember(user);
+			return SUCCESS;
+		} else {
+			Member member = (Member) request.getSession().getAttribute("login_user");
+			long providerId = member.getProvid();
+			userList = userDAO.listMemberByPro(providerId);
+			return "input";
+		}
+
 	}
 	
 	/**
