@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.rg/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="shortcut icon" href="/auto/favicon.ico" type="image/x-icon">
@@ -44,7 +45,7 @@ body {
 	margin: 0 auto;
 	padding: 20px 0 30px;
 	background-color: #f5f5f1;
-	background: url(../image/logon_bg.jpg) repeat;
+	background: url(../image/logon_bg.jpg) repeat-x;
 }
 
 .field-error {
