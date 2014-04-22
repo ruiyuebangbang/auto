@@ -51,10 +51,7 @@
 					</div>
 					<div class="menu_item_children" itemtype="order">
 					    <ul>
-					        <li class="menu_item_child" id="menu-1-0"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=1">待商家报价订单</a></li>
-					        <li class="menu_item_child" id="menu-1-6"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=2">待商家确认订单</a></li>
-					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=3">待车主确认订单</a></li>
-					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=4">待点评订单</a></li>
+					        <li class="menu_item_child" id="menu-1-0"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=1">待处理订单</a></li>
 					        <li class="menu_item_child" id="menu-1-7"><a href="${pageContext.request.contextPath}/eorder/eorderQuery.action?status=4">所有订单</a></li>
 					        
 					    </ul>

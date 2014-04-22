@@ -68,8 +68,8 @@ function changeBrand(sel){
 				<tr>
 					<td>产品名称：</td>
 					<td>
-						<input name="product.name" type="text" style="width:160px;margin-left:20px;"> 
-						<input type="submit" class="btn btn-primary btn-small" value=" 查询 " style="margin-left:20px">
+						<input name="product.name" type="text" style="width:160px;"> 
+						<input type="submit" class="btn btn-primary btn-small" value=" 查询 " style="margin-left:10px">
 					</td>
 				</tr>
 			</table>

@@ -121,7 +121,7 @@ function changeReg2(reg2) {
 
 						<td colspan="2" align="center">
 							<div class="frmbutton">
-								<a class="btn btn-large btn-primary"  href="javascript:document.forms[0].submit();">提交</a>
+								<a class="btn btn-small btn-primary"  href="javascript:document.forms[0].submit();">提交</a>
 							</div>
 						</td>
 					</tr>

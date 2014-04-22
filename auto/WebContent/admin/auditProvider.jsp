@@ -52,8 +52,7 @@ function f_gotoPage(sel){
 					<td class="op">
 							<a href="editBasicInfo.action?provid=<s:property value='ID'/>">修改</a> | 
 							<a href="javascript:openit(<s:property value="ID"/>,1)">通过</a> | 
-							<a href="javascript:closeit(<s:property value="ID"/>,2)">不通过</a> | 
-							<a href="editStoreInfo.action?provider.ID=<s:property value='ID'/>">店铺管理</a> 
+							<a href="javascript:closeit(<s:property value="ID"/>,2)">不通过</a> 
 					</td>
 				</tr>
 				</s:iterator>
