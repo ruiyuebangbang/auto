@@ -61,6 +61,49 @@ public class ImageUtil {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param file 图片文件
+	 * @param nwidth	新图片宽度
+	 * @param nheight	新图片高度
+	 * @param format	图片格式
+	 * @param savePath	图片保存地址
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean resizeImage(File file,int nwidth,int nheight,String format,String savePath) throws Exception {
+		
+		Image img = ImageIO.read(file);
+		// 判断图片格式是否正确
+		if(!checkImageFile(format)){
+			return false;
+		}
+		if(nwidth ==0 && nheight == 0) {
+			return false;
+		}
+		int width = img.getWidth(null);
+		int height = img.getHeight(null);
+		
+		if(nwidth == 0) nwidth = (int) width * (nheight / height);
+		
+		if(nheight == 0) nheight = (int) height * (nwidth / width);
+		
+		FileOutputStream out = null;
+		try {
+			BufferedImage tag = new BufferedImage((int) nwidth, (int) nheight,BufferedImage.TYPE_INT_RGB);
+			tag.getGraphics().drawImage(img.getScaledInstance(nwidth, nheight, Image.SCALE_SMOOTH),0, 0, null);
+			out = new FileOutputStream(savePath);
+			ImageIO.write(tag, format, out);
+		} catch (Exception e) {
+			throw new RuntimeException("resize image error,", e);
+		} finally {
+			if (out != null) {
+				out.close();
+			}
+		}
+		return true;
+	}
+	
 	
 	/**
 	 * 改变图片的大小到宽为size，然后高随着宽等比例变化

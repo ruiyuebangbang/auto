@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/auto/favicon.ico" type="image/x-icon">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/member.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/slayout.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/autoboys.css" type="text/css">

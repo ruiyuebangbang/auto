@@ -1947,7 +1947,7 @@ height: 120px;
 
 /******store*********/
 #store-top {
-	width: 960px;
+	width: 990px;
 }
 
 #store-top .top-info {
@@ -1982,10 +1982,11 @@ height: 120px;
 
 #store-top .shopimg {
 	float: right;
-	margin: 6px 20px 10px 10px;
-	width: 178px;
-	height: 113px;
-	overflow: hidden;
+margin: 10px 20px 10px 10px;
+width: 220px;
+height: 123px;
+overflow: hidden;
+text-align: right;
 }
 
 #store-top .rows-item {

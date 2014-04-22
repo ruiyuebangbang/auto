@@ -49,8 +49,8 @@ public class StoreAction extends ActionSupport implements ModelDriven<Provider> 
 		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		
 		String providerId = request.getParameter("providerId");
-		provider = pdao.listProviderById(Long.parseLong(providerId));
-		brands = vbdao.listBrandByProduct(Long.parseLong(providerId));
+		//provider = pdao.listProviderById(Long.parseLong(providerId));
+		//brands = vbdao.listBrandByProduct(Long.parseLong(providerId));
 		
 		return SUCCESS;
 	}

@@ -54,13 +54,13 @@ input[type=text] {
 	outline: 0;
 	border: 1px solid #C7C7C7;
 	color: #555555; 
-	height:24px;
+	height:28px;
 }
 select {
 	border: 1px solid #C7C7C7;
 	color: #555555; 
-	outline:none
-	height:24px;
+	outline:none;
+	height:28px;
 }
 .app-header{
 position:relative;
@@ -124,7 +124,7 @@ float:left;
 	margin: 25px 0;
 	list-style: none;
 	font-size: 12px;
-	color: #dbdbe3;
+	color: #ffffff;
 	white-space: nowrap;
 	font-weight: bold;
 	}
@@ -136,7 +136,7 @@ float:left;
 	margin-right: 2px;
 	padding: 0 2px;
 	border-radius: 3px;
-	color: #dbdbe3;
+	color: #fff;
 	font-weight: bold;
 	text-decoration: none;
 	line-height: 21px;
@@ -211,8 +211,9 @@ width:100px;
 .my-content .td_txt {
 border: 1px solid #B6BDC8;
 padding-left: 5px;
-height: 20px;
-line-height: 20px;
+height: 28px;
+line-height: 24px;
+margin:2px 0;
 }
 .my-content .td_label {
 color: #635C43;

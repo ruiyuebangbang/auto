@@ -26,7 +26,7 @@ public class UploadAction extends ActionSupport{
 		String imageType = FiledataFileName.substring(FiledataFileName.lastIndexOf('.'));
 		InputStream is = new FileInputStream(Filedata);
 		OutputStream os = null;
-		ImageUtil.resizeImage(is, os, 230, imageType);
+		
 		if (Filedata != null) {
 			File savefile = new File(new File(realpath), "test.jpg");
 			if (!savefile.getParentFile().exists())
