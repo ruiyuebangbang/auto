@@ -119,7 +119,7 @@
 					log.alert('上传失败', '上传 <em>' + this.fileList[0].name + '</em> 失败, 请重新上传.');
 				} else {
 					var url = JSON.decode(file.response.text, true).hash; // secure decode
-		 			$('img-avatar').set('src', 'http://localhost:8080/auto/image/tmp/test.jpg');					
+		 			$('img-avatar').set('src', 'http://localhost:8080/auto/uploadimage/test.jpg');					
 				}
 	 
 				file.remove();
