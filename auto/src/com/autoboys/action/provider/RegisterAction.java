@@ -115,7 +115,7 @@ public class RegisterAction extends ActionSupport implements ServletRequestAware
 				this.addFieldError("mb.password", "<div class='field-error'>密码不能为空</div>");
 				bRet = true;
 			}
-			if(provider==null||provider.getREGION_ID() == 0) {
+			if(provider==null||provider.getREGION_ID()==null|| provider.getREGION_ID()== 0) {
 				this.addFieldError("provider.region", "<div class='field-error'>必须选择区域</div>");
 				bRet = true;
 			}

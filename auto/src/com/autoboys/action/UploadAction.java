@@ -31,7 +31,8 @@ public class UploadAction extends ActionSupport{
 			File savefile = new File(new File(realpath), "test.jpg");
 			if (!savefile.getParentFile().exists())
 				savefile.getParentFile().mkdirs();
-			FileUtils.copyFile( Filedata, savefile);
+			ImageUtil.resizeImage(Filedata, 120, 120,"jpg" , savefile.getAbsolutePath());
+			//FileUtils.copyFile( Filedata, savefile);
 		}
 		return SUCCESS;
 	}
