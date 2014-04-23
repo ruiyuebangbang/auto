@@ -58,7 +58,7 @@ public class UploadAction extends ActionSupport implements ServletResponseAware,
 				File savefile = new File(new File(realpath), fileName);
 				if (!savefile.getParentFile().exists())
 					savefile.getParentFile().mkdirs();
-				ImageUtil.resizeImage(Filedata, 120, 120,"jpg" , savefile.getAbsolutePath());
+				ImageUtil.resizeImage(Filedata, 120, 120,imageType.substring(1, imageType.length()), savefile.getAbsolutePath());
 				//FileUtils.copyFile( Filedata, savefile);
 				member.setAvatar("/uploadimage/passport/"+fileName);
 				memberDAO.updateAvatar(member);
@@ -71,19 +71,19 @@ public class UploadAction extends ActionSupport implements ServletResponseAware,
 	
 	public String uploadDZ() throws Exception
 	{
-		String realpath = ServletActionContext.getServletContext().getRealPath("/uploadimage/passport/");
+		String realpath = ServletActionContext.getServletContext().getRealPath("/uploadimage/provider/");
 		String imageType = FiledataFileName.substring(FiledataFileName.lastIndexOf('.'));
 		//InputStream is = new FileInputStream(Filedata);
 		//OutputStream os = null;
-		System.out.println("image type :"+imageType.substring(1, imageType.length()));
+		//System.out.println("image type :"+imageType.substring(1, imageType.length()));
 		if(imageType !=null && ImageUtil.checkImageFile(imageType.substring(1, imageType.length()))){
 			if (Filedata != null) {
 				Member member =  (Member) request.getSession().getAttribute("login_user");
-				String fileName = "avatar_"+member.getId()+imageType;
+				String fileName = "provider_logo_"+member.getProvid()+imageType;
 				File savefile = new File(new File(realpath), fileName);
 				if (!savefile.getParentFile().exists())
 					savefile.getParentFile().mkdirs();
-				ImageUtil.resizeImage(Filedata, 230, 123,"jpg" , savefile.getAbsolutePath());
+				ImageUtil.resizeImage(Filedata, 230, 123,imageType.substring(1, imageType.length()), savefile.getAbsolutePath());
 				
 				providerDAO.updateLogo(member.getProvid(),savefile.getName());
 				HTMLUtil.printWriteHTML(response, "{\"status\":\"1\",\"name\":\""+FiledataFileName+"\",\"hash\":\""+savefile.getName()+"\",\"mime\":\"jpg\"}");

@@ -131,8 +131,8 @@
 				<label for="loaddz">上传店招</label>
 			</div>
 			<div>
-				<div id="provider-dz" style="background-image:url(${pageContext.request.contextPath}/image/b_licence_default.png); width: 230px; height: 123px; overflow: hidden;clear: both;margin: 10px 0; background-color: #f5f5f5;float:left;" class="">
-					
+				<div id="provider-dz" style="clear: both;margin: 10px 0; background-color: #f5f5f5;float:left;" >
+					<img src='${pageContext.request.contextPath}/<s:if test="provider.LOGO == null">image/b_licence_default.png</s:if><s:else>uploadimage/provider/<s:property value="provider.LOGO" /></s:else>' style="width:230px; height: 123px;"/>
 				</div>
 				<div style="float: left;margin-top: 106px;margin-left: 10px;"><a href=""  class="btn btn-small btn-primary" id="select-0">更换店招</a></div>
 			</div>
@@ -140,7 +140,7 @@
 		
 			
 		<!-- 上传店面环境图片 -->
-		<div style="margin:20px;clear:both;">
+		<div style="padding:20px;clear:both;">
 			<div>
 				<label for="loadpic" >上传店铺展示图片</label>
 				<!-- span>
@@ -242,9 +242,8 @@ window.addEvent('domready', function() {
  			if (file.response.error) {
 				log.alert('上传失败', '上传 <em>' + this.fileList[0].name + '</em> 失败, 请重新上传.');
 			} else {
-				var url = "<%=request.getContextPath()%>/uploadimage/passport/"+JSON.decode(file.response.text, true).hash; // secure decode
-				var img = $('provider-dz');
-				img.setStyle('background-image', '<%=request.getContextPath()%>/uploadimage/url');				
+				var url = "<%=request.getContextPath()%>/uploadimage/provider/"+JSON.decode(file.response.text, true).hash; // secure decode
+				$('provider-dz').set('src', url);			
 			}
  
 			file.remove();
