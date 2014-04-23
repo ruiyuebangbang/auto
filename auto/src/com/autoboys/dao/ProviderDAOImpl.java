@@ -148,7 +148,7 @@ public class ProviderDAOImpl implements ProviderDAO {
 		return ret;
 	}
 	
-/*	public int updateLogo(Long id, String logo) {
+	public int updateLogo(Long id, String logo) {
 		int ret = 0;
 		try {
 			String sql = " update provider set logo =? where id = ?";
@@ -166,7 +166,7 @@ public class ProviderDAOImpl implements ProviderDAO {
 			session.getTransaction().rollback();
 		}
 		return ret;
-	}*/
+	}
 	
 	public int updateImage(Long providerId,String imagePath,int index) {
 		int ret = 0;

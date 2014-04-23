@@ -22,6 +22,7 @@ import com.autoboys.domain.Member;
 import com.autoboys.util.ImageUtil;
 import com.autoboys.util.HTMLUtil;
 import com.autoboys.dao.*;
+import com.autoboys.domain.Provider;
 public class UploadAction extends ActionSupport implements ServletResponseAware,ServletRequestAware{
 
 	private File Filedata;
@@ -33,6 +34,7 @@ public class UploadAction extends ActionSupport implements ServletResponseAware,
 	private HttpServletResponse response;
 	private HttpServletRequest request;
 	private MemberDAO memberDAO = new MemberDAOImpl();
+	private ProviderDAO providerDAO = new ProviderDAOImpl();
 	private Member member = new Member();
 	
 	public void setServletResponse(HttpServletResponse arg0) {
@@ -66,6 +68,30 @@ public class UploadAction extends ActionSupport implements ServletResponseAware,
 		}
 		return null;
 	}
+	
+	public String uploadDZ() throws Exception
+	{
+		String realpath = ServletActionContext.getServletContext().getRealPath("/uploadimage/passport/");
+		String imageType = FiledataFileName.substring(FiledataFileName.lastIndexOf('.'));
+		//InputStream is = new FileInputStream(Filedata);
+		//OutputStream os = null;
+		System.out.println("image type :"+imageType.substring(1, imageType.length()));
+		if(imageType !=null && ImageUtil.checkImageFile(imageType.substring(1, imageType.length()))){
+			if (Filedata != null) {
+				Member member =  (Member) request.getSession().getAttribute("login_user");
+				String fileName = "avatar_"+member.getId()+imageType;
+				File savefile = new File(new File(realpath), fileName);
+				if (!savefile.getParentFile().exists())
+					savefile.getParentFile().mkdirs();
+				ImageUtil.resizeImage(Filedata, 230, 123,"jpg" , savefile.getAbsolutePath());
+				
+				providerDAO.updateLogo(member.getProvid(),savefile.getName());
+				HTMLUtil.printWriteHTML(response, "{\"status\":\"1\",\"name\":\""+FiledataFileName+"\",\"hash\":\""+savefile.getName()+"\",\"mime\":\"jpg\"}");
+			}
+		}
+		return null;
+	}
+
 
 	public File getFiledata() {
 		return Filedata;

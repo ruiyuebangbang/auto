@@ -75,7 +75,6 @@
 	<script type="text/javascript">
 	window.addEvent('domready', function() {
 		 
-		// One Roar instance for our notofications, positioned in the top-right corner of our demo.
 		var log = new Roar({
 			container: $('user_avatar'),
 			position: 'topRight',
@@ -93,8 +92,8 @@
 	 
 		// Uploader instance
 		var swf = new Swiff.Uploader({
-			path: '/auto/css/uploader.swf',
-			url: '/auto/ajax/common/upload.action',
+			path: '<%=request.getContextPath()%>/css/uploader.swf',
+			url: '<%=request.getContextPath()%>/ajax/common/upload.action',
 			verbose: true,
 			queued: false,
 			multiple: false,

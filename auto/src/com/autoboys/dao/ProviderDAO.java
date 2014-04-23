@@ -11,7 +11,7 @@ public interface ProviderDAO {
 	public Provider listProviderById(Long providerId);
 	public void deleteProvider(Long providerId);
 	public int updateLogo(Provider prov);
-	//public int updateLogo(Long id, String logo);
+	public int updateLogo(Long id, String logo);
 	public int updateImage(Long providerId,String imagePath,int index);	
 	public List<Provider> qryAuditProviderList(int pageNo ,int pageSize);
 	public int qryAuditProviderCnt();

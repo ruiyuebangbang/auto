@@ -71,6 +71,9 @@
 		<action name="upload" class="com.autoboys.action.UploadAction">
 			<result name="success">upload.jsp</result>
 		</action>
+		<action name="uploadDZ" method="uploadDZ" class="com.autoboys.action.UploadAction">
+			<result name="success">upload.jsp</result>
+		</action>
 		<action name="getService" method="getServiceByCat" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
 		</action>

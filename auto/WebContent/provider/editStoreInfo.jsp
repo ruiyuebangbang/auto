@@ -130,14 +130,17 @@
 			<div style="float: left;margin: 0 20px 0 0;">
 				<label for="loaddz">上传店招</label>
 			</div>
-			<div id="dragable-holder" style="background:#fff; width: 200px; height: 123px; overflow: hidden;clear: both;margin: 10px 0; background-color: #f5f5f5;" class="">
-				<img id="corp" src="">
+			<div>
+				<div id="provider-dz" style="background-image:url(${pageContext.request.contextPath}/image/b_licence_default.png); width: 230px; height: 123px; overflow: hidden;clear: both;margin: 10px 0; background-color: #f5f5f5;float:left;" class="">
+					
+				</div>
+				<div style="float: left;margin-top: 106px;margin-left: 10px;"><a href=""  class="btn btn-small btn-primary" id="select-0">更换店招</a></div>
 			</div>
 		</div>
 		
 			
 		<!-- 上传店面环境图片 -->
-		<div style="margin:20px;">
+		<div style="margin:20px;clear:both;">
 			<div>
 				<label for="loadpic" >上传店铺展示图片</label>
 				<!-- span>
@@ -161,7 +164,7 @@
 						<span style="display: block; height: 40px; width: 80px; background-image: url(<%=request.getContextPath() %>/image/chooseimg.png); background-repeat:no-repeat;position: relative; overflow: hidden; margin-left: 5px; float: left; background-position: 50% 5px; background-repeat: no-repeat no-repeat;">
 							<input type="submit" name="logo0" style="position: absolute; font-size: 0; right: 0px; bottom: 5px; outline: none; cursor: pointer; visibility: visible; zoom: 1; opacity: 0; z-index: -1;">
 						</span>
-						<span style="display: inline-block; margin-left: 20px; ">上传图片总大小不得超过2M，格式为（.jpg	| .gif | .png | .jpeg）</span>
+						<span style="display: inline-block; margin-left: 20px; ">上传图片大小不得超过2M，格式为（.jpg	| .gif | .png | .jpeg）</span>
 					</div>
 					<div
 						style="width: 700px; height: 280px; clear:both;border: 1px solid rgb(240, 240, 240); background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;">
@@ -190,7 +193,88 @@
 		<!-- 上传店面环境图片 -->
 	</div>
 
+
+<link rel="stylesheet" type="text/css" href="<s:url value='/css/Roar.css' />">
+<script type="text/javascript" src="<s:url value='/scripts/Swiff.Uploader.js' />"></script>
+<script type="text/javascript" src="<s:url value='/scripts/Roar.js' />"></script>
 <script type="text/javascript">
+window.addEvent('domready', function() {
+	 
+	var log = new Roar({
+		container: $('user_avatar'),
+		position: 'topRight',
+		duration: 5000
+	});
+ 
+	var link = $('select-0');
+	var linkIdle = link.get('html');
+ 
+	function linkUpdate() {
+		if (!swf.uploading) return;
+		var size = Swiff.Uploader.formatUnit(swf.size, 'b');
+		link.set('html', '<span class="small">' + swf.percentLoaded + '% of ' + size + '</span>');
+	}
+ 
+	// Uploader instance
+	var swf = new Swiff.Uploader({
+		path: '<%=request.getContextPath()%>/css/uploader.swf',
+		url: '<%=request.getContextPath()%>/ajax/common/uploadDZ.action',
+		verbose: true,
+		queued: false,
+		multiple: false,
+		target: link,
+		instantStart: true,
+		typeFilter: {
+			'Images (*.jpg, *.jpeg, *.gif, *.png)': '*.jpg; *.jpeg; *.gif; *.png'
+		},
+		fileSizeMax: 2 * 1024 * 1024,
+		onSelectSuccess: function(files) {
+			//if (Browser.Platform.linux) window.alert('Warning: Due to a misbehaviour of Adobe Flash Player on Linux,\nthe browser will probably freeze during the upload process.\nSince you are prepared now, the upload will start right away ...');
+			//log.alert('Starting Upload', 'Uploading <em>' + files[0].name + '</em> (' + Swiff.Uploader.formatUnit(files[0].size, 'b') + ')');
+			this.setEnabled(false);
+		},
+		onSelectFail: function(files) {
+			log.alert('<em>' + files[0].name + '</em> 上传失败!', '请更换小于2M的图片上传.');
+		},
+		appendCookieData: true,
+		onQueue: linkUpdate,
+		onFileComplete: function(file) {
+ 			if (file.response.error) {
+				log.alert('上传失败', '上传 <em>' + this.fileList[0].name + '</em> 失败, 请重新上传.');
+			} else {
+				var url = "<%=request.getContextPath()%>/uploadimage/passport/"+JSON.decode(file.response.text, true).hash; // secure decode
+				var img = $('provider-dz');
+				img.setStyle('background-image', '<%=request.getContextPath()%>/uploadimage/url');				
+			}
+ 
+			file.remove();
+			this.setEnabled(true);
+		},
+		onComplete: function() {
+			link.set('html', linkIdle);
+		}
+	});
+ 
+	// Button state
+	link.addEvents({
+		click: function() {
+			return false;
+		},
+		mouseenter: function() {
+			this.addClass('hover');
+			swf.reposition();
+		},
+		mouseleave: function() {
+			this.removeClass('hover');
+			this.blur();
+		},
+		mousedown: function() {
+			this.focus();
+		}
+	});
+ 
+});
+
 function changeUpload(obj){
 	if(obj.checked && obj.id =="batch"){
 		$("singlediv").setStyle('display','none');

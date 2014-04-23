@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
-
 <head>
-
 <meta name="description" content="专业汽车保养、维修服务">
 <meta name="keywords" content="">
 <title>编辑企业基本信息</title>
@@ -12,8 +10,6 @@
 <script language=javascript>
 $( document ).ready(function() {        
 	//alert( "document loaded" );    
-
-	
 });
 
 function changeReg1(reg1){	
