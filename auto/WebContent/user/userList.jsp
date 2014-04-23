@@ -25,13 +25,13 @@
 		<s:hidden name="user.provid" />
 		<s:hidden name="user.classid" />
 		<s:hidden name="user.isAdmin" />
-		<s:textfield name="user.nickName" label="昵称" />
+	  <tr><td>昵称:</td><td><s:textfield theme="simple" name="user.nickName"/><span class="cr">*</span><font color='red'><s:property value="errors['user.nickName'][0]" /></font></d></tr>
 		<tr>
 		<td class="tdLabel"><label for="saveOrUpdateUser_user_password" class="label">密码:</label></td>
-    	<td><input type="password" name="user.password" value='<s:property value="user.password" />' /></td>
+    	<td><input type="password" name="user.password" value='<s:property value="user.password" />' /><span class="cr">*</span><font color='red'><s:property value="errors['user.password'][0]" /></font></td>
 		</tr>
-		<s:textfield name="user.mobilePhone" label="手机" />
-		<s:textfield name="user.email" label="邮箱" />
+		<tr><td>手机:</td><td><s:textfield theme="simple" name="user.mobilePhone" /><span class="cr">*</span><font color='red'><s:property value="errors['user.mobilePhone'][0]" /></font></td></tr>
+		<tr><td>邮箱:</td><td><s:textfield theme="simple" name="user.email" /><span class="cr">*</span><font color='red'><s:property value="errors['user.email'][0]" /></font></td></tr>
 		<s:submit value="提交"/>
 
 </s:form>

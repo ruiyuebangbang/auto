@@ -159,12 +159,13 @@
 	<package name="user" extends="hibernate-default" namespace="/user">
 		<action name="saveOrUpdateUser" method="saveOrUpdate" class="com.autoboys.action.UserAction">
 			<result name="success" type="redirect">userList.action</result>
+			<result name="input">userList.jsp</result>
 		</action>
 		<action name="userList" method="list" class="com.autoboys.action.UserAction">
 			<result name="success">/user/userList.jsp</result>
 		</action>
 		<action name="editUser" method="edit" class="com.autoboys.action.UserAction">
-			<result name="success">/user//userList.jsp</result>
+			<result name="success">/user/userList.jsp</result>
 		</action>
 		<action name="deleteUser" method="delete" class="com.autoboys.action.UserAction">
 			<result name="success" type="redirect">userList.action</result>
