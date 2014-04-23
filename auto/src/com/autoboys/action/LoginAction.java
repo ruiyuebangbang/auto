@@ -66,6 +66,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,Se
 				this.addFieldError("member.password", "<div class='field-error'>密码不正确，再试试看！</div>");
 				return "login";
 			}
+			System.out.println("avatar :"+member.getAvatar());
 			request.getSession(true).setAttribute("login_user", member);
 			returnURL = request.getParameter("returnURL");
 			if(returnURL == null||"".equals(returnURL)) return "home";

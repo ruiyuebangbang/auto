@@ -10,6 +10,10 @@
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/member.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/slayout.css" type="text/css">
   	<link rel="StyleSheet" href="${pageContext.request.contextPath}/css/autoboys.css" type="text/css">
+  	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/mootools.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/scripts/silunzi.js"></script>
   	<decorator:head/> 
   	<title><decorator:title>养车客商家后台：互联网养车，开启养车新模式</decorator:title></title>
 </head>

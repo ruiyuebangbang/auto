@@ -27,10 +27,18 @@
       <param-name>loginUrl</param-name>
       <param-value>/provider/provider_login.action</param-value>
     </init-param>
+    <init-param>
+      <param-name>userLoginUrl</param-name>
+      <param-value>/auth/login.action</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>AuthFilter</filter-name>
     <url-pattern>/provider/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/member/*</url-pattern>
   </filter-mapping>
 
   <!-- sitemesh配置 --> 

@@ -13,7 +13,7 @@
 		<div class="user_info clearfix">
 			<div id="user_avatar">
 				<div id="uc-avatar" >
-					<img id="img-avatar" src="<s:url value='/image/member/default_m.png' includeParams='none'/>" width=120px height=120px/>
+					<img id="img-avatar" src='<%=request.getContextPath()%><s:if test='member.avatar !=null'><s:property value="member.avatar" /></s:if><s:if test='member.avatar ==null'>/image/member/default_m.png</s:if>' width=120px height=120px/>
 					<a href="#" id="select-0" >更换头像</a>
 				</div>
 			</div>
@@ -22,11 +22,11 @@
 				<tbody>
 					<tr>
 						<td class="td_l">昵称：</td>
-						<td>kevin <a	href="">更改</a></td>
+						<td><s:property value="member.nickName" /> <a	href="">更改</a></td>
 					</tr>
 					<tr>
 						<td class="td_l">Email：</td>
-						<td class="rel_t">qbzhou@hotmail.com <a	href="">更改</a>
+						<td class="rel_t"><s:if test='null==member.email'>（未绑定）<a	href="">绑定</a></s:if><s:if test='member.email !=null'><s:property value="member.email" /><a	href="">更改</a></s:if>
 							<span class="p_pop"> <span class="doubt"></span> <span
 								class="pop"> <span class="lit_tip"></span> <span
 									class="td_lht">您可以通过绑定邮箱来找回帐户密码<br>以及可以用来登录养车客。
@@ -38,7 +38,7 @@
 					
 					<tr>
 						<td class="td_l">手机：</td>
-						<td class="rel_t">（未绑定） <a href="http://www.xiaomi.cn">设置</a>
+						<td class="rel_t"><s:if test='null==member.mobilePhone'>（未绑定）<a	href="">绑定</a></s:if><s:if test='member.mobilePhone !=null'><s:property value="member.mobilePhone" /><a	href="">更改</a></s:if>
 							<span class="p_pop"> <span class="doubt"></span> <span
 								class="pop"> <span class="lit_tip"></span> <span
 									class="td_lht">您可以通过绑定手机号来找回帐户密码<br>以及可以用来登录养车客。
@@ -48,14 +48,14 @@
 						</td>
 					</tr>
 					
-					<tr>
+					<!-- tr>
 						<td class="td_l">区域：</td>
 						<td></td>
-					</tr>
+					</tr -->
 					<tr>
 						<td class="td_l">密码：</td>
 						<td>
-							<s:a href="changePassword.action" class="mar_no">更改</s:a> 
+							***********<s:a href="changePassword.action" class="mar_no">更改</s:a> 
 							<span class="p_pop"> 
 								<span class="doubt"></span> 
 							<span class="pop"> 
@@ -118,8 +118,8 @@
 	 			if (file.response.error) {
 					log.alert('上传失败', '上传 <em>' + this.fileList[0].name + '</em> 失败, 请重新上传.');
 				} else {
-					var url = JSON.decode(file.response.text, true).hash; // secure decode
-		 			$('img-avatar').set('src', 'http://localhost:8080/auto/uploadimage/test.jpg');					
+					var url = "<%=request.getContextPath()%>/uploadimage/passport/"+JSON.decode(file.response.text, true).hash; // secure decode
+					$('img-avatar').set('src', url);					
 				}
 	 
 				file.remove();

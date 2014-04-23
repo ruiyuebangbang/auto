@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/AuthFilter")
 public class AuthFilter implements Filter {
 	String loginUrl = null;
+	String userLoginUrl = null;
     /**
      * Default constructor. 
      */
@@ -41,6 +42,10 @@ public class AuthFilter implements Filter {
         HttpServletResponse httpRes=(HttpServletResponse)response;  
         String retUrl = httpReq.getRequestURI();
         //retUrl = retUrl.substring(retUrl.indexOf('/',1));
+        /**modify by Kevin 没登陆访问个人中心跳转到会员登录页面 **/
+        if(retUrl.indexOf("/member/") >=0){
+        	loginUrl = userLoginUrl;
+        }
         if (retUrl.indexOf("login.action")>0||retUrl.indexOf("register.action")>0) {
         	 chain.doFilter(request, response);  
         } else {
@@ -61,7 +66,7 @@ public class AuthFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 		loginUrl = fConfig.getInitParameter("loginUrl");
-		
+		userLoginUrl = fConfig.getInitParameter("userLoginUrl");
 	}
 
 }

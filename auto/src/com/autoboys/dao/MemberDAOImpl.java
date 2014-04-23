@@ -182,6 +182,22 @@ public class MemberDAOImpl implements MemberDAO {
 		return ret;
 	}
 	
+	public int updateAvatar(Member member) {
+		int ret = 0;
+		try {
+			session.beginTransaction();  
+			Query query = session.createSQLQuery("update Member t set t.avatar =? where id = ?");
+			query.setString(0, member.getAvatar());
+			query.setLong(1,member.getId());
+			ret = query.executeUpdate();  
+			session.getTransaction().commit();  
+
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+		return ret;
+	}
+	
 	
 	public int qryMemberByKeywordCnt(int typeId, String keyword) {
 		int ret = 0;

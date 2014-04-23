@@ -127,6 +127,14 @@ public class MemberAction extends ActionSupport implements ServletRequestAware,
 		
 	}
 	
+	public String updateAvatar(String avatarPath) {
+		String avatar = (String)request.getAttribute("imgPath");
+		member =  (Member) request.getSession().getAttribute("login_user");
+		member.setAvatar(avatarPath);
+		memberDAO.updateAvatar(member);
+		return SUCCESS;
+	}
+	
 	public String edit()
 	{
 		String method = request.getMethod();

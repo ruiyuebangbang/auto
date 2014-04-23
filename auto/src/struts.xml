@@ -16,7 +16,7 @@
 		</action>
 		
 	</package>
-	<package name="member" extends="struts-default" namespace="/member">
+	<package name="member" extends="hibernate-default" namespace="/member">
 		<action name="member" class="com.autoboys.action.MemberAction">
 			<result name="success">member.jsp</result>
 		</action>
@@ -74,7 +74,7 @@
 		<action name="getService" method="getServiceByCat" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
 		</action>
-		<action name="getVehicleSeries" method="getVehicleSeries1" class="com.autoboys.action.AjaxAction">
+		<action name="getZhuVehicleSeries1" method="getZhuVehicleSeries1" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
 		</action>
 	</package>

@@ -144,7 +144,7 @@ public class AjaxAction extends ActionSupport implements ServletRequestAware,Ser
 	 */
 	public String getVehicleSeries() throws Exception {
 		String pcode = request.getParameter("pcode");
-		//System.out.println("get series ,brand_code:"+pcode);
+		System.out.println("get series ,brand_code:"+pcode);
 		//设置选定品牌cookie
 		//CookieUtil.setCookie(request, response, "AutoboysVB", pcode, 31536000);
 		VehicleBrand brand = vehicleBrandDAO.getVehicleBrand(pcode);

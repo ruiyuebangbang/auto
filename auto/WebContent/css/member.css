@@ -132,6 +132,11 @@ padding-bottom: 22px;
 font-size: 14px;
 font-weight: bold;
 }
+.mess td a {
+font-size: 12px;
+font-weight: normal;
+margin-left: 10px;
+}
 .user_info {
 margin: 40px;
 }

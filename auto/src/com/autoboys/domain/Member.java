@@ -24,6 +24,8 @@ public class Member {
 	private Integer classid;
 	private Integer isAdmin;
 	private Integer isDisabled;
+	private String avatar;
+	private java.sql.Date registerDate;
 	
 	@Id
 	
@@ -65,8 +67,8 @@ public class Member {
 	public String getMobilePhone() {
 		return mobilePhone;
 	}
-	public void setMobilePhone(String moblilePhone) {
-		this.mobilePhone = moblilePhone;
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
 	}
 	
 	@Column(name="email")
@@ -111,6 +113,20 @@ public class Member {
 	}
 	public void setIsDisabled(Integer isDisabled) {
 		this.isDisabled = isDisabled;
+	}
+	@Column(name="avatar")
+	public String getAvatar(){
+		return avatar;
+	}
+	public void setAvatar(String avatar){
+		this.avatar=avatar;
+	}
+	@Column(name="register_date")
+	public java.sql.Date getRegisterDate(){
+		return this.registerDate;
+	}
+	public void setRegisterDate(java.sql.Date registerDate){
+		this.registerDate = registerDate;
 	}
 	
 
