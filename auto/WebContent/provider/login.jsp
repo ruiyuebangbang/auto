@@ -144,7 +144,8 @@ color:#fff;
 								<div class="info_list no_reg clear">
 									
 										<span class="no_reg_tip" >还没入驻，<a href="/auto/provider/provider_register.action" title="申请入驻" class="ml10" style="font-size:16px;font-weight:bold;">申请入驻</a></span>
-										<a href="javascript:void(0)" class="btn btn-large btn-block btn-primary" style="width: 120px; float: left;" id="sbmit">登录</a>
+										<!-- a href="javascript:void(0)" class="btn btn-large btn-block btn-primary" style="width: 120px; float: left;" id="sbmit">登录</a -->
+										<input type="submit" value="登录" class="btn btn-large btn-block btn-primary" style="width: 120px; float: left;"></input>
 										<s:hidden name="returnURL"/>
 								</div>
 

@@ -18,6 +18,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware{
 	@Override
 	public String execute() throws Exception {
 		
+		System.out.println("height:"+ 30 * ((double)660/1120));
 		return SUCCESS;
 	}
 	

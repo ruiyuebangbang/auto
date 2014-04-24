@@ -175,7 +175,7 @@ else
 					<div class="footer-menu first">
 						<h3 class="menu-header gy">关于</h3>
 						<ul class="menu-list">
-							<li><a href="/about">关于四轮子</a></li>
+							<li><a href="/about">关于养车客</a></li>
 							<li><a href="#">联系我们</a></li>
 
 						</ul>
