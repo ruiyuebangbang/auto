@@ -33,18 +33,19 @@ var FancyUpload2 = new Class({
 
 	render: function() {
 		this.overallTitle = this.status.getElement('.overall-title');
-		this.currentTitle = this.status.getElement('.current-title');
-		this.currentText = this.status.getElement('.current-text');
+		//this.currentTitle = this.status.getElement('.current-title');
+		//this.currentText = this.status.getElement('.current-text');
 
 		var progress = this.status.getElement('.overall-progress');
 		this.overallProgress = new Fx.ProgressBar(progress, {
 			text: new Element('span', {'class': 'progress-text'}).inject(progress, 'after')
 		});
+		/*
 		progress = this.status.getElement('.current-progress')
 		this.currentProgress = new Fx.ProgressBar(progress, {
 			text: new Element('span', {'class': 'progress-text'}).inject(progress, 'after')
 		});
-				
+		*/		
 		this.updateOverall();
 	},
 
@@ -71,7 +72,7 @@ var FancyUpload2 = new Class({
 			this.overallProgress.start(100);
 		} else {
 			this.overallProgress.set(0);
-			this.currentProgress.set(0);
+			//this.currentProgress.set(0);
 		}
 		
 	},
@@ -80,10 +81,11 @@ var FancyUpload2 = new Class({
 		this.overallTitle.set('html', MooTools.lang.get('FancyUpload', 'progressOverall').substitute({
 			total: Swiff.Uploader.formatUnit(this.size, 'b')
 		}));
+		/*
 		if (!this.size) {
 			this.currentTitle.set('html', MooTools.lang.get('FancyUpload', 'currentTitle'));
 			this.currentText.set('html', '');
-		}
+		}*/
 	},
 	
 	/**
@@ -154,25 +156,27 @@ FancyUpload2.File = new Class({
 	
 	onStart: function() {
 		this.element.addClass('file-uploading');
-		this.base.currentProgress.cancel().set(0);
-		this.base.currentTitle.set('html', MooTools.lang.get('FancyUpload', 'currentFile').substitute(this));
+		//this.base.currentProgress.cancel().set(0);
+		//this.base.currentTitle.set('html', MooTools.lang.get('FancyUpload', 'currentFile').substitute(this));
 	},
 
 	onProgress: function() {
 		this.base.overallProgress.start(this.base.percentLoaded);
+		/*
 		this.base.currentText.set('html', MooTools.lang.get('FancyUpload', 'currentProgress').substitute({
 			rate: (this.progress.rate) ? Swiff.Uploader.formatUnit(this.progress.rate, 'bps') : '- B',
 			bytesLoaded: Swiff.Uploader.formatUnit(this.progress.bytesLoaded, 'b'),
 			timeRemaining: (this.progress.timeRemaining) ? Swiff.Uploader.formatUnit(this.progress.timeRemaining, 's') : '-'
 		}));
 		this.base.currentProgress.start(this.progress.percentLoaded);
+		*/
 	},
 	
 	onComplete: function() {
 		this.element.removeClass('file-uploading');
 		
-		this.base.currentText.set('html', 'Upload completed');
-		this.base.currentProgress.start(100);
+		//this.base.currentText.set('html', 'Upload completed');
+		//this.base.currentProgress.start(100);
 		
 		if (this.response.error) {
 			var msg = MooTools.lang.get('FancyUpload', 'errors')[this.response.error] || '{error} #{code}';
@@ -204,16 +208,16 @@ FancyUpload2.File = new Class({
 // Avoiding MooTools.lang dependency
 (function() {
 	var phrases = {
-		'progressOverall': 'Overall Progress ({total})',
+		'progressOverall': '文件总大小({total})',
 		'currentTitle': 'File Progress',
 		'currentFile': 'Uploading "{name}"',
 		'currentProgress': 'Upload: {bytesLoaded} with {rate}, {timeRemaining} remaining.',
 		'fileName': '{name}',
 		'remove': '删除',
-		'removeTitle': 'Click to remove this entry.',
-		'fileError': 'Upload failed',
+		'removeTitle': '点击删除',
+		'fileError': '上传失败',
 		'validationErrors': {
-			'duplicate': '重复选择图片',
+			'duplicate': '图片选择重复',
 			'sizeLimitMin': '文件<em>{name}</em> (<em>{size}</em>)太小,必须大于 {fileSizeMin}.',
 			'sizeLimitMax': '文件<em>{name}</em> (<em>{size}</em>)太大, 必须小于<em>{fileSizeMax}</em>.',
 			'fileListMax': '最多只能上传{fileListMax} 个文件',

@@ -151,11 +151,16 @@
 				<div style="width: 100%; height: 100%;">
 					
 					<div id="upload-status" style="margin:10px;">
-						<p>
-							<a href="#" id="file-browse" class="">选择图片</a> |
-							<a href="#" id="file-clear">取消选择</a> |
-							<a href="#" id="file-upload">上传图片</a>
+						<p style="width: 260px;float: left;">
+							<a href="#" id="file-browse" class="btn btn-small">选择图片</a> 
+							<a href="#" id="file-clear" class="btn btn-small">取消选择</a> 
+							<a href="#" id="file-upload" class="btn btn-small btn-primary">上传图片</a>
 						</p>
+						<div>
+							<span class="overall-title"></span>
+							<span class="progress overall-progress"></span>
+							<span class="progress-text"></span>
+						</div>
 					</div>
 					<ul id="pic-list" style="width: 700px; height: 300px; clear:both;border: 1px solid rgb(240, 240, 240); background-color: rgb(255, 255, 255);">
 					</ul>	
@@ -171,6 +176,7 @@
 <link rel="stylesheet" type="text/css" href="<s:url value='/css/Roar.css' />">
 <script type="text/javascript" src="<s:url value='/scripts/Swiff.Uploader.js' />"></script>
 <script type="text/javascript" src="<s:url value='/scripts/FancyUpload2.js' />"></script>
+<script type="text/javascript" src="<s:url value='/scripts/Fx.ProgressBar.js' />"></script>
 <script type="text/javascript" src="<s:url value='/scripts/Roar.js' />"></script>
 
 <script type="text/javascript">
@@ -254,7 +260,7 @@ window.addEvent('domready', function() {
 <script type="text/javascript">
 
 window.addEvent('domready', function() { 
-	
+	var providerImg = "<%=request.getContextPath()%>\/uploadimage/provider/";
 	var up = new FancyUpload2($('upload-status'), $('pic-list'), { // options object
 		// we console.log infos, remove that in production!!
 		verbose: true,
@@ -343,10 +349,15 @@ window.addEvent('domready', function() {
 			
 			if (json.get('status') == '1') {
 				file.element.addClass('file-success');
-				file.info.set('html', '<strong>Image was uploaded:</strong> ' + json.get('width') + ' x ' + json.get('height') + 'px, <em>' + json.get('mime') + '</em>)');
+				//file.info.set('html', '<strong>Image was uploaded:</strong> ' + json.get('width') + ' x ' + json.get('height') + 'px, <em>' + json.get('mime') + '</em>)');
+				var imgurl = providerImg + json.get('hash');
+				//file.element.setHTML("<img src='"+imgurl+"' width='210px' height='130px'>");
+				file.element.getFirst().empty();
+				new Element('img', {'src': imgurl, 'width':'210px','height':'130px'}).inject(file.element.getFirst(),'inside');
+				
 			} else {
 				file.element.addClass('file-failed');
-				file.info.set('html', '<strong>An error occured:</strong> ' + (json.get('error') ? (json.get('error') + ' #' + json.get('code')) : response));
+				//file.info.set('html', '<strong>An error occured:</strong> ' + (json.get('error') ? (json.get('error') + ' #' + json.get('code')) : response));
 			}
 		},
 		
