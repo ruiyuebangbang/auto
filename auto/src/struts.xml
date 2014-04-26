@@ -77,7 +77,7 @@
 		<action name="getService" method="getServiceByCat" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
 		</action>
-		<action name="getZhuVehicleSeries1" method="getZhuVehicleSeries1" class="com.autoboys.action.AjaxAction">
+		<action name="getVehicleSeries1" method="getVehicleSeries1" class="com.autoboys.action.AjaxAction">
 			<result name="success">/null.jsp</result>
 		</action>
 	</package>
