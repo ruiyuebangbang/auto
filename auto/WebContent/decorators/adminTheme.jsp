@@ -69,8 +69,8 @@
 					<div class="menu_item" itemtype="car"><span class="item_icon icon_car"></span><span class="item_name">产品管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="car">
 					    <ul>
-					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/admin/productList.action">产品管理</a></li>
-					        
+					        <li class="menu_item_child" id="menu-3-1"><a href="<%=request.getContextPath()%>/admin/productList.action">产品管理</a></li>
+					        <li class="menu_item_child" id="menu-3-2"><a href="<%=request.getContextPath()%>/admin/productAdd.action">新增产品</a></li>
 					    </ul>
 					</div>
 					<div class="menu_item" itemtype="account"><span class="item_icon icon_account"></span><span class="item_name">用户管理</span><span class="item_more item_to_down"></span></div>

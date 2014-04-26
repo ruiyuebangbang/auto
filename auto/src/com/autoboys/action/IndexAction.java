@@ -1,8 +1,12 @@
 package com.autoboys.action;
 
 
+import java.security.MessageDigest;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.interceptor.ServletRequestAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 public class IndexAction extends ActionSupport implements ServletRequestAware{
 	
@@ -20,5 +24,7 @@ public class IndexAction extends ActionSupport implements ServletRequestAware{
 		
 		return SUCCESS;
 	}
+	
+	
 	
 }

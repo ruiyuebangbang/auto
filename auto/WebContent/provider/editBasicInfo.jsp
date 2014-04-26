@@ -96,8 +96,8 @@ function changeReg2(reg2) {
 						<td class="td_label w100">服务时间：</td>
 						<td>
 						<s:textfield name="provider.SERVICE_TIME" theme="simple" cssClass="td_txt w190 not_null" maxlength="20" />
-								
-							</td>
+						<span>格式：7:30 - 20:00</span>
+						</td>
 					</tr>
 					<tr>
 						<td class="td_label w100">商家资质：</td>

@@ -231,6 +231,22 @@ public class ProductAction extends ActionSupport {
 		}
 	}
 	
+	public String add()
+	{
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+		if(request.getMethod().equals("GET")){
+			
+			
+			pbrands = productBrandDAO.listBrands();
+			
+			return INPUT;
+		}else{
+			pdao.saveOrUpdateProduct(product);
+			
+			return SUCCESS;
+		}
+	}
+	
 	/**
 	 * 产品对应车型显示
 	 * @return

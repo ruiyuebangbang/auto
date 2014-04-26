@@ -91,8 +91,9 @@
 						<span class="no_reg_tip"><a href="/forgetPassword.xhtml"
 							title="忘记密码" class="mr5">忘记密码？</a>|<a
 							href="<%=request.getContextPath()%>/auth/register.action"
-							title="免费注册" class="ml10">免费注册</a></span> <a href="javascript:void(0)"
-							class="btn btn-large btn-block btn-primary" style="width: 160px; float: left;" id="sbmit">登录</a>
+							title="免费注册" class="ml10">免费注册</a></span> 
+							<!-- a href="javascript:void(0)" class="btn btn-large btn-block btn-primary" style="width: 160px; float: left;" id="sbmit">登录</a -->
+							<input type="submit" class="btn btn-large btn-block btn-primary" style="width: 160px; float: left;" value="登录">
 					</div>
 					<div class="info_list cooperation clear"
 						style="margin-bottom: 10px;">

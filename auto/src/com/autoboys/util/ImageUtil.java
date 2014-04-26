@@ -84,9 +84,9 @@ public class ImageUtil {
 		int width = img.getWidth(null);
 		int height = img.getHeight(null);
 		
-		if(nwidth == 0) nwidth = (int) width * (nheight / height);
+		if(nwidth == 0) nwidth =  (int)((double) width * ((double)nheight / height));
 		
-		if(nheight == 0) nheight = (int) height * (nwidth / width);
+		if(nheight == 0) nheight = (int)((double) height * ((double)nwidth / width));
 		
 		FileOutputStream out = null;
 		try {

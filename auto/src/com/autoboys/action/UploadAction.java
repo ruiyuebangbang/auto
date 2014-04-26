@@ -1,11 +1,14 @@
 package com.autoboys.action;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Random;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,6 +24,7 @@ import org.apache.commons.io.FileUtils;
 import com.autoboys.domain.Member;
 import com.autoboys.util.ImageUtil;
 import com.autoboys.util.HTMLUtil;
+import com.autoboys.util.StringUtil;
 import com.autoboys.dao.*;
 import com.autoboys.domain.Provider;
 public class UploadAction extends ActionSupport implements ServletResponseAware,ServletRequestAware{
@@ -50,7 +54,7 @@ public class UploadAction extends ActionSupport implements ServletResponseAware,
 		String imageType = FiledataFileName.substring(FiledataFileName.lastIndexOf('.'));
 		//InputStream is = new FileInputStream(Filedata);
 		//OutputStream os = null;
-		System.out.println("image type :"+imageType.substring(1, imageType.length()));
+		//System.out.println("image type :"+imageType.substring(1, imageType.length()));
 		if(imageType !=null && ImageUtil.checkImageFile(imageType.substring(1, imageType.length()))){
 			if (Filedata != null) {
 				Member member =  (Member) request.getSession().getAttribute("login_user");
@@ -79,7 +83,8 @@ public class UploadAction extends ActionSupport implements ServletResponseAware,
 		if(imageType !=null && ImageUtil.checkImageFile(imageType.substring(1, imageType.length()))){
 			if (Filedata != null) {
 				Member member =  (Member) request.getSession().getAttribute("login_user");
-				String fileName = "provider_logo_"+member.getProvid()+imageType;
+				//Random rd1 = new Random();
+				String fileName = "logo_"+member.getProvid() + imageType;
 				File savefile = new File(new File(realpath), fileName);
 				if (!savefile.getParentFile().exists())
 					savefile.getParentFile().mkdirs();
@@ -88,6 +93,34 @@ public class UploadAction extends ActionSupport implements ServletResponseAware,
 				providerDAO.updateLogo(member.getProvid(),savefile.getName());
 				HTMLUtil.printWriteHTML(response, "{\"status\":\"1\",\"name\":\""+FiledataFileName+"\",\"hash\":\""+savefile.getName()+"\",\"mime\":\"jpg\"}");
 			}
+		}
+		return null;
+	}
+	
+	public String uploadProviderImgs() throws Exception
+	{
+		String realpath = ServletActionContext.getServletContext().getRealPath("/uploadimage/provider/");
+		String imageType = FiledataFileName.substring(FiledataFileName.lastIndexOf('.')+1,FiledataFileName.length());
+		String imageName = FiledataFileName.substring(0, FiledataFileName.indexOf("."));
+		imageName = StringUtil.MD5(imageName);
+		//InputStream is = new FileInputStream(Filedata);
+		//OutputStream os = null;
+		if(imageType !=null && ImageUtil.checkImageFile(imageType)){
+			if (Filedata != null) {
+				Member member =  (Member) request.getSession().getAttribute("login_user");
+				//Random rd1 = new Random();
+				//String fileName = "store_"+member.getProvid() + imageType;
+				String fileName = imageName + "." + imageType;
+				File savefile = new File(new File(realpath), fileName);
+				if (!savefile.getParentFile().exists())
+					savefile.getParentFile().mkdirs();
+				ImageUtil.resizeImage(Filedata, 660, 0,imageType, savefile.getAbsolutePath());
+				
+				providerDAO.updateImage(member.getProvid(),imageName+"."+imageType,0);
+				HTMLUtil.printWriteHTML(response, "{\"status\":\"1\",\"name\":\""+FiledataFileName+"\",\"hash\":\""+savefile.getName()+"\",\"mime\":\"img\\/jpg\"}");
+			}
+		}else {
+			HTMLUtil.printWriteHTML(response, "{\"status\":\"0\",\"name\":\""+FiledataFileName+"\",\"hash\":\""+FiledataFileName+"\",\"mime\":\"img\\/jpg\"}");
 		}
 		return null;
 	}

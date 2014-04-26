@@ -78,8 +78,8 @@ function changeBrand(sel){
 		<table class="tblist">
 			<thead>
 				<tr>
-					<th><input type="checkbox"></th>
-					<th style="width: 90px">名称</th>
+					<th style="width:20px;"><input type="checkbox"></th>
+					<th>名称</th>
 					<th>品牌</th>
 					<th>规格</th>
 					<th>市场价</th>
@@ -117,7 +117,7 @@ function changeBrand(sel){
 	        </s:iterator>
 	        <a class="numbers last" href="javascript:f_gotoPage( <s:property value="pager.pageNext"/>);">下一页</a>
 	    </div>
-		<div style="text-align:center"><span style="margin:0 10px;"><a class="btn btn-primary btn-small">设置服务项</a></span><span style="margin:0 10px;"><a class="btn btn-primary btn-small">设置适合车型</a></span></div>
+		<div style="text-align:center"><span style="margin:0 5px;"><a href="productAdd.action" class="btn btn-primary btn-small">新增产品</a></span><span style="margin:0 5px;"><a class="btn btn-primary btn-small">设置服务项</a></span><span style="margin:0 5px;"><a class="btn btn-primary btn-small">设置适合车型</a></span></div>
 	</div>
 </body>
 </html>
