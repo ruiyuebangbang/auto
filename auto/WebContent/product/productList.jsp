@@ -27,7 +27,7 @@ function changeSeviceCat(sel){
 }
 
 function changeBrand(sel){	
-	$.get( "../ajax/common/getVehicleSeries.action", { selVehicleBrand: sel},
+	$.get( "../ajax/common/getVehicleSeries1.action", { selVehicleBrand: sel},
 	  function( data ) {  
 		  //alert(data);
 		  $("#selVehicleSeries").html(data).prepend('<option value="">全部</option>');
