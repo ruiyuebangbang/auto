@@ -899,9 +899,9 @@ function microChange(c) {
     if (a < 0) {
         var b = Math.abs(a);
         $("microText").set("styles", {color: "#C03B0C"});
-        $("microText").set("html", '已超出<b style="font-size:15px;font-family: Constantia,Georgia" id="font">' + b + "</b>个汉字")
+        $("microText").set("html", '已超出<b style="font-size:13px;font-family: Constantia,Georgia" id="font">' + b + "</b>个汉字")
     } else {
-        $("microText").set("styles", {color: "black"}).set("html", '你还可以输入<b style="font-size:15px;font-family: Constantia,Georgia" id="font">' + a + "</b>个字")
+        $("microText").set("styles", {color: "black"}).set("html", '你还可以输入<b style="font-size:13px;font-family: Constantia,Georgia" id="font">' + a + "</b>个字")
     }
 }
 function isCommuBlack(c, d) {
@@ -1099,7 +1099,7 @@ lunzi.util.core = function(i) {
         }
     }
     if (d.options.title) {
-        new Element("h2", {text: d.options.title ? d.options.title : "养车客生活网提示",styles: {height: "42px","line-height": "42px","text-indent": "10px","font-size": "16px","font-weight": "bold",background: "#f0f0f0",width: "100%",display: "block",color: "#333"}}).inject(d.options.isFlag ? d.coreTD : d.coreDialog);
+        new Element("h2", {text: d.options.title ? d.options.title : "养车客生活网提示",styles: {height: "42px","line-height": "42px","text-indent": "10px","font-size": "13px","font-weight": "bold",background: "#f0f0f0",width: "100%",display: "block",color: "#333"}}).inject(d.options.isFlag ? d.coreTD : d.coreDialog);
         if (!d.options.isConfirm && !d.options.isAlert) {
             new Element("span", {styles: {position: "absolute",top: "14px",right: "16px",cursor: "pointer",display: "block",height: "23px",width: "23px",background: "url(" + silunzi.util.icon + ") 0 -142px no-repeat"}}).addEvents({click: function() {
                     d.options.cancelCallback.call();
@@ -1277,7 +1277,7 @@ lunzi.util.core = function(i) {
                 this.removeClass("bg_hover")
             }}).inject(d.buttonBox));
         if (d.options.isAlert || d.options.isConfirm) {
-            d.content.setStyles({padding: "20px 20px 20px 60px","background-image": "url(" + silunzi.util.icon + ")","background-repeat": "no-repeat","font-size": "16px","background-position": d.options.isAlert ? "6px -742px" : "6px -447px"})
+            d.content.setStyles({padding: "20px 20px 20px 60px","background-image": "url(" + silunzi.util.icon + ")","background-repeat": "no-repeat","font-size": "13px","background-position": d.options.isAlert ? "6px -742px" : "6px -447px"})
         }
         if (d.options.isAlert) {
             d.sanim(d.cancel, 4)
@@ -2523,7 +2523,7 @@ lunzi.util.replay = new Class({Implements: [Options, Events],options: {},initial
                 }
             }).inject(new Element("label", {html: "转发到我的养车客","class": "left ui_wala_rzf","for": h}).inject(f), "top");
             new Element("input", {type: "hidden",name: "type",value: b ? "f" : "r"}).inject(g);
-            var d = new Element("b", {html: 140,styles: {"float": "right","font-family": "Constantia,Georgia","font-size": "14px",color: "#CC3300","margin-right": "70px"}}).inject(f);
+            var d = new Element("b", {html: 140,styles: {"float": "right","font-family": "Constantia,Georgia","font-size": "13px",color: "#CC3300","margin-right": "70px"}}).inject(f);
             i.textarea = new Element("textarea", {name: "body",id: "body",root: "text",alt: "请输入" + c + "内容...",styles: {color: "#666"}}).inject(g, "top");
             i.textarea.addEvent("focus", function() {
                 this.addClass("onFocus")

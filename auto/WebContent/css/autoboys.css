@@ -25,6 +25,7 @@
 	-o-transition: 0.25s;
 	transition: 0.25s;
 	-webkit-backface-visibility: hidden;
+	outline: none;  
 }
 
 .btn:active,.btn.active {

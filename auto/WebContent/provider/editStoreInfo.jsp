@@ -143,7 +143,7 @@
 		<div style="padding:20px;clear:both;">
 		<form action="<%=request.getContextPath()%>/ajax/common/uploadProviderImgs.action" method="post" enctype="multipart/form-data" id="form-batch">
 			<div>
-				<label style="font-weight: bold">上传店铺展示图片</label><span style="display: inline-block; margin-left: 10px; ">（图片大小不得超过2M，格式为（.jpg	| .gif | .png | .jpeg））</span>
+				<label style="font-weight: bold">上传店铺展示图片</label><span style="display: inline-block; margin-left: 10px; ">（支持批量上传，最多上传5张图片，图片大小不得超过2M，格式为（.jpg	| .gif | .png | .jpeg））</span>
 				
 			</div>
 			<!-- 批量上传 begin -->

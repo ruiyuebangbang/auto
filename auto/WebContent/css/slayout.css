@@ -54,7 +54,7 @@ input[type=text] {
 	outline: 0;
 	border: 1px solid #C7C7C7;
 	color: #555555; 
-	height:28px;
+	height:24px;
 }
 select {
 	border: 1px solid #C7C7C7;
@@ -85,9 +85,9 @@ line-height: 1.28571em;
 }
 
 .clearfix:before, .clearfix:after {
-
 display: table;
 content: " ";
+clear:both;
 }
 
 
@@ -300,16 +300,42 @@ padding: 2px 0 6px;
 .pform table td {
 	padding:2px 10px 2px 0;
 }
+.pform input[type=text],.pform select {
+	margin:4px;
+}
 .pform input[type=text] {
-	padding:4px;
 	width:260px;
 }
+
 .tblist .price {
 	width:60px;
 	text-align:right;
 }
 .cr {
 	color:red;
+}
+.pproject {
+	margin:20px;
+}
+
+.pproject dl dd ol li {
+float: left;
+width: 105px;
+display: inline;
+margin: 0;
+padding: 0;
+border: 0;
+font: 13px/24px "宋体";
+height: 24px;
+padding-left: 20px;
+}
+.pproject dl {
+	padding-bottom:10px;
+	clear:both;
+	font-weight:bold;
+}
+.pproject dl dt {
+	margin:6px 0;
 }
 .footer {
 	background:#c10208;

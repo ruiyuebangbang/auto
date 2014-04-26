@@ -72,7 +72,8 @@
 					<div class="menu_item" itemtype="car"><span class="item_icon icon_car"></span><span class="item_name">产品服务管理</span><span class="item_more item_to_down"></span></div>
 					<div class="menu_item_children" itemtype="car">
 					    <ul>
-					        <li class="menu_item_child" id="menu-3-4"><a href="<%=request.getContextPath()%>/provider/brands.action">维修品牌设置</a></li>
+					        <li class="menu_item_child" id="menu-3-1"><a href="<%=request.getContextPath()%>/provider/service/serviceConfig.action">服务项目设置</a></li>
+					        <li class="menu_item_child" id="menu-3-2"><a href="<%=request.getContextPath()%>/provider/brands.action">维修品牌设置</a></li>
 					        <li class="menu_item_child" id="menu-3-3"><a href="<%=request.getContextPath()%>/provider/eService.action">汽车配件管理</a></li>
 					        
 					    </ul>

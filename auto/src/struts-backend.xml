@@ -20,7 +20,11 @@
 			<result name="success">/review/reviewQuery.jsp</result>
 		</action>
 	</package>
-	
+	<package name="provider/service" extends="hibernate-default" namespace="/provider/service">
+		<action name="serviceConfig" method="serviceConfig" class="com.autoboys.action.provider.ServiceAction">
+            <result name="success">/provider/serviceConfig.jsp</result>
+		</action>
+	</package>
 	<package name="provider" extends="hibernate-default" namespace="/provider">
 		<action name="provider_register" class="com.autoboys.action.provider.RegisterAction">
             <result name="create">register.jsp</result>

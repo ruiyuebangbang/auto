@@ -28,6 +28,7 @@ public class Product {
 		this.brandName = brandName;
 	}
 	@Id
+	@GeneratedValue
 	@Column(name="ID")
 	public Long getId() {
 		return id;
