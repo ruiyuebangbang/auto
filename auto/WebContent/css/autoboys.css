@@ -1,3 +1,15 @@
+.onumber {
+	font-family:Georgia, Arial, Helvetica, sans-serif;
+}
+.ta-left {
+	text-align:left;
+}
+.ta-right {
+	text-align:right;
+}
+.ta-center {
+	text-align:center;
+}
 .btn {
 	border: none;
 	background: #CFD1D3;

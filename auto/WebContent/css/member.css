@@ -48,7 +48,7 @@ box-sizing: border-box;
 width: 700px;
 }
 
-.menu_user{ width: 225px; background:#E4E4E4; border-right: solid 1px #d7d7d7;float: left;font-family: "微软雅黑";min-height:660px;}
+.menu_user{ width: 225px; background:#E4E4E4; float: left;font-family: "微软雅黑";min-height:660px;}
 .menu_title {
 	float: left;
 	width: 225px;
