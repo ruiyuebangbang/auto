@@ -111,7 +111,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	public Member queryMemberByMobilePhone(String mobilePhone) {
 		try {
-			SQLQuery query = session.createSQLQuery("select * from member where mobile_phone = ?");
+			SQLQuery query = session.createSQLQuery("select * from member where mobiephone = ?");
 			query.setParameter(0,mobilePhone);
 			query.addEntity(Member.class);
 			List<Member> members = query.list();
@@ -263,6 +263,24 @@ public class MemberDAOImpl implements MemberDAO {
 			e.printStackTrace();		
 		}
 		return ret;
+	}
+	
+	public boolean checkUserPasswordMatch(Member mb) {
+		try {
+			SQLQuery query = session.createSQLQuery("select * from member where id=? and password=?");
+			query.setParameter(0,mb.getId());
+			query.setParameter(1,mb.getPassword());
+			query.addEntity(Member.class);
+			List<Member> members = query.list();
+			if(members.size() ==0){
+				return false;
+			}else{
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}		
 	}
 }
 
