@@ -28,7 +28,7 @@
 					<dt>服务项目：</dt>
 					<dd>
 						<s:select name="selCategory" headerKey="" headerValue="全部" list="cats"  theme="simple" cssClass="service" listKey="code" listValue="name" onchange="javascript:changeSeviceCat(this.value);"/>
-						<s:select id="service_id" name="product.service_id" headerKey="" headerValue="全部" list="sevs"  theme="simple" cssClass="service" listKey="CODE" listValue="NAME" />
+						<s:select id="service_id" name="providerProduct.service_id" headerKey="" headerValue="全部" list="sevs"  theme="simple" cssClass="service" listKey="CODE" listValue="NAME" />
 						
 					</dd>
 					
@@ -40,7 +40,7 @@
                     <dt>配件名称：</dt>
 					<dd>
 						<s:textfield name="providerProduct.name" theme="simple" style="width:160px;" maxlength="50" />
-						<span><a href="" class="btn btn-small btn-primary">查询</a></span>
+						<span><input type="submit" class="btn btn-small btn-primary" value="查询"></span>
 					</dd>
 				</dl>
 			</div>
