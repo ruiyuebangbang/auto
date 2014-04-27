@@ -120,8 +120,38 @@ public class MemberAction extends ActionSupport implements ServletRequestAware,
 		request.setAttribute("subMenuName", "修改密码");
 		String method = request.getMethod();
 		if(method.equals("POST")){
-			return SUCCESS; 
+			boolean bRet = false;
+			String currpwd = request.getParameter("currpwd");
+			String newpwd = request.getParameter("newpwd");
+			String renewpwd = request.getParameter("renewpwd");
+			if(newpwd==null) {
+				addFieldError("newpwd", "密码为空");
+				bRet=true;
+			}
+			if(renewpwd==null) {
+				addFieldError("renewpwd", "确认密码为空");
+				bRet=true;
+			}
+			if(!newpwd.equals(renewpwd)) {
+				addFieldError("newpwd", "两次密码不一致");
+				bRet=true;
+			}
+			Member mb =  (Member) request.getSession().getAttribute("login_user");
+			mb.setPassword(currpwd);
+			if(!memberDAO.checkUserPasswordMatch(mb)) {
+				addFieldError("currpwd", "密码不正确");
+				bRet=true;
+			}
+			
+			if(bRet) {
+				return INPUT;
+			} else {
+				mb.setPassword(newpwd);
+				memberDAO.modifyPassword(mb);
+				return SUCCESS; 
+			}
 		}else{
+			
 			return INPUT;
 		}
 		
