@@ -4,7 +4,7 @@
 	
 	<package name="vehicle" extends="hibernate-default" namespace="/provider">
 		<action name="brands" method="providerChangeBrands" class="com.autoboys.action.VehicleAction">
-			<result name="success">/vehicle/providerChangeBrands.jsp</result>
+			<result name="success">/provider/brandConfig.jsp</result>
 		</action>
 	</package>
 	
