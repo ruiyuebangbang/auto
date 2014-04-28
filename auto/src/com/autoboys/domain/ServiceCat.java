@@ -52,9 +52,9 @@ public class ServiceCat {
 		this.remark = password;
 	}
 	
-	//@OneToMany(targetEntity=Service.class,cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	//@JoinColumn(name="CATEGORY_CODE",updatable=false)
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "order") 
+	@OneToMany(targetEntity=Service.class,fetch = FetchType.LAZY)
+	@JoinColumn(name="CATEGORY_CODE")
+	//@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "category_code") 
 	public Set<Service> getServices() {
 		return services;
 		}

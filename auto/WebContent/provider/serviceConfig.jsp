@@ -13,75 +13,62 @@
 			<h1>服务项目设置</h1>
 		</div>
 	<div class="pproject">
+		
+		<s:iterator value="serviceCats" status="rows">
 		<dl class="clearfix">
 			<dt>
-				<input type="checkbox" name="codes" value="34" id="codes-1">
-				<label for="codes-1" class="checkboxLabel">保养类服务</label>
+				<input type="checkbox" name="cat" value="<s:property value="code" />" class="cat" id="<s:property value="code" />">
+				<label for="<s:property value="code" />" class="checkboxLabel"><s:property value="name" /></label>
 			</dt>
-			<dd>
+			<dd id='service-<s:property value="code" />'>
 				<ol>
+					<s:iterator value="services" id="inner"> 
 					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
+						<input type="checkbox" name="service" value="<s:property value="#inner.CODE" />" id="<s:property value="#inner.CODE" />">
+						<label for="<s:property value="#inner.CODE" />" class="checkboxLabel"><s:property value="#inner.NAME" /></label>
 					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
+					</s:iterator>
+					
 				</ol>
 			</dd>
 		</dl>
-		<dl class="clearfix">
-			<dt>
-				<input type="checkbox" name="codes" value="34" id="codes-1">
-				<label for="codes-1" class="checkboxLabel">车胎类服务</label>
-			</dt>
-			<dd>
-				<ol>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-					<li>
-						<input type="checkbox" name="codes" value="34" id="codes-1">
-						<label for="codes-1" class="checkboxLabel">更换机滤</label>
-					</li>
-				</ol>
-			</dd>
-		</dl>
+		</s:iterator>
+		
 	</div>
 	<div style="text-align:center;"><a class="btn btn-small btn-primary"  href="">选好了，提交</a></div>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	$$('.cat').each(function(even){
+		even.addEvents({
+			'change':function(){
+				var catCode = this.getProperty('value');
+				var serviceIpt = "service-"+catCode; 
+				
+				$(serviceIpt).getElements("input").each(function(obj){
+					//alert(even.getProperty('value'));
+					if(even.checked){
+						obj.checked="checked";
+					}else{
+						obj.setProperty("checked","");
+						//alert("false");
+						}
+				});
+				/*
+				this.parentNode.parentNode.getElements("input").each(function(event){
+					
+					});
+				*/
+			},
+			'mouseenter':function(){
+			this.toggleClass('hover');
+			
+			},
+			'mouseleave':function(){
+			this.toggleClass('hover');
+			}
+		});
+	});
+})
+</script>
 </body>
 </html>

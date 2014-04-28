@@ -2,6 +2,7 @@ package com.autoboys.dao;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -55,6 +56,20 @@ public class ProviderServiceDAOImpl implements ProviderServiceDAO {
 			e.printStackTrace();
 		}
 		return courses;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ProviderService> listProviderService(long providerId) {
+		List<ProviderService> list = null;
+		try {
+			SQLQuery query = session.createSQLQuery("select * from provider_service where provider_id = ?");
+			query.setParameter(0,providerId);
+			query.addEntity(ProviderService.class);
+			list = query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	/**
